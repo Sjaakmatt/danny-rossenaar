@@ -27,5 +27,4 @@ en ga naar http://localhost:8000.
 - **Kleuren**: bovenin `css/style.css` onder `:root`.
 - **Teksten**: rechtstreeks in `index.html` — alle teksten zijn in het Nederlands geschreven in de je-vorm.
 - **Contactgegevens**: e-mailadres en telefoonnummer zijn placeholders — pas ze aan in de contactsectie en de footer van `index.html`.
-- **Foto van Danny**: de "over"-sectie heeft nu een placeholder; vervang het blok `.about-photo` door een `<img>` zodra er een foto is.
 - **Domein / SEO**: de SEO-tags, `sitemap.xml` en `robots.txt` gebruiken nu `https://www.rossenaarmarketing.nl/` als placeholder-domein. Zoek-en-vervang dit zodra het echte domein bekend is (in `index.html`, `sitemap.xml` en `robots.txt`).
