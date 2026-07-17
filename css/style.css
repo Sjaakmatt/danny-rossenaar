@@ -437,6 +437,22 @@ section { scroll-margin-top: 90px; }
   font-weight: 800;
 }
 
+.about-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.link-linkedin {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(37, 99, 168, 0.25);
+  transition: border-color 0.2s ease;
+}
+.link-linkedin:hover { border-color: var(--blue); }
+
 /* ===== Werkwijze ===== */
 .process {
   background: var(--sand);
@@ -491,6 +507,8 @@ section { scroll-margin-top: 90px; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.6rem;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 
 .story-card {
