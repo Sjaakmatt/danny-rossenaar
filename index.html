@@ -41,8 +41,8 @@
     "url": "https://www.rossenaarmarketing.nl/",
     "logo": "https://www.rossenaarmarketing.nl/assets/logo.png",
     "image": "https://www.rossenaarmarketing.nl/assets/og-image.png",
-    "email": "hallo@rossenaarmarketing.nl",
-    "telephone": "+31612345678",
+    "email": "danny@rossenaarmarketing.nl",
+    "telephone": "+31646781657",
     "areaServed": {
       "@type": "Country",
       "name": "Nederland"
@@ -73,7 +73,7 @@
       </a>
       <nav class="site-nav" id="siteNav">
         <a href="#diensten">Wat ik doe</a>
-        <a href="#over">Over Danny</a>
+        <a href="#over">Over ons</a>
         <a href="#werkwijze">Werkwijze</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact" class="nav-cta">Plan een koffie ☕</a>
@@ -180,7 +180,7 @@
       </div>
     </section>
 
-    <!-- ===== Over Danny ===== -->
+    <!-- ===== Over ons ===== -->
     <section class="about" id="over">
       <div class="container about-inner">
         <div class="about-visual reveal">
@@ -190,7 +190,7 @@
           <div class="about-badge">Aangenaam! 👋</div>
         </div>
         <div class="about-text reveal delay-1">
-          <p class="section-kicker">Over Danny</p>
+          <p class="section-kicker">Over ons</p>
           <h2>Hallo, ik ben Danny Rossenaar</h2>
           <p>
             Ik geloof dat marketing geen kunstje is, maar een kwestie van goed luisteren.
@@ -290,12 +290,12 @@
             neem binnen één werkdag contact met je op. Bellen of mailen mag natuurlijk ook.
           </p>
           <ul class="contact-details">
-            <li><span>📧</span><a href="mailto:hallo@rossenaarmarketing.nl">hallo@rossenaarmarketing.nl</a></li>
-            <li><span>📞</span><a href="tel:+31612345678">06 - 12 34 56 78</a></li>
+            <li><span>📧</span><a href="mailto:danny@rossenaarmarketing.nl">danny@rossenaarmarketing.nl</a></li>
+            <li><span>📞</span><a href="tel:+31646781657">06 - 46 78 16 57</a></li>
             <li><span>📍</span>Werkzaam in heel Nederland</li>
           </ul>
         </div>
-        <form class="contact-form reveal delay-1" action="mailto:hallo@rossenaarmarketing.nl" method="post" enctype="text/plain">
+        <form class="contact-form reveal delay-1" id="contactForm" novalidate>
           <label>
             Je naam
             <input type="text" name="naam" placeholder="Hoe mag ik je noemen?" required>
@@ -308,8 +308,10 @@
             Waar kan ik je mee helpen?
             <textarea name="bericht" rows="4" placeholder="Vertel gerust in je eigen woorden — het hoeft geen perfect verhaal te zijn." required></textarea>
           </label>
-          <button type="submit" class="btn btn-primary btn-block">Verstuur je bericht</button>
-          <p class="form-note">Je gegevens gebruik ik alleen om te reageren. Niets nieuwsbrieven, niets gedoe.</p>
+          <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn btn-primary btn-block" id="contactSubmit">Verstuur je bericht</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          <p class="form-note">Je gegevens gebruik ik alleen om te reageren. Geen nieuwsbrieven, geen gedoe.</p>
         </form>
       </div>
     </section>
@@ -326,14 +328,14 @@
       <div class="footer-links">
         <h4>Snel naar</h4>
         <a href="#diensten">Wat ik doe</a>
-        <a href="#over">Over Danny</a>
+        <a href="#over">Over ons</a>
         <a href="#werkwijze">Werkwijze</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer-contact">
         <h4>Contact</h4>
-        <a href="mailto:hallo@rossenaarmarketing.nl">hallo@rossenaarmarketing.nl</a>
-        <a href="tel:+31612345678">06 - 12 34 56 78</a>
+        <a href="mailto:danny@rossenaarmarketing.nl">danny@rossenaarmarketing.nl</a>
+        <a href="tel:+31646781657">06 - 46 78 16 57</a>
         <a href="https://www.linkedin.com/in/danny-rossenaar-433723112/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
