@@ -6,7 +6,7 @@ gecombineerd met warme crèmetinten.
 
 ## Structuur
 
-- `index.html` — de volledige pagina (hero, diensten, over ons, werkwijze, reviews, contact)
+- `index.html` — de volledige pagina (hero, diensten, over mij, werkwijze, reviews, contact)
 - `css/style.css` — alle styling, met de kleuren als CSS-variabelen bovenin
 - `js/main.js` — mobiel menu, scroll-animaties, uitklapbare reviews en het contactformulier
 - `api/contact.js` — serverless functie die het contactformulier via Resend verstuurt
