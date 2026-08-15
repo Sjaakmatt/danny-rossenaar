@@ -503,13 +503,79 @@ section { scroll-margin-top: 90px; }
 /* ===== Verhalen ===== */
 .stories { padding: 5rem 0; }
 
-.stories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+/* ===== Reviewcarrousel ===== */
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.stories-track {
+  display: flex;
   gap: 1.6rem;
-  max-width: 48rem;
-  margin: 0 auto;
-  align-items: start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0.6rem 0.4rem 1.4rem;
+  flex: 1;
+  scrollbar-width: none;
+}
+.stories-track::-webkit-scrollbar { display: none; }
+
+.stories-track .story-card {
+  flex: 0 0 86%;
+  scroll-snap-align: start;
+}
+
+.carousel-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  display: none;
+  place-items: center;
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+.carousel-btn svg { width: 22px; height: 22px; }
+.carousel-btn:hover { background: var(--sand); transform: translateY(-2px); }
+.carousel-btn[disabled] { opacity: 0.35; cursor: default; transform: none; }
+.carousel.heeft-overloop .carousel-btn { display: grid; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.carousel-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #d8cfbd;
+  cursor: pointer;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+.carousel-dots button.actief {
+  background: var(--teal);
+  width: 26px;
+  border-radius: 999px;
+}
+
+@media (min-width: 700px) {
+  .stories-track .story-card { flex: 0 0 calc((100% - 1.6rem) / 2); }
+}
+
+@media (min-width: 1024px) {
+  .stories-track .story-card { flex: 0 0 calc((100% - 3.2rem) / 3); }
 }
 
 .story-card {
