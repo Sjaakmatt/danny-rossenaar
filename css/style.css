@@ -505,9 +505,9 @@ section { scroll-margin-top: 90px; }
 
 .stories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.6rem;
-  max-width: 62rem;
+  max-width: 48rem;
   margin: 0 auto;
   align-items: start;
 }
@@ -613,6 +613,14 @@ section { scroll-margin-top: 90px; }
 }
 
 .google-logo { width: 20px; height: 20px; flex-shrink: 0; }
+
+.google-cijfer {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1;
+}
 
 .google-badge-tekst {
   color: var(--navy);
