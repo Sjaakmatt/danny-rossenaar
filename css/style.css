@@ -581,6 +581,45 @@ section { scroll-margin-top: 90px; }
 .avatar-green { background: var(--green); }
 .avatar-navy  { background: var(--navy); }
 
+/* ===== Sterren en Google-badge ===== */
+.stars {
+  color: #f5a623;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.story-card .stars { margin-bottom: -0.6rem; }
+
+.google-badge-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: -1.6rem auto 2.4rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--white);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.google-badge-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.google-logo { width: 20px; height: 20px; flex-shrink: 0; }
+
+.google-badge-tekst {
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
 /* ===== Contact ===== */
 .contact {
   background: linear-gradient(160deg, var(--navy) 0%, #234a86 60%, var(--teal) 130%);
