@@ -127,10 +127,16 @@ if (track) {
   bouwStipjes();
   ververs();
 
-  // Automatisch doordraaien, met respect voor de bezoeker:
-  // stopt bij hover, aanraking, toetsenbordfocus of een verborgen tabblad.
+  // Automatisch doordraaien.
+  // Bewust NIET pauzeren als de muis er alleen boven hangt: bij het scrollen
+  // schuift de carrousel onder de cursor door en dan zou hij stilstaan.
+  // Wel pauzeren zodra iemand echt iets doet, en daarna weer verdergaan.
   const rustigerAnimaties = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const TIK = 5000;
+  const HERVAT_NA = 8000;
   let timer = null;
+  let hervatTimer = null;
+  let inBeeld = true;
 
   function volgende() {
     const maxScroll = track.scrollWidth - track.clientWidth;
@@ -142,9 +148,10 @@ if (track) {
   }
 
   function start() {
-    if (timer || rustigerAnimaties.matches) return;
+    if (timer) return;
+    if (rustigerAnimaties.matches || document.hidden || !inBeeld) return;
     if (track.scrollWidth <= track.clientWidth + 4) return;
-    timer = setInterval(volgende, 5000);
+    timer = setInterval(volgende, TIK);
   }
 
   function stop() {
@@ -152,12 +159,18 @@ if (track) {
     timer = null;
   }
 
-  carousel.addEventListener('mouseenter', stop);
-  carousel.addEventListener('mouseleave', start);
-  carousel.addEventListener('focusin', stop);
-  carousel.addEventListener('focusout', start);
-  track.addEventListener('pointerdown', stop);
-  dotsContainer.addEventListener('click', stop);
+  // Pauzeer na een handeling en hervat automatisch even later
+  function pauzeerEven() {
+    stop();
+    clearTimeout(hervatTimer);
+    hervatTimer = setTimeout(start, HERVAT_NA);
+  }
+
+  track.addEventListener('pointerdown', pauzeerEven);
+  carousel.addEventListener('focusin', pauzeerEven);
+  prevBtn.addEventListener('click', pauzeerEven);
+  nextBtn.addEventListener('click', pauzeerEven);
+  dotsContainer.addEventListener('click', pauzeerEven);
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stop();
@@ -168,6 +181,18 @@ if (track) {
     stop();
     start();
   });
+
+  // Alleen draaien als de reviews in beeld zijn
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(
+      ([entry]) => {
+        inBeeld = entry.isIntersecting;
+        if (inBeeld) start();
+        else stop();
+      },
+      { threshold: 0.2 }
+    ).observe(carousel);
+  }
 
   start();
 }
