@@ -59,6 +59,119 @@ document.querySelectorAll('.story-card').forEach((card) => {
   });
 });
 
+// ===== Reviewcarrousel =====
+const track = document.getElementById('storiesTrack');
+
+if (track) {
+  const carousel = track.closest('.carousel');
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  const dotsContainer = document.getElementById('carouselDots');
+  const cards = Array.from(track.querySelectorAll('.story-card'));
+
+  const stapGrootte = () => {
+    if (cards.length < 2) return track.clientWidth;
+    return cards[1].offsetLeft - cards[0].offsetLeft;
+  };
+
+  const zichtbaarAantal = () => Math.max(1, Math.round(track.clientWidth / stapGrootte()));
+
+  // Stipjes opbouwen: één per "pagina"
+  function bouwStipjes() {
+    const paginas = Math.max(1, cards.length - zichtbaarAantal() + 1);
+    dotsContainer.innerHTML = '';
+
+    if (paginas < 2) return;
+
+    for (let i = 0; i < paginas; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ga naar review ${i + 1}`);
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: i * stapGrootte(), behavior: 'smooth' });
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function ververs() {
+    const overloop = track.scrollWidth > track.clientWidth + 4;
+    carousel.classList.toggle('heeft-overloop', overloop);
+
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    prevBtn.disabled = track.scrollLeft <= 12;
+    nextBtn.disabled = track.scrollLeft >= maxScroll - 12;
+
+    const actief = Math.round(track.scrollLeft / stapGrootte());
+    Array.from(dotsContainer.children).forEach((dot, i) => {
+      dot.classList.toggle('actief', i === actief);
+    });
+  }
+
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -stapGrootte(), behavior: 'smooth' });
+  });
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({ left: stapGrootte(), behavior: 'smooth' });
+  });
+
+  track.addEventListener('scroll', () => {
+    window.requestAnimationFrame(ververs);
+  });
+
+  window.addEventListener('resize', () => {
+    bouwStipjes();
+    ververs();
+  });
+
+  bouwStipjes();
+  ververs();
+
+  // Automatisch doordraaien, met respect voor de bezoeker:
+  // stopt bij hover, aanraking, toetsenbordfocus of een verborgen tabblad.
+  const rustigerAnimaties = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer = null;
+
+  function volgende() {
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (track.scrollLeft >= maxScroll - 12) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: stapGrootte(), behavior: 'smooth' });
+    }
+  }
+
+  function start() {
+    if (timer || rustigerAnimaties.matches) return;
+    if (track.scrollWidth <= track.clientWidth + 4) return;
+    timer = setInterval(volgende, 5000);
+  }
+
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+  track.addEventListener('pointerdown', stop);
+  dotsContainer.addEventListener('click', stop);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+    else start();
+  });
+
+  rustigerAnimaties.addEventListener('change', () => {
+    stop();
+    start();
+  });
+
+  start();
+}
+
 // Contactformulier versturen zonder de pagina te herladen
 const contactForm = document.getElementById('contactForm');
 
