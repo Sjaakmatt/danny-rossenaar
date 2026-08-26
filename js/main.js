@@ -1,4 +1,4 @@
-// Rossenaar Marketing — kleine interacties
+// Rossenaar Marketing, kleine interacties
 
 // Mobiel menu
 const navToggle = document.getElementById('navToggle');
