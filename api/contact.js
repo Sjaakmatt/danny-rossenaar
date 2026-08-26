@@ -53,7 +53,7 @@ export default async function handler(req, res) {
         from: AFZENDER,
         to: [ONTVANGER],
         reply_to: email,
-        subject: `Nieuw bericht via de website — ${naam}`,
+        subject: `Nieuw bericht via de website: ${naam}`,
         html: `
           <h2>Nieuw bericht via rossenaarmarketing.nl</h2>
           <p><strong>Naam:</strong> ${escapeHtml(naam)}</p>
