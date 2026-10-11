@@ -107,6 +107,8 @@ export type Project = {
   title: string;
   category: string;
   filter: string;
+  website?: { url: string; label: string };
+  location?: string;
   cover:
     | { art: ArtType; src?: never; alt?: never }
     | { src: string; alt: string; art?: never };
@@ -226,13 +228,15 @@ export const projects: Project[] = [
   {
     slug: 'factumai',
     title: 'FactumAI',
+    website: { url: 'https://factumai.nl', label: 'factumai.nl' },
+    location: 'Hoogkarspel',
     category: 'Verhaal & persoonlijk contact',
     filter: 'Persoonlijk contact',
     cover: { art: 'factum' },
     mediaCaption: 'Grafisch projectomslag voor deze website.',
     intro: 'Een goed gesprek begint met weten wie je voor je hebt.',
     description:
-      'Voor FactumAI verzorgt Danny outbound acquisitie. Hij verdiept zich eerst in het verhaal, zodat elk gesprek klopt met wat het bedrijf kan bieden.',
+      'Voor FactumAI uit Hoogkarspel verzorgt Danny outbound acquisitie. Hij verdiept zich eerst in het verhaal, zodat elk gesprek klopt met wat het bedrijf kan bieden.',
     scope: [
       'Outbound acquisitie',
       'Klantgesprekken',

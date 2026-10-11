@@ -68,7 +68,17 @@ export default async function Project({
             description: project.description,
             image: absoluteUrl(projectImage(project)),
             creator: { '@id': organizationId },
-            about: { '@type': 'Organization', name: project.title },
+            about: {
+              '@type': 'Organization',
+              name: project.title,
+              ...(project.website && { url: project.website.url }),
+              ...(project.location && {
+                address: {
+                  '@type': 'PostalAddress',
+                  addressLocality: project.location,
+                },
+              }),
+            },
             inLanguage: 'nl-NL',
           },
         })}
@@ -98,6 +108,12 @@ export default async function Project({
             <em>{project.approach?.emphasis ?? 'Een aanpak die past.'}</em>
           </h2>
           <p>{project.description}</p>
+          {project.website && (
+            <a href={project.website.url} className="text-link">
+              {project.website.label}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          )}
           <ul>
             {project.scope.map((item) => (
               <li key={item}>
