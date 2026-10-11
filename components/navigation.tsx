@@ -34,11 +34,22 @@ export function Navigation() {
           href="/"
           aria-label="Rossenaar Marketing, naar home"
           className="brand"
-          onClick={() => setOpen(false)}
+          scroll={pathname !== '/'}
+          onClick={() => {
+            setOpen(false);
+            if (pathname === '/')
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+                  .matches
+                  ? 'instant'
+                  : 'smooth',
+              });
+          }}
         >
           <BrandMark />
           <span>
-            rossenaar<span className="brand-sub">MARKETING</span>
+            Rossenaar<span className="brand-sub">MARKETING</span>
           </span>
         </Link>
         <nav className="desktop-nav" aria-label="Hoofdnavigatie">

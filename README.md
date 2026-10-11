@@ -37,8 +37,8 @@ De goedgekeurde nieuwe versie staat in [PR #16](https://github.com/Sjaakmatt/dan
 - Teksten, contactgegevens, samenwerkingen en originele reviews: `lib/content.ts`.
 - Basisstijl: `app/globals.css`; scrollscènes: `app/cinematic.css`; licht/donker: `app/theme.css`.
 - Klantvideo’s, posters en advertenties: `public/media/`; galerijvolgorde en labels: `lib/showcase.ts`.
-- Galerijbediening en Instagram-spelers: `components/content-showcase.tsx`; opmaak: `app/showcase.css`.
-- Filmische scrollbeweging: `components/cinematic-home.tsx`.
+- Galerijbediening: `components/content-showcase.tsx`; opmaak: `app/showcase.css`.
+- Hero: `components/hero.tsx` en `components/hero.module.css`; overige filmische scrollscènes: `components/cinematic-home.tsx`.
 - Portaalbediening: `components/dashboard.tsx` en `components/portal/`; fictieve daggegevens: `lib/demo.ts`.
 - Gedeelde weergavevoorkeur: `components/theme-toggle.tsx`.
 
@@ -66,9 +66,9 @@ De openbare demo gebruikt uitsluitend expliciet gemarkeerde fictieve gegevens. D
 
 Danny’s foto’s, contactgegevens en vier reviews komen uit de oorspronkelijke repository (`fc59c60`). Alle fotografie in de nieuwe website komt uit aangeleverde bestanden. De eerder gemaakte AI-foto’s en hun bronbestanden zijn op verzoek verwijderd. Café Retro en FactumAI hebben grafisch vormgegeven projectomslagen; die worden niet als gepubliceerde campagnes gepresenteerd.
 
-De galerij bevat vijf aangeleverde video’s, drie social advertenties en de foto op locatie. De video’s zijn geëxporteerd als 720px H.264 met faststart. Alleen de actieve, zichtbare video speelt automatisch, zonder geluid. De gebruiker kan pauzeren en bij clips met een audiotrack geluid aanzetten. Advertenties en video’s behouden hun volledige beeldverhouding, inclusief teksten en ondertitels. Bladeren werkt met native horizontale scroll, slepen, pijlen, toetsenbord en positieknoppen.
+De galerij bevat zeven aangeleverde video’s, drie social advertenties en de foto op locatie (elf items). De video’s zijn geëxporteerd als 720px H.264 met faststart. Alleen de actieve, zichtbare video speelt automatisch, zonder geluid. De gebruiker kan pauzeren en bij clips met een audiotrack geluid aanzetten. Advertenties en video’s behouden hun volledige beeldverhouding, inclusief teksten en ondertitels. De carousel loopt in beide richtingen door: na het laatste beeld volgt het eerste. Bladeren werkt met native horizontale scroll, slepen, pijlen, toetsenbord en positieknoppen.
 
-De twee aangeleverde Chikado-reels openen na een klik in een Instagram-speler binnen een dialoog. Er zijn geen Instagram-verzoeken voordat de bezoeker deze kiest. Bij sluiten wordt de speler verwijderd; een rechtstreekse link blijft beschikbaar. Instagram kan eigen cookies en toegangsvoorwaarden toepassen.
+De twee aangeleverde Chikado-reels zijn vanaf de openbare videobron opgehaald en staan als gewone lokale videokaarten tussen het andere werk. Ze gebruiken dezelfde pauze-, geluid- en swipebediening. Er worden geen externe Instagram-spelers geladen. Onder de betreffende video staat een link naar het oorspronkelijke bericht.
 
 De extra foto `public/assets/op-locatie.webp` staat ook in de beeldstapel, de persoonlijke home-scène en `/over`. Herkomst en bewerkingen: `docs/visuals.md`. Referentieverwerking: `docs/design.md`. Testresultaten en beperkingen: `docs/verification.md`.
 

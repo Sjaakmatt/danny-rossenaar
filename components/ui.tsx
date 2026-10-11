@@ -6,15 +6,38 @@ export function BrandMark({ className = '' }: { className?: string }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 40 40"
+      viewBox="0 0 100 120"
       fill="none"
       aria-hidden="true"
     >
       <path
-        d="M19 21C7 21 4 13 4 4c9 0 17 3 17 15V4h5v11c0 9-3 14-8 19l-4-4c3-3 5-6 5-9Z"
-        fill="currentColor"
+        d="M3 17C21 29 35 30 36 52C13 49 4 37 3 17Z"
+        fill="var(--brand-teal, #08616a)"
       />
-      <path d="M26 25c0-11 6-15 13-15 0 10-3 16-13 15Z" fill="currentColor" />
+      <path
+        d="M97 17C79 29 65 30 64 52C87 49 96 37 97 17Z"
+        fill="var(--brand-leaf, #7a9e3f)"
+      />
+      <path
+        d="M30 67C10 67 2 82 2 104V115L14 105V100C14 87 18 82 31 83Z"
+        fill="var(--brand-blue, #0b3e64)"
+      />
+      <path
+        d="M43 59C27 64 27 78 31 89C34 79 38 73 44 70Z"
+        fill="var(--brand-leaf, #7a9e3f)"
+      />
+      <path
+        d="M42 4H60V63C51 64 46 67 42 73Z"
+        fill="var(--brand-teal, #08616a)"
+      />
+      <path
+        d="M2 115C28 99 33 106 44 85C54 66 66 65 74 67C93 71 98 85 98 115L86 108V94C86 79 73 77 66 84C56 93 50 113 31 116C20 118 10 117 2 115Z"
+        fill="var(--brand-blue, #0b3e64)"
+      />
+      <path
+        d="M66 97C72 105 89 107 98 115C80 119 64 117 55 108Z"
+        fill="var(--brand-leaf, #7a9e3f)"
+      />
     </svg>
   );
 }

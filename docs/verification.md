@@ -29,10 +29,21 @@ Reduced motion is in Motion-componenten en CSS gecontroleerd: geen pinning of ve
 
 Online preview gebruikt de bestaande Vercel-integratie en vraagt Vercel-login. De gebruiker heeft op 11 oktober 2026 merge naar `main` geautoriseerd; de actuele mergestatus staat in PR #16. Het echte uitnodigingsportaal en echte advertentiegegevens zijn niet gekoppeld aan deze openbare demo. De gebruiker heeft de visuele richting op 11 oktober 2026 goedgekeurd.
 
-## Laatste galerij- en mediacontrole
+## Eerdere galerij- en mediacontrole (voor onderstaande herziening)
 
 - Video Slide Show geïnspireerde coverflow op desktop en 390px: juiste laagvolgorde, middenbeeld scherp, zijkaarten teruggedraaid en vervaagd. Slepen wisselde van item 3 naar 4; positieknoppen, pijlen en End-toets gecontroleerd. Laatste item 9 staat gecentreerd en de volgende-knop is uitgeschakeld. Pagina-overloop: 375px scrollbreedte bij 390px viewport (scrollbar meegerekend).
 - Alle vijf lokale clips geladen zonder mediafouten. Autoplay van uitsluitend het actieve zichtbare item, pauze bij wissel en werkende pauze/geluidsknoppen gecontroleerd. Stille bronclips tonen geen geluidsknop. De 4:5-video en vierkante advertenties behouden het volledige kader.
 - Beide Chikado-reels laden via Instagram in de dialoog. Werkelijk afspelen gecontroleerd (`paused=false`, oplopende tijd), evenals sluiten en Escape. De achterliggende galerijvideo pauzeert tijdens de dialoog. Instagram blijft een externe afhankelijkheid.
 - Nieuwe productiebuild, typecheck, formatting, vijf tests en Git-whitespacecontrole geslaagd. Twaalf routes en dertien lokale media-assets geven HTTP 200; MP4-byte-range geeft HTTP 206. Beide 404’s en de 308-redirect van /index.html werken. Geen verwijzingen naar de verwijderde gegenereerde foto’s in gerenderde pagina’s.
 - Geoptimaliseerde originele lokale video’s staan in public/media; bronbestanden van de gebruiker zijn niet gewijzigd. Geen AI-foto’s blijven in app, componenten of publieke assets.
+
+## Hero, logo en doorlopende carousel — laatste herziening
+
+- Nieuwe hero: direct zichtbare videolaag, foto en advertentie. Openingscompositie en overgang naar beeldvullende klantfoto in de browser gecontroleerd. Hero-video pauzeert via de knop en wanneer hij uit beeld verdwijnt.
+- Mobiele openingscompositie op 390 × 844 gecontroleerd: kop, kennismakingsknop en beelden zichtbaar. Geen horizontale paginaoverloop. Donkere desktopweergave gecontroleerd; het hertekende blauw/groene beeldmerk blijft leesbaar. Navigatie en footer tonen “Rossenaar” met hoofdletter R. De logo-link keert ook vanaf een homepage-anker terug naar boven.
+- Beide Chikado-reels zijn nu lokale H.264/AAC-bestanden met volledige beeldverhouding, originele audio en faststart. Beide speelden in de galerij zonder mediafout. Pauze, geluid aanzetten en automatisch dempen bij wissel gecontroleerd.
+- Elf logische items, drie identieke reeksen voor een doorlopende track. In de browser 11 → 1 en 1 → 11 gecontroleerd met pijlen en toetsenbord. Op 390px werkt slepen van 1 terug naar 11 en weer vooruit naar 1. De rebase herstelt de middelste reeks zonder lege eindpositie.
+- Na wisselen naar Chikado speelde precies één galerijvideo; de andere videokaarten stonden gepauzeerd. De Werk-pagina gebruikt dezelfde doorlopende carousel als de homepage.
+- Reduced-motioncode nagekeken: hero staat in normale documentflow, parallax staat uit en autoplay wordt overgeslagen. Geen gewijzigde OS-voorkeur gesimuleerd.
+- Laatste productiebuild, TypeScript, formatting en Git-whitespacecontrole geslaagd. Homepage, Werk, Inzicht, Privacy en beide nieuwe posters geven HTTP 200; beide Chikado-video’s ondersteunen byte-rangeverzoeken met HTTP 206.
+- Kleine mobiele hero op 375 × 667 gecontroleerd. De carousel behoudt item 8 bij wisselen tussen 375px en 1440px; native scroll-anchoring wordt tijdens het opnieuw meten opgevangen. De overgangen 11 → 1 en 1 → 11 zijn ook in de productiebuild op mobiel gecontroleerd.

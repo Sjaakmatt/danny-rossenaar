@@ -50,10 +50,10 @@ export default function Privacy() {
         instellingen van die andere website.
       </p>
       <p>
-        De Chikado-video’s via Instagram worden pas geladen wanneer je een van
-        die spelers opent. Dan maakt je browser verbinding met Instagram en kan
-        Instagram gegevens en cookies verwerken volgens zijn eigen instellingen.
-        Bij het sluiten wordt de speler verwijderd.
+        De video’s in de galerij, inclusief de Chikado-reels, worden vanuit deze
+        website afgespeeld. Er wordt daarvoor geen Instagram-speler geladen. De
+        link ‘Bekijk op Instagram’ opent het oorspronkelijke bericht op
+        Instagram.
       </p>
       <h2>Een vraag of verzoek?</h2>
       <p>

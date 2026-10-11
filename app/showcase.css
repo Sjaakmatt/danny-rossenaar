@@ -376,94 +376,12 @@
     gap: 20px;
   }
 }
-.instagram-reels {
-  margin-top: 30px;
-  padding-top: 25px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-size: 12px;
-}
-.instagram-reels > span {
-  margin-right: auto;
-}
-.instagram-reels button {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 15px 20px;
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  background: transparent;
-  color: var(--ink);
-}
-.instagram-reels button:hover {
-  background: var(--lime);
-  color: #192b32;
-}
-.instagram-reels small {
-  color: var(--muted);
-}
-.reel-dialog {
-  background: var(--paper);
-  color: var(--ink);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  width: min(430px, calc(100vw - 28px));
-  max-height: calc(100dvh - 30px);
-  padding: 0;
-  margin: auto;
-}
-.reel-dialog::backdrop {
-  background: #091519bb;
-  backdrop-filter: blur(8px);
-}
-.reel-dialog-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  font-size: 12px;
-}
-.reel-dialog-head button {
-  background: transparent;
-  color: inherit;
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-}
-.reel-dialog iframe {
-  width: 100%;
-  height: min(700px, 72dvh);
-  border: 0;
-  background: white;
-  display: block;
-}
-.reel-dialog > a {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  padding: 17px;
-  font-size: 12px;
-}
-@media (max-width: 760px) {
-  .instagram-reels {
-    gap: 10px;
-  }
-  .instagram-reels > span {
-    width: 100%;
-  }
-  .instagram-reels small {
-    width: 100%;
-  }
-  .reel-dots button {
-    width: 20px;
-  }
-}
 .reel-contain:has(> img) {
   background: #f6ede4;
+}
+
+@media (max-width: 760px) {
+  .reel-dots button {
+    width: 16px;
+  }
 }

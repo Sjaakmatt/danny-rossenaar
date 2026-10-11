@@ -31,7 +31,7 @@ Beweging gebruikt transform en opacity. Geen scroll hijacking, autoplay-geluid o
 
 ## Filmische herziening
 
-- Hero: 350svh op desktop, 290svh mobiel. Kopregels bewegen uiteen; vijf beeldlagen stapelen, draaien en verdwijnen terwijl een uitsnede van de centrale klantfoto het scherm vult. Een voortgangslijn en “Verder” maken het verloop zichtbaar en overslaan mogelijk.
+- Hero: 300svh op desktop, 275svh mobiel. Een asymmetrische openingscompositie toont direct een spelend videoportret, een klantfoto en een echte advertentie. Bij scrollen schuift de kop weg, bewegen de drie beeldlagen onafhankelijk in positie, rotatie en schaal en vult de klantfoto het scherm. Muisbeweging geeft een kleine extra diepteverschuiving. Een voortgangslijn en “Verder” maken het verloop zichtbaar en overslaan mogelijk.
 - Manifest: woorden lichten op en een brede typografische achtergrond beweegt op een andere snelheid.
 - Diensten: vier grote hoofdstukken komen van onderen over elkaar heen; de campagneposters bewegen onafhankelijk. Alleen de actieve kaart is focusbaar.
 - Persoonlijk: de aangeleverde klantfoto komt uit een boogvormige uitsnede, terwijl achtergrondwoord en kaartje onafhankelijk bewegen.
@@ -44,4 +44,4 @@ De beweging is gekoppeld aan normale browserscrolling. Reduced motion verwijdert
 
 [Video Slide Show](https://www.framer.com/marketplace/components/video-slide-show/) en de [live preview](https://affable-ideas-694418.framer.app/) zijn geopend en doorgeklikt. Overgenomen interactieprincipe: groot scherp middenbeeld, terugwijkende kaarten met rotatie en lichte onscherpte, pijlen en positieknoppen. Eigen uitvoering gebruikt native horizontaal scrollen en Motion; geen templatecode of referentievideo’s gekopieerd.
 
-Alle galerijbeelden zijn aangeleverd klantmateriaal. Vijf lokale video’s, drie advertenties en een opname op locatie. De eigen teksten in de advertenties en de ingebakken ondertitels blijven volledig zichtbaar. Twee Chikado-reels hebben een afzonderlijke Instagram-speler op aanvraag. De homepage en Werk delen dezelfde galerij; Chocolate Planet heeft daarnaast twee gewone videospelers op de detailpagina.
+Alle galerijbeelden zijn aangeleverd klantmateriaal. Zeven lokale video’s, drie advertenties en een opname op locatie. De eigen teksten in de advertenties en de ingebakken ondertitels blijven volledig zichtbaar. De twee Chikado-reels staan tussen de andere kaarten en gebruiken dezelfde lokale videospeler. De homepage en Werk delen dezelfde galerij; Chocolate Planet heeft daarnaast twee gewone videospelers op de detailpagina.

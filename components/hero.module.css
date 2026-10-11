@@ -1,0 +1,700 @@
+.hero {
+  height: 300svh;
+  position: relative;
+  background: var(--paper);
+}
+.stage {
+  position: sticky;
+  top: var(--scene-nav);
+  height: calc(100svh - var(--scene-nav));
+  min-height: 660px;
+  overflow: clip;
+  isolation: isolate;
+}
+.backdrop {
+  position: absolute;
+  top: -14%;
+  right: -13%;
+  width: 56%;
+  height: 128%;
+  border-radius: 46% 0 0 44%;
+  background: color-mix(in srgb, var(--lime) 60%, var(--paper));
+  transform: rotate(-12deg);
+}
+.backdrop > span {
+  position: absolute;
+  right: 28%;
+  bottom: 12%;
+  font: italic clamp(24px, 3vw, 48px) var(--serif);
+  color: #3d6034;
+  transform: rotate(5deg);
+}
+:global([data-site-theme='dark']) .backdrop {
+  background: #31463a;
+}
+:global([data-site-theme='dark']) .backdrop > span {
+  color: var(--lime);
+}
+.intro {
+  position: absolute;
+  z-index: 3;
+  top: 6%;
+  left: 5%;
+  width: 54%;
+  pointer-events: none;
+}
+.intro a {
+  pointer-events: auto;
+}
+.intro > :global(.eyebrow) {
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  margin-bottom: 26px;
+}
+.intro h1 {
+  font-size: clamp(84px, 9.5vw, 164px);
+  line-height: 0.86;
+  letter-spacing: -0.075em;
+}
+.intro h1 > span,
+.intro h1 > em {
+  display: block;
+  width: max-content;
+}
+.titleSecond {
+  margin-left: 7vw;
+}
+.period {
+  color: var(--green);
+}
+.intro h1 i {
+  display: inline-block;
+  color: var(--green);
+  font-style: normal;
+  font-size: 0.54em;
+  vertical-align: 13%;
+  margin-left: 0.3em;
+}
+.intro h1 > em {
+  font-size: 0.76em;
+  letter-spacing: -0.055em;
+  margin: 14px 0 0 1vw;
+  color: var(--green);
+}
+.introBottom {
+  margin-top: 32px;
+}
+.introBottom p {
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 390px;
+}
+.actions {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin-top: 21px;
+}
+.actions :global(.button) {
+  min-height: 48px;
+  padding: 8px 9px 8px 20px;
+  font-size: 12px;
+}
+.workLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--line);
+  padding-block: 10px;
+}
+.signature {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 12px;
+  margin-top: 29px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.signature img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 28%;
+}
+.signature strong {
+  display: block;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 500;
+}
+.signature > svg {
+  margin-left: 12px;
+  color: var(--ink);
+}
+.collage {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.collage a,
+.collage button {
+  pointer-events: auto;
+}
+.reel,
+.photo,
+.ad {
+  position: absolute;
+  will-change: transform;
+}
+.reel {
+  top: 10%;
+  left: 64%;
+  width: min(28vw, 440px);
+  z-index: 3;
+  background: #233630;
+  padding: 9px;
+  border-radius: 11px;
+  box-shadow: 0 28px 65px #101e2b36;
+  color: #f9f7ef;
+}
+.reelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 6px 13px;
+  gap: 10px;
+  font-size: 8px;
+}
+.reelHeader > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.reelHeader i {
+  width: 5px;
+  height: 5px;
+  background: var(--lime);
+  border-radius: 50%;
+}
+.reelHeader > span:last-child {
+  font-size: 7px;
+  opacity: 0.7;
+  letter-spacing: 0.8px;
+}
+.reelPicture {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #0f1715;
+}
+.reelPicture video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.play {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f5f3ede8;
+  color: #192b32;
+  display: grid;
+  place-items: center;
+}
+.reelFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  padding: 12px 6px 4px;
+}
+.photo {
+  top: 23%;
+  left: 83%;
+  width: 20%;
+  aspect-ratio: 3 / 4;
+  z-index: 1;
+  border: 6px solid #fff9ed;
+  border-radius: 6px;
+  box-shadow: 0 15px 40px #14232a33;
+}
+.photo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.photo img {
+  object-fit: cover;
+}
+.photo span {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 12px 10px;
+  font-size: 8px;
+  color: white;
+  background: linear-gradient(transparent, #142020aa);
+}
+.ad {
+  top: 56%;
+  left: 53%;
+  width: 19%;
+  aspect-ratio: 1;
+  z-index: 5;
+  box-shadow: 0 20px 40px #13282030;
+}
+.ad > a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.ad img {
+  object-fit: contain;
+  border-radius: 3px;
+}
+.adNote {
+  position: absolute;
+  right: -18%;
+  bottom: -13%;
+  padding: 12px 18px;
+  background: var(--lime);
+  color: #233630;
+  transform: rotate(6deg);
+  font-size: 12px;
+  line-height: 1.2;
+  box-shadow: 0 5px 16px #13282018;
+  pointer-events: none;
+}
+.adNote em {
+  font-size: 21px;
+}
+.backtype {
+  position: absolute;
+  inset: 15% 0 auto;
+  text-align: center;
+  z-index: 1;
+  font-size: 17vw;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+  pointer-events: none;
+}
+.backtype em {
+  color: var(--green);
+}
+.film {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  overflow: clip;
+  color: #fff9ea;
+  background: #251e13;
+}
+.filmImage {
+  position: absolute;
+  inset: 0;
+}
+.filmImage img {
+  object-fit: cover;
+  object-position: 50% 61%;
+}
+.filmShade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #190d09a8, #1c110820 90%),
+    linear-gradient(0deg, #150c0bad, transparent 60%);
+}
+.filmCopy {
+  position: absolute;
+  top: 22%;
+  left: 8%;
+}
+.filmCopy > span {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.filmCopy h2 {
+  font-size: clamp(70px, 10vw, 150px);
+  line-height: 0.91;
+  margin: 25px 0 38px;
+}
+.filmCopy h2 em {
+  color: #f3d79f;
+}
+.filmCopy > a {
+  display: inline-flex;
+  gap: 35px;
+  align-items: center;
+  font-size: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid #fff8;
+}
+.filmNote {
+  position: absolute;
+  right: 4vw;
+  bottom: 80px;
+  font-size: 10px;
+}
+.hud {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 22px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+  background: linear-gradient(0deg, var(--paper), transparent);
+}
+.hud > span,
+.hud > a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.hud > div {
+  display: flex;
+  gap: 22px;
+}
+.hud > div > span {
+  opacity: 0.4;
+}
+.hud > div > .active {
+  opacity: 1;
+}
+.hud b {
+  font-weight: 400;
+  font-size: 8px;
+  margin-right: 4px;
+}
+.onFilm {
+  color: #fff;
+  background: linear-gradient(0deg, #1c1008b0, transparent);
+}
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  z-index: 30;
+  background: var(--green);
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .intro h1 {
+    animation: arrive 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .reelPicture {
+    animation: arrive 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes arrive {
+    from {
+      opacity: 0.3;
+      translate: 0 30px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+}
+@media (min-width: 761px) and (max-height: 800px) {
+  .stage {
+    min-height: 585px;
+  }
+  .intro {
+    top: 4%;
+  }
+  .intro > :global(.eyebrow) {
+    margin-bottom: 21px;
+  }
+  .intro h1 {
+    font-size: min(9vw, 15svh);
+  }
+  .introBottom {
+    margin-top: 23px;
+  }
+  .signature {
+    margin-top: 20px;
+  }
+  .reel {
+    width: min(28vw, 51svh);
+    left: 64%;
+    top: 8%;
+  }
+  .ad {
+    width: min(19vw, 32svh);
+    top: 59%;
+  }
+}
+@media (max-width: 1000px) and (min-width: 761px) {
+  .actions {
+    gap: 16px;
+  }
+  .intro h1 {
+    font-size: 10vw;
+  }
+  .intro {
+    top: 12%;
+  }
+  .reel {
+    top: 22%;
+  }
+  .photo {
+    top: 34%;
+  }
+  .ad {
+    top: 59%;
+    left: 61%;
+  }
+  .signature {
+    margin-top: 35px;
+  }
+}
+@media (max-width: 760px) {
+  .hero {
+    height: 275svh;
+  }
+  .stage {
+    min-height: 760px;
+  }
+  .intro {
+    left: 6%;
+    top: 24px;
+    width: 88%;
+  }
+  .intro > :global(.eyebrow) {
+    font-size: 8px;
+    margin-bottom: 23px;
+  }
+  .intro h1 {
+    font-size: clamp(66px, 17vw, 125px);
+  }
+  .titleSecond {
+    margin-left: 13vw;
+  }
+  .intro h1 > em {
+    font-size: 0.79em;
+    margin-top: 9px;
+  }
+  .introBottom {
+    margin-top: 22px;
+  }
+  .introBottom p {
+    font-size: 11px;
+    max-width: 300px;
+  }
+  .actions {
+    margin-top: 15px;
+    gap: 21px;
+  }
+  .actions :global(.button) {
+    font-size: 10px;
+    min-height: 43px;
+    padding: 6px 7px 6px 15px;
+  }
+  .actions :global(.button-arrow) {
+    width: 29px;
+    height: 29px;
+  }
+  .workLink {
+    font-size: 10px;
+    gap: 7px;
+  }
+  .signature {
+    display: none;
+  }
+  .backdrop {
+    top: 43%;
+    right: -28%;
+    width: 105%;
+    height: 57%;
+  }
+  .backdrop > span {
+    font-size: 25px;
+    bottom: 13%;
+    right: 34%;
+  }
+  .reel {
+    left: 40%;
+    top: 53%;
+    width: 44%;
+    padding: 6px;
+    border-radius: 8px;
+  }
+  .reelHeader {
+    font-size: 6px;
+    padding: 3px 2px 7px;
+  }
+  .reelHeader > span:last-child {
+    display: none;
+  }
+  .reelFooter {
+    font-size: 7px;
+    padding: 7px 2px 2px;
+  }
+  .reelFooter svg {
+    width: 14px;
+    height: 14px;
+  }
+  .play {
+    width: 30px;
+    height: 30px;
+    right: 6px;
+    top: 6px;
+  }
+  .photo {
+    width: 34%;
+    left: 72%;
+    top: 61%;
+    border-width: 4px;
+  }
+  .photo span {
+    font-size: 6px;
+    padding-inline: 6px;
+  }
+  .ad {
+    left: 8%;
+    top: 66%;
+    width: 33%;
+  }
+  .adNote {
+    font-size: 9px;
+    padding: 9px 12px;
+  }
+  .adNote em {
+    font-size: 16px;
+  }
+  .backtype {
+    inset-block-start: 20%;
+    font-size: 23vw;
+  }
+  .hud {
+    padding: 17px 6%;
+    font-size: 8px;
+  }
+  .hud > span {
+    display: none;
+  }
+  .hud > div {
+    gap: 12px;
+  }
+  .filmCopy {
+    top: 25%;
+    left: 6%;
+  }
+  .filmCopy > span {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .filmCopy h2 {
+    font-size: 16vw;
+  }
+  .filmCopy > a {
+    font-size: 11px;
+    gap: 17px;
+  }
+  .filmNote {
+    font-size: 8px;
+    bottom: 70px;
+    right: 6%;
+  }
+}
+@media (max-width: 760px) and (min-height: 850px) {
+  .stage {
+    min-height: 0;
+  }
+}
+@media (max-width: 760px) and (max-height: 760px) {
+  .stage {
+    min-height: 650px;
+  }
+  .intro h1 {
+    font-size: 15.5vw;
+  }
+  .intro > :global(.eyebrow) {
+    margin-bottom: 18px;
+  }
+  .introBottom {
+    margin-top: 18px;
+  }
+  .reel {
+    top: 54%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: auto;
+  }
+  .stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+  }
+  .intro {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 45px 5% 0;
+    width: 90%;
+  }
+  .collage {
+    position: relative;
+    height: 650px;
+    margin-top: 45px;
+  }
+  .reel {
+    top: 0;
+    left: 36%;
+    transform: rotate(5deg);
+  }
+  .photo {
+    top: 14%;
+    left: 61%;
+    transform: rotate(12deg);
+  }
+  .ad {
+    top: 35%;
+    left: 20%;
+    transform: rotate(-12deg);
+  }
+  .film {
+    position: relative;
+    height: 650px;
+  }
+  .backdrop,
+  .hud,
+  .progress,
+  .backtype {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
+  .collage {
+    height: 350px;
+  }
+  .ad {
+    left: 9%;
+  }
+  .film {
+    height: 550px;
+  }
+}
