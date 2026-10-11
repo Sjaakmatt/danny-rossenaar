@@ -19,11 +19,14 @@ import {
   Play,
   Volume2,
   VolumeX,
-  X,
 } from 'lucide-react';
 import { CampaignArt } from './campaign-art';
 import { Eyebrow } from './ui';
 import { showcase, type ShowcaseItem } from '@/lib/showcase';
+
+const count = showcase.length;
+const loopItems = [...showcase, ...showcase, ...showcase];
+const itemIndex = (position: number) => ((position % count) + count) % count;
 
 function ReelVideo({
   item,
@@ -102,7 +105,6 @@ function Reel({
   step,
   scroll,
   choose,
-  suspended,
 }: {
   item: ShowcaseItem;
   index: number;
@@ -110,7 +112,6 @@ function Reel({
   step: number;
   scroll: MotionValue<number>;
   choose: () => void;
-  suspended: boolean;
 }) {
   const reduced = useReducedMotion();
   const distance = useTransform(scroll, (x) => (index * step - x) / step);
@@ -146,7 +147,7 @@ function Reel({
           zIndex: layer,
         }}
         aria-roledescription="dia"
-        aria-label={`${index + 1} van ${showcase.length}: ${item.title}`}
+        aria-label={`${itemIndex(index) + 1} van ${count}: ${item.title}`}
         aria-hidden={!active}
       >
         {item.kind === 'art' ? (
@@ -160,11 +161,11 @@ function Reel({
             draggable={false}
           />
         ) : (
-          <ReelVideo item={item} active={active && !suspended} />
+          <ReelVideo item={item} active={active} />
         )}
         <div className="reel-shade" />
         <span className="reel-number" aria-hidden="true">
-          {String(index + 1).padStart(2, '0')}
+          {String(itemIndex(index) + 1).padStart(2, '0')}
         </span>
         <span className="reel-label">{item.label}</span>
         {!active && (
@@ -182,21 +183,18 @@ function Reel({
 }
 export function ContentShowcase() {
   const id = useId();
-  const dialog = useRef<HTMLDialogElement>(null);
-  const [instagram, setInstagram] = useState<string | null>(null);
-  useEffect(() => {
-    if (instagram) dialog.current?.showModal();
-  }, [instagram]);
   const track = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(2);
+  const [position, setPosition] = useState(count + 2);
+  const active = itemIndex(position);
   const [step, setStep] = useState(205);
+  const stepRef = useRef(205);
   const reduced = useReducedMotion();
   const { scrollX } = useScroll({ container: track });
   const drag = useRef<{ x: number; scroll: number; moved: boolean } | null>(
     null,
   );
   const dragged = useRef(false);
-  const activeRef = useRef(2);
+  const activeRef = useRef(count + 2);
   const initialized = useRef(false);
 
   useLayoutEffect(() => {
@@ -205,31 +203,79 @@ export function ContentShowcase() {
     const resize = () => {
       const width =
         element.querySelector<HTMLElement>('.reel-cell')?.offsetWidth ?? 205;
+      stepRef.current = width;
       setStep(width);
       element.scrollTo({
         left: activeRef.current * width,
         behavior: 'instant',
       });
+      scrollX.set(element.scrollLeft);
       initialized.current = true;
     };
     resize();
     const observer = new ResizeObserver(resize);
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
-  const choose = (index: number) => {
-    const next = Math.max(0, Math.min(showcase.length - 1, index));
+  }, [scrollX]);
+
+  // Rebase onto an identical middle copy after scrolling settles. The visual
+  // neighbours stay the same, so crossing either boundary never reveals an end.
+  useEffect(() => {
+    const element = track.current;
+    if (!element) return;
+    let timer: ReturnType<typeof setTimeout>;
+    const settle = () => {
+      if (drag.current || !initialized.current) return;
+      const width = stepRef.current;
+      if (
+        element.querySelector<HTMLElement>('.reel-cell')?.offsetWidth !== width
+      )
+        return;
+      const current = Math.round(element.scrollLeft / width);
+      if (current >= count && current < count * 2) return;
+      const middle = count + itemIndex(current);
+      const left = element.scrollLeft + (middle - current) * width;
+      activeRef.current = middle;
+      setPosition(middle);
+      element.scrollTo({ left, behavior: 'instant' });
+      scrollX.set(left);
+    };
+    const schedule = () => {
+      clearTimeout(timer);
+      timer = setTimeout(settle, 160);
+    };
+    element.addEventListener('scrollend', settle);
+    element.addEventListener('scroll', schedule, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      element.removeEventListener('scrollend', settle);
+      element.removeEventListener('scroll', schedule);
+    };
+  }, [scrollX]);
+
+  const choosePosition = (next: number) => {
     track.current?.scrollTo({
-      left: next * step,
+      left: next * stepRef.current,
       behavior: reduced ? 'instant' : 'smooth',
     });
   };
+  const choose = (index: number) => {
+    const current = activeRef.current;
+    let delta = index - itemIndex(current);
+    if (delta > count / 2) delta -= count;
+    if (delta < -count / 2) delta += count;
+    choosePosition(current + delta);
+  };
+  const advance = (direction: number) =>
+    choosePosition(activeRef.current + direction);
   const finishDrag = () => {
     const gesture = drag.current;
     drag.current = null;
     track.current?.removeAttribute('data-dragging');
     if (gesture?.moved)
-      choose(Math.round((track.current?.scrollLeft ?? 0) / step));
+      choosePosition(
+        Math.round((track.current?.scrollLeft ?? 0) / stepRef.current),
+      );
   };
   return (
     <section
@@ -261,31 +307,28 @@ export function ContentShowcase() {
           ref={track}
           className="reel-track"
           tabIndex={0}
-          aria-label="Contentgalerij. Gebruik pijltjestoetsen of scroll horizontaal."
+          aria-label="Doorlopende contentgalerij. Gebruik pijltjestoetsen of scroll horizontaal."
           onScroll={() => {
             if (!initialized.current || !track.current) return;
-            const next = Math.max(
-              0,
-              Math.min(
-                showcase.length - 1,
-                Math.round(track.current.scrollLeft / step),
-              ),
-            );
+            // Native scroll anchoring may fire before ResizeObserver. Keep the
+            // current item until the track has been measured at its new width.
+            if (
+              track.current.querySelector<HTMLElement>('.reel-cell')
+                ?.offsetWidth !== stepRef.current
+            )
+              return;
+            const next = Math.round(track.current.scrollLeft / stepRef.current);
             activeRef.current = next;
-            setActive(next);
+            setPosition(next);
           }}
           onKeyDown={(event) => {
             if (
               ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
             ) {
               event.preventDefault();
-              choose(
-                event.key === 'Home'
-                  ? 0
-                  : event.key === 'End'
-                    ? showcase.length - 1
-                    : active + (event.key === 'ArrowRight' ? 1 : -1),
-              );
+              if (event.key === 'Home') choose(0);
+              else if (event.key === 'End') choose(count - 1);
+              else advance(event.key === 'ArrowRight' ? 1 : -1);
             }
           }}
           onPointerDown={(event) => {
@@ -325,32 +368,29 @@ export function ContentShowcase() {
             }
           }}
         >
-          {showcase.map((item, index) => (
+          {loopItems.map((item, index) => (
             <Reel
-              key={item.title}
+              key={`${item.title}-${index}`}
               item={item}
               index={index}
-              active={index === active}
-              suspended={Boolean(instagram)}
+              active={index === position}
               step={step}
               scroll={scrollX}
-              choose={() => choose(index)}
+              choose={() => choosePosition(index)}
             />
           ))}
         </div>
         <div className="reel-arrows">
           <button
             type="button"
-            onClick={() => choose(active - 1)}
-            disabled={active === 0}
+            onClick={() => advance(-1)}
             aria-label="Vorig beeld"
           >
             <ArrowLeft />
           </button>
           <button
             type="button"
-            onClick={() => choose(active + 1)}
-            disabled={active === showcase.length - 1}
+            onClick={() => advance(1)}
             aria-label="Volgend beeld"
           >
             <ArrowRight />
@@ -398,50 +438,6 @@ export function ContentShowcase() {
         )}
         <small>Sleep of swipe · scroll opzij</small>
       </div>
-      <div className="instagram-reels wrap">
-        <span>Ook in beeld bij Chikado</span>
-        <button type="button" onClick={() => setInstagram('DXrT7lHCJUX')}>
-          <Play size={15} /> De klantervaring <ArrowUpRight size={16} />
-        </button>
-        <button type="button" onClick={() => setInstagram('DXjFIFhjoc6')}>
-          <Play size={15} /> In de winkel <ArrowUpRight size={16} />
-        </button>
-        <small>Bekijk via Instagram</small>
-      </div>
-      <dialog
-        className="reel-dialog"
-        ref={dialog}
-        onClose={() => setInstagram(null)}
-        aria-label="Chikado op Instagram"
-      >
-        <div className="reel-dialog-head">
-          <span>Chikado · Instagram</span>
-          <button
-            type="button"
-            onClick={() => dialog.current?.close()}
-            aria-label="Reel sluiten"
-          >
-            <X size={22} />
-          </button>
-        </div>
-        {instagram && (
-          <iframe
-            title="Chikado Instagram-reel"
-            src={`https://www.instagram.com/reel/${instagram}/embed/`}
-            allow="autoplay; encrypted-media; fullscreen"
-            allowFullScreen
-          />
-        )}
-        {instagram && (
-          <a
-            href={`https://www.instagram.com/reel/${instagram}/`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open op Instagram <ArrowUpRight size={15} />
-          </a>
-        )}
-      </dialog>
     </section>
   );
 }

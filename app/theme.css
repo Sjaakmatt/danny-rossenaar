@@ -8,6 +8,14 @@
   --muted: #b4c0ba;
   --line: #36484d;
   --green: #c1d79f;
+  --brand-blue: #93bbcc;
+  --brand-teal: #83b6ad;
+  --brand-leaf: #b2cc77;
+}
+.footer .brand {
+  --brand-blue: #93bbcc;
+  --brand-teal: #83b6ad;
+  --brand-leaf: #b2cc77;
 }
 .site-header {
   background: color-mix(in srgb, var(--paper) 93%, transparent);

@@ -1,9 +1,9 @@
 import { ContentShowcase } from '@/components/content-showcase';
+import { CinematicHero } from '@/components/hero';
 import { Coffee } from 'lucide-react';
 import { Eyebrow } from '@/components/ui';
 import { Reveal } from '@/components/motion';
 import {
-  CinematicHero,
   ManifestoScene,
   ServicesScene,
   PersonalScene,

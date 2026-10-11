@@ -24,7 +24,7 @@ export function Footer() {
           <Link href="/" className="brand">
             <BrandMark />
             <span>
-              rossenaar<span className="brand-sub">MARKETING</span>
+              Rossenaar<span className="brand-sub">MARKETING</span>
             </span>
           </Link>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
