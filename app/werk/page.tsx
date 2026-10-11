@@ -4,7 +4,7 @@ import { WorkGrid } from '@/components/work-grid';
 export const metadata = {
   title: 'Werk & samenwerkingen',
   description:
-    'Ontdek samenwerkingen met Café Retro, Chocolate Planet en FactumAI. Persoonlijke marketing die begint bij een goed gesprek.',
+    'Van oorbellen schieten bij Chikado tot personeelswerving voor Emiel Buis Visspecialist. Ontdek de content, campagnes en samenwerkingen van Rossenaar Marketing.',
   alternates: { canonical: '/werk' },
 };
 export default function Werk() {

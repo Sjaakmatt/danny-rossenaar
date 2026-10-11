@@ -25,7 +25,7 @@ De goedgekeurde nieuwe versie staat in [PR #16](https://github.com/Sjaakmatt/dan
 ## Pagina’s
 
 - `/`: bewegende beeldstapel, beeldvullende klantfoto, bladerbare contentgalerij, stapelende diensten, klantfoto, samenkomend portaal, werkwijze en reviews.
-- `/werk`: contentgalerij en filterbare samenwerkingen; drie detailpagina’s onder `/werk/[slug]`.
+- `/werk`: contentgalerij en vijf filterbare klantcases onder `/werk/[slug]`, waaronder Chikado (oorbellen schieten) en Emiel Buis Visspecialist (personeelswerving).
 - `/diensten`: vier diensten met stapelende kaarten en veelgestelde vragen.
 - `/over`: Danny’s eigen verhaal en foto’s.
 - `/inzicht`: openbare demo van resultaten, aanvragen en instellingen.

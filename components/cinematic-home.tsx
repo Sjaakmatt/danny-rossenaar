@@ -7,13 +7,13 @@ import {
   motion,
   useMotionValueEvent,
   useReducedMotion,
-  useScroll,
   useTransform,
   type MotionValue,
 } from 'motion/react';
 import { ArrowDown, ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { CampaignArt, type ArtType } from './campaign-art';
 import { Button, Eyebrow } from './ui';
+import { useSceneProgress } from './use-scene-progress';
 import { services } from '@/lib/content';
 import { demoMonthLeads } from '@/lib/demo';
 
@@ -38,7 +38,7 @@ function Word({
 export function ManifestoScene() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress: p } = useScroll({
+  const p = useSceneProgress({
     target: ref,
     offset: ['start end', 'end start'],
   });
@@ -179,7 +179,7 @@ function ServiceChapter({
 export function ServicesScene() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress: p } = useScroll({
+  const p = useSceneProgress({
     target: ref,
     offset: ['start start', 'end end'],
   });
@@ -232,7 +232,7 @@ export function ServicesScene() {
 export function PersonalScene() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress: p } = useScroll({
+  const p = useSceneProgress({
     target: ref,
     offset: ['start end', 'end start'],
   });
@@ -299,9 +299,12 @@ export function PersonalScene() {
             </em>
           </h2>
           <p>
-            Achter elk bedrijf zit een mens met een verhaal. Ik neem de tijd om
-            jou te leren kennen. En blijf betrokken, van eerste idee tot
-            volgende stap.
+            Ik ben Danny, social media marketeer uit Enkhuizen. Acht jaar lang
+            begeleidde ik in de zorg mensen op hun eigen niveau, en werkte ik
+            samen met ondernemers uit de regio. Daar leerde ik dat niemand baat
+            heeft bij een standaardaanpak. Na een reis door Zuidoost-Azië koos
+            ik voor marketing. Want mensen kopen van mensen, en ik help je laten
+            zien wie jij bent. Niet opgeven, wel samen doorpakken.
           </p>
           <ul className="check-list">
             <li>
@@ -381,7 +384,7 @@ function FloatingResult({
 export function PortalScene({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress: p } = useScroll({
+  const p = useSceneProgress({
     target: ref,
     offset: ['start start', 'end end'],
   });

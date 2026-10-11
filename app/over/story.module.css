@@ -1,0 +1,26 @@
+.quote {
+  border-left: 2px solid var(--green);
+  padding-left: clamp(20px, 3vw, 36px);
+  margin: 0 0 32px;
+  max-width: 590px;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(32px, 3.2vw, 48px);
+  line-height: 1.15;
+  color: var(--green);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(54px, 15.5vw, 80px);
+  }
+}

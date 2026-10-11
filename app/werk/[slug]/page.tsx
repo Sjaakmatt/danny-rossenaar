@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { projects, reviews } from '@/lib/content';
-import { CampaignArt } from '@/components/campaign-art';
+import { ProjectCover } from '@/components/project-cover';
 import { Button, Eyebrow } from '@/components/ui';
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -28,7 +28,10 @@ export default async function Project({
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
-  const review = reviews[project.reviewIndex];
+  const review =
+    project.reviewIndex === undefined
+      ? undefined
+      : reviews[project.reviewIndex];
   const next = projects[(projects.indexOf(project) + 1) % projects.length];
   return (
     <>
@@ -45,19 +48,15 @@ export default async function Project({
       </section>
       <section className="project-detail wrap">
         <div className="project-detail-art">
-          <CampaignArt type={project.art} />
-          <p>
-            {project.art === 'chocolate'
-              ? 'Aangeleverde advertentie voor Chocolate Planet.'
-              : 'Grafisch projectomslag voor deze website.'}
-          </p>
+          <ProjectCover cover={project.cover} priority />
+          <p>{project.mediaCaption}</p>
         </div>
         <div className="project-detail-copy">
           <Eyebrow>De samenwerking</Eyebrow>
           <h2>
-            Een verhaal.
+            {project.approach?.title ?? 'Een verhaal.'}
             <br />
-            <em>Een aanpak die past.</em>
+            <em>{project.approach?.emphasis ?? 'Een aanpak die past.'}</em>
           </h2>
           <p>{project.description}</p>
           <ul>
@@ -71,36 +70,35 @@ export default async function Project({
           <Button href="/contact">Ook samen aan de slag?</Button>
         </div>
       </section>
-      {project.slug === 'chocolate-planet' && (
+      {project.videos && project.videos.length > 0 && (
         <section
-          className="client-videos wrap"
-          aria-label="Video’s voor Chocolate Planet"
+          className={`client-videos wrap ${project.videos.length === 1 ? 'client-videos-single' : ''}`}
+          aria-label={`Video’s bij ${project.title}`}
         >
-          <video
-            controls
-            playsInline
-            preload="none"
-            poster="/media/chocolate-planet-matcha.jpg"
-            src="/media/chocolate-planet-matcha.mp4"
-            aria-label="Matcha en chocolade bij Chocolate Planet"
-          />
-          <video
-            controls
-            playsInline
-            preload="none"
-            poster="/media/chocolate-planet-letters.jpg"
-            src="/media/chocolate-planet-letters.mp4"
-            aria-label="Chocoladeletters van Chocolate Planet"
-          />
+          {project.videos.map((video) => (
+            <figure key={video.src}>
+              <video
+                controls
+                playsInline
+                preload="none"
+                poster={video.poster}
+                src={video.src}
+                aria-label={video.title}
+              />
+              <figcaption>{video.title}</figcaption>
+            </figure>
+          ))}
         </section>
       )}
-      <section className="project-quote wrap">
-        <span aria-hidden="true">“</span>
-        <blockquote>{review.text}</blockquote>
-        <p>
-          <strong>{review.name}</strong> · {review.company}
-        </p>
-      </section>
+      {review && (
+        <section className="project-quote wrap">
+          <span aria-hidden="true">“</span>
+          <blockquote>{review.text}</blockquote>
+          <p>
+            <strong>{review.name}</strong> · {review.company}
+          </p>
+        </section>
+      )}
       <Link href={`/werk/${next.slug}`} className="next-project wrap">
         <span>Volgende samenwerking</span>
         <h2>{next.title}</h2>

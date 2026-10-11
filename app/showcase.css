@@ -370,6 +370,19 @@
   background: #152227;
   border-radius: 18px;
 }
+.client-videos figure {
+  margin: 0;
+  min-width: 0;
+}
+.client-videos figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.client-videos-single {
+  grid-template-columns: minmax(0, 540px);
+  justify-content: center;
+}
 @media (max-width: 760px) {
   .client-videos {
     grid-template-columns: 1fr;
