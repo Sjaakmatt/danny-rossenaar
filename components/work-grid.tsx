@@ -41,7 +41,11 @@ export function WorkGrid() {
                   <span className="project-view">
                     <ArrowUpRight />
                   </span>
-                  <span className="concept-tag">CONCEPTVISUAL</span>
+                  <span className="concept-tag">
+                    {project.art === 'chocolate'
+                      ? 'KLANTCONTENT'
+                      : 'SAMENWERKING'}
+                  </span>
                 </div>
                 <div className="project-card-title">
                   <h2>{project.title}</h2>

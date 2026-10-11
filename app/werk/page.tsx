@@ -1,3 +1,4 @@
+import { ContentShowcase } from '@/components/content-showcase';
 import { PageIntro } from '@/components/ui';
 import { WorkGrid } from '@/components/work-grid';
 export const metadata = {
@@ -15,11 +16,12 @@ export default function Werk() {
         italic="zit een mens."
         description="Van een café vol verhalen tot een bedrijf met grote plannen. Dit zijn een paar van de mensen met wie ik samenwerk."
       />
+      <ContentShowcase />
       <section className="wrap work-section">
         <WorkGrid />
         <p className="concept-note">
-          De samenwerkingen zijn echt. De beelden op deze pagina zijn creatieve
-          concepten voor deze website, geen gepubliceerde klantcampagnes.
+          Een selectie uit de content en samenwerkingen. De omslagen van Café
+          Retro en FactumAI zijn grafisch vormgegeven voor deze website.
         </p>
       </section>
     </>

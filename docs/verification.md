@@ -1,33 +1,38 @@
-# Verificatie — 11 oktober 2026
+# Verificatie — 11 oktober 2026, filmische herziening
 
-## Automatische controles
+## Automatisch
 
-- `npm run build`: geslaagd, Next.js 16.4.0; 15 statische uitvoerpagina’s gegenereerd, contactpagina en contact-API dynamisch.
-- `npm run typecheck`: geslaagd.
-- `npm test`: alle 5 tests geslaagd. Dekt normalisatie, onjuiste types, verplichte velden, e-mail/headerinjectie, veldlengtes, honeypot en vaste ontvanger met plain-textinhoud.
-- `npm run format:check`: geslaagd.
-- Lokale HTTP-controle op de productiebuild: alle tien inhoudsroutes, sitemap en robots geven 200; onbekende pagina en onbekend project 404; `/index.html` 308; GET op contact-API 405.
-- Contact-API: verkeerde body/JSON/velden 400, andere Origin 403, te grote body 413, verkeerd contenttype 415. Een geldig verzoek met dezelfde Origin geeft bij ontbrekende mailconfiguratie 503. Honeypot geeft 200 zonder e-mail te maken.
+- Next.js 16.4.0-productiebuild geslaagd; vijftien uitvoerpagina’s gegenereerd.
+- TypeScriptcontrole geslaagd.
+- Vijf contactvalidatietests geslaagd. Contactverwerking is ongewijzigd; er is geen e-mail verzonden.
+- Formatting en Git-whitespacecontrole uitgevoerd bij oplevering.
 
-## Browsercontroles
+## Browser, 1440 × 1000 en 390 × 844
 
-Uitgevoerd in de Codex-browser op desktop (1440 pixels) en mobiel (390 pixels).
+- Hero begin, tussenstand en beeldvullende eindstand bekeken; vijf lagen veranderen positie, rotatie en schaal. Op mobiel drie centrale lagen; overige echte klantfoto blijft in de persoonlijke scène beschikbaar.
+- Diensten: eerste, tweede en laatste hoofdstuk plus overlappende tussenstand visueel gecontroleerd; mobiele versie blijft leesbaar en bevat dezelfde scrolltransformaties.
+- Aangeleverde klantfoto bekeken in de persoonlijke scène. Tekstlaag gecorrigeerd zodat de achtergrondtypografie het label niet bedekt.
+- Portaal: zwevende kaarten, gekantelde tussenstand en bedienbare eindstand bekeken. Ook de 7-dagenknop binnen de homepage-preview werkt.
+- Volledige portaalpagina: 7/30/90 dagen verandert KPI’s, dagbalken en funnel; klikken/aanvragen verandert de meetreeks. Dagtooltip gecontroleerd: 6 oktober, 85 klikken. Alle totalen volgen dezelfde 90-dagendataset (157 aanvragen en 4.823 klikken).
+- Zoeken op Sanne, aanvraag openen, notitie bewaren, klantstatus en € 2.500 klantwaarde vastleggen. Funnel wijzigde van 17 naar 18 klanten en van € 25.500 naar € 28.000. Geen externe writes.
+- Mobiel: aanvraag openen, contactmoment loggen; status veranderde Nieuw → Contact gehad en nieuw-badge 33 → 32. Daarna afwijsreden “Nu niet het juiste moment” opgeslagen. Reset herstelde 33 nieuwe aanvragen en oorspronkelijke cijfers.
+- Lichte en donkere weergave visueel gecontroleerd. Portaalkeuze Licht veranderde zowel de site als de portal-root naar light. Automatisch gaf siteThemeChoice=system. Navigatieschakelaar en portalinstellingen gebruiken dezelfde voorkeur; bewaren na reload geverifieerd.
+- Mobiele portaalnavigatie blijft onderin binnen de preview. Aanvraaglijst toont twaalf items per stap. Geen horizontale paginaoverloop bij 390px.
 
-- Homepage: scrollbeweging verandert waaier, positie en perspectief; vorige/volgende en pijltjestoetsen wisselen het actieve verhaal. Originele persoonsfoto’s en geoptimaliseerde conceptbeelden laden.
-- Navigatie: interne pagina’s en projectlinks werken; mobiel menu opent/sluit en Escape brengt focus terug naar de menuknop. Eerste Tab bereikt de skiplink.
-- Diensten: kaarten stapelen tijdens desktopscroll; mobiel losse secties. FAQ opent en sluit.
-- Werk: het filter Persoonlijk contact laat alleen FactumAI zien; projectdetail opent.
-- Reviews: de volgende-knop wisselt naar de volgende oorspronkelijke klantreview.
-- Portaal: 7/30/90 dagen wijzigt perioden, KPI’s en grafiek; grafiekkeuze Klikken wijzigt de meetreeks. Aanvragen zoeken op Oost en filter Klant werkt; aanvraagdetails openen.
-- CSV-download: het daadwerkelijk gedownloade 90-dagenbestand bevat 90 dagregels en twee kopregels; totalen 198 aanvragen en 5.750 klikken komen overeen met de demo.
-- Contact: bij ontbreken van de sleutel verschijnt de echte foutmelding met directe contactgegevens; ingevulde velden blijven staan. Er is geen e-mail verzonden.
-- Mobiele layouts van home, over, werk, projectdetail, contact, diensten en portaal bekeken. De perspectiefkanteling van het portaal is op mobiel uitgeschakeld om horizontale overloop te voorkomen.
-- Productiepreview: geen waarschuwingen of fouten in de bekeken browserconsole.
+## Eerdere regressiecontrole
 
-## Externe oplevercontrole
+De eerdere versie doorliep HTTP-controles voor alle pagina’s, 404’s, de oude /index.html-redirect en contact-APIvalidatie. Contactroute en projectrouting zijn niet inhoudelijk gewijzigd in deze herziening. De oorspronkelijke HTML-bestanden blijven in legacy/.
 
-De open concept-PR #16 bevat commit `0f54acd`, dezelfde applicatieversie als lokaal. GitHub meldde de checks Vercel en Vercel Preview Comments als geslaagd. De online preview leidt naar een Vercel-login; het runtimegedrag op de hosting is daarom niet geverifieerd. De toegangsbeveiliging is niet gewijzigd.
+## Grenzen
 
-## Begrenzing
+Reduced motion is in Motion-componenten en CSS gecontroleerd: geen pinning of verborgen diensten en geen lange lege scrollruimte. Een gewijzigde OS-voorkeur is niet via de browser nagebootst. Er is geen volledige WCAG-, Lighthouse- of cross-browseraudit uitgevoerd.
 
-Reduced motion is in de CSS en Motion-componenten geïmplementeerd en in de bron gecontroleerd; een veranderde OS-voorkeur is niet nagebootst. Er is geen volledige WCAG-, Lighthouse- of cross-browseraudit uitgevoerd. Echte e-mailbezorging is niet getest; van de hostingdeployment is alleen de geslaagde buildstatus bevestigd. Het portaal is een openbare demonstratie, zonder authenticatie of verbinding met echte advertentiegegevens. Visuele goedkeuring door de gebruiker staat nog open.
+Online preview gebruikt de bestaande Vercel-integratie en vraagt Vercel-login. Er is geen live-site-merge uitgevoerd. Het echte uitnodigingsportaal en echte advertentiegegevens zijn niet gekoppeld aan deze openbare demo. De visuele beoordeling door de gebruiker blijft open.
+
+## Laatste galerij- en mediacontrole
+
+- Video Slide Show geïnspireerde coverflow op desktop en 390px: juiste laagvolgorde, middenbeeld scherp, zijkaarten teruggedraaid en vervaagd. Slepen wisselde van item 3 naar 4; positieknoppen, pijlen en End-toets gecontroleerd. Laatste item 9 staat gecentreerd en de volgende-knop is uitgeschakeld. Pagina-overloop: 375px scrollbreedte bij 390px viewport (scrollbar meegerekend).
+- Alle vijf lokale clips geladen zonder mediafouten. Autoplay van uitsluitend het actieve zichtbare item, pauze bij wissel en werkende pauze/geluidsknoppen gecontroleerd. Stille bronclips tonen geen geluidsknop. De 4:5-video en vierkante advertenties behouden het volledige kader.
+- Beide Chikado-reels laden via Instagram in de dialoog. Werkelijk afspelen gecontroleerd (`paused=false`, oplopende tijd), evenals sluiten en Escape. De achterliggende galerijvideo pauzeert tijdens de dialoog. Instagram blijft een externe afhankelijkheid.
+- Nieuwe productiebuild, typecheck, formatting, vijf tests en Git-whitespacecontrole geslaagd. Twaalf routes en dertien lokale media-assets geven HTTP 200; MP4-byte-range geeft HTTP 206. Beide 404’s en de 308-redirect van /index.html werken. Geen verwijzingen naar de verwijderde gegenereerde foto’s in gerenderde pagina’s.
+- Geoptimaliseerde originele lokale video’s staan in public/media; bronbestanden van de gebruiker zijn niet gewijzigd. Geen AI-foto’s blijven in app, componenten of publieke assets.

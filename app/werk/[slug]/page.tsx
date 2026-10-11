@@ -47,7 +47,9 @@ export default async function Project({
         <div className="project-detail-art">
           <CampaignArt type={project.art} />
           <p>
-            Conceptvisual voor deze website. Geen oorspronkelijke klantcampagne.
+            {project.art === 'chocolate'
+              ? 'Aangeleverde advertentie voor Chocolate Planet.'
+              : 'Grafisch projectomslag voor deze website.'}
           </p>
         </div>
         <div className="project-detail-copy">
@@ -69,6 +71,29 @@ export default async function Project({
           <Button href="/contact">Ook samen aan de slag?</Button>
         </div>
       </section>
+      {project.slug === 'chocolate-planet' && (
+        <section
+          className="client-videos wrap"
+          aria-label="Video’s voor Chocolate Planet"
+        >
+          <video
+            controls
+            playsInline
+            preload="none"
+            poster="/media/chocolate-planet-matcha.jpg"
+            src="/media/chocolate-planet-matcha.mp4"
+            aria-label="Matcha en chocolade bij Chocolate Planet"
+          />
+          <video
+            controls
+            playsInline
+            preload="none"
+            poster="/media/chocolate-planet-letters.jpg"
+            src="/media/chocolate-planet-letters.mp4"
+            aria-label="Chocoladeletters van Chocolate Planet"
+          />
+        </section>
+      )}
       <section className="project-quote wrap">
         <span aria-hidden="true">“</span>
         <blockquote>{review.text}</blockquote>

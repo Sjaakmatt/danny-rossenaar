@@ -35,6 +35,12 @@ export default function Privacy() {
         wordt geen klantaccount aangemaakt. Het echte klantportaal is een aparte
         omgeving, alleen toegankelijk op uitnodiging.
       </p>
+      <h2>Je weergavevoorkeur</h2>
+      <p>
+        Je keuze voor licht, donker of automatisch wordt lokaal in je browser
+        bewaard. Die instelling geldt voor de website en de portaalrondleiding
+        en wordt niet naar een server verstuurd.
+      </p>
       <h2>Cookies en externe inhoud</h2>
       <p>
         Deze website plaatst zelf geen advertentie- of analysecookies.
@@ -42,6 +48,12 @@ export default function Privacy() {
         hostingprovider kan technische toegangsgegevens verwerken om de website
         te laten functioneren. Als je een externe link volgt, gelden de
         instellingen van die andere website.
+      </p>
+      <p>
+        De Chikado-video’s via Instagram worden pas geladen wanneer je een van
+        die spelers opent. Dan maakt je browser verbinding met Instagram en kan
+        Instagram gegevens en cookies verwerken volgens zijn eigen instellingen.
+        Bij het sluiten wordt de speler verwijderd.
       </p>
       <h2>Een vraag of verzoek?</h2>
       <p>

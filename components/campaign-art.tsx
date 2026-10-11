@@ -1,7 +1,15 @@
 import Image from 'next/image';
 import { ArrowUpRight, AudioLines } from 'lucide-react';
 import { BrandMark } from './ui';
-export type ArtType = 'chocolate' | 'cafe' | 'factum' | 'danny' | 'story';
+export type ArtType =
+  | 'chocolate'
+  | 'cafe'
+  | 'factum'
+  | 'danny'
+  | 'story'
+  | 'location'
+  | 'emiel'
+  | 'kingma';
 export function CampaignArt({
   type,
   priority = false,
@@ -11,31 +19,27 @@ export function CampaignArt({
 }) {
   return (
     <div className={`campaign-art art-${type}`}>
-      {(type === 'chocolate' || type === 'cafe') && (
+      {(type === 'chocolate' || type === 'kingma' || type === 'emiel') && (
         <Image
-          src={`/assets/${type}-concept.webp`}
+          src={
+            type === 'chocolate'
+              ? '/media/chocolate-planet-bonbons.jpg'
+              : type === 'kingma'
+                ? '/media/la-kingma-advertentie.jpg'
+                : '/media/emiel-buis.jpg'
+          }
           alt={
             type === 'chocolate'
-              ? 'Conceptbeeld: chocolade op een terracotta achtergrond'
-              : 'Conceptbeeld: twee mensen proosten in een warm café'
+              ? 'Advertentie voor handgemaakte paasbonbons van Chocolate Planet'
+              : type === 'kingma'
+                ? 'La Kingma advertentie voor hondenvoeding'
+                : 'Emiel Buis vertelt over zijn zaak'
           }
           fill
-          sizes="(max-width: 700px) 85vw, 480px"
+          sizes="(max-width: 700px) 85vw, 640px"
+          style={{ objectFit: 'contain' }}
           loading={priority ? 'eager' : 'lazy'}
         />
-      )}
-      {type === 'chocolate' && (
-        <>
-          <span className="art-topline">EEN SMAAKVOL VERHAAL</span>
-          <strong>
-            Om bij
-            <br />
-            <em>stil te staan.</em>
-          </strong>
-          <span className="art-bottomline">
-            CONTENT DIE JE VOELT <ArrowUpRight size={20} />
-          </span>
-        </>
       )}
       {type === 'cafe' && (
         <>
@@ -85,6 +89,20 @@ export function CampaignArt({
           <div className="art-asterisk" aria-hidden="true">
             ✳
           </div>
+        </>
+      )}
+      {type === 'location' && (
+        <>
+          <Image
+            src="/assets/op-locatie.webp"
+            alt="Content maken op locatie bij een klant"
+            fill
+            sizes="(max-width: 700px) 85vw, 480px"
+            loading={priority ? 'eager' : 'lazy'}
+          />
+          <span className="art-bottomline">
+            OP LOCATIE BIJ EEN KLANT <ArrowUpRight size={20} />
+          </span>
         </>
       )}
       {type === 'danny' && (

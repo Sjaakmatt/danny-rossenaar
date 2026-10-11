@@ -1,0 +1,401 @@
+/*
+ * Design tokens — Rossenaar Ads Manager, in the same design language as factumAI Focus (goals-en-planning).
+ * Light keeps the Ads Manager palette (paper, ink, clay orange, peach, deep green); dark uses the
+ * factumAI palette (slate green-grey, warm off-white, copper, sage). Shapes and type follow factumAI.
+ * Light is the default; dark follows the system unless the user picked a theme (html[data-theme]).
+ */
+.portal-preview {
+  color-scheme: light;
+  --bg: #f3f2ec;
+  --bg-orb-1: #f5e3d3;
+  --bg-orb-2: #e4eee6;
+  --bg-orb-3: #efe9df;
+  --surface: rgba(255, 255, 255, 0.62);
+  --surface-strong: rgba(255, 255, 255, 0.84);
+  --surface-solid: #ffffff;
+  --surface-sunken: rgba(36, 51, 46, 0.035);
+  --surface-hover: rgba(36, 51, 46, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --hairline: rgba(36, 51, 46, 0.09);
+  --hairline-strong: rgba(36, 51, 46, 0.16);
+  --ink: #24332e;
+  --body: #54605a;
+  --muted: #6b756d;
+  --faint: #8d968e;
+  --accent: #a54c2d;
+  --accent-hover: #8d3d21;
+  --accent-ink: #ffffff;
+  --accent-soft: #f5e8dd;
+  --accent-soft-ink: #8d3d21;
+  --green: #264238;
+  --green-soft: #e8f0e9;
+  --green-ink: #2f5a45;
+  --success: #2f6b48;
+  --success-soft: #e6f1e8;
+  --warning: #8a5a12;
+  --warning-soft: #f8eed9;
+  --danger: #a2372d;
+  --danger-soft: #fbeae7;
+  --info: #2e5a73;
+  --info-soft: #e5eff4;
+  --chart-1: #a54c2d;
+  --chart-2: #3f6b57;
+  --chart-3: #c99a6b;
+  --chart-4: #7c8f86;
+  --chart-grid: rgba(36, 51, 46, 0.08);
+  --shadow-sm: 0 1px 2px rgba(36, 51, 46, 0.05);
+  --shadow:
+    0 1px 2px rgba(36, 51, 46, 0.04), 0 14px 36px -14px rgba(36, 51, 46, 0.16);
+  --shadow-lg:
+    0 2px 6px rgba(36, 51, 46, 0.05), 0 30px 70px -24px rgba(36, 51, 46, 0.26);
+  --blur: 18px;
+  --radius-xl: 22px;
+  --radius-lg: 20px;
+  --radius: 11px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: var(--font);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --sidebar-width: 229px;
+  --content-max: 1540px;
+  --gutter: clamp(16px, 3vw, 42px);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Legacy names used by the existing section styles; they follow the tokens above in both themes. */
+  --paper: var(--bg);
+  --white: var(--surface-strong);
+  --line: var(--hairline);
+  --orange: var(--accent);
+  --orange-hover: var(--accent-hover);
+  --peach: var(--accent-soft);
+  --green-light: var(--green-soft);
+}
+
+@media (prefers-color-scheme: dark) {
+  .portal-preview:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #202b30;
+    --bg-orb-1: rgba(169, 121, 96, 0.15);
+    --bg-orb-2: rgba(107, 139, 121, 0.19);
+    --bg-orb-3: rgba(128, 103, 81, 0.14);
+    --surface: rgba(255, 255, 255, 0.046);
+    --surface-strong: rgba(255, 255, 255, 0.06);
+    --surface-solid: #2a373c;
+    --surface-sunken: rgba(30, 41, 45, 0.77);
+    --surface-hover: rgba(255, 255, 255, 0.045);
+    --glass-border: rgba(244, 241, 236, 0.105);
+    --hairline: rgba(255, 255, 255, 0.07);
+    --hairline-strong: rgba(255, 255, 255, 0.11);
+    --ink: #f4f1ec;
+    --body: #c8d0cb;
+    --muted: #afbbb8;
+    --faint: #8f9e9c;
+    --accent: #e4bb94;
+    --accent-hover: #f0cba8;
+    --accent-ink: #302923;
+    --accent-soft: rgba(228, 187, 148, 0.09);
+    --accent-soft-ink: #edc9a7;
+    --green: #b1c6a2;
+    --green-soft: rgba(177, 198, 162, 0.12);
+    --green-ink: #c3d4b6;
+    --success: #b1c6a2;
+    --success-soft: rgba(177, 198, 162, 0.12);
+    --warning: #e2c58f;
+    --warning-soft: rgba(226, 197, 143, 0.12);
+    --danger: #e6aa97;
+    --danger-soft: rgba(179, 99, 80, 0.22);
+    --info: #a9c5d2;
+    --info-soft: rgba(169, 197, 210, 0.12);
+    --chart-1: #e4bb94;
+    --chart-2: #b1c6a2;
+    --chart-3: #a9c5d2;
+    --chart-4: #c0b3d9;
+    --chart-grid: rgba(255, 255, 255, 0.06);
+    --shadow-sm: 0 1px 2px rgba(11, 21, 28, 0.25);
+    --shadow:
+      0 1px 0 rgba(255, 255, 255, 0.016) inset,
+      0 12px 30px rgba(16, 23, 27, 0.05);
+    --shadow-lg: 0 30px 100px rgba(0, 0, 0, 0.53);
+  }
+}
+.portal-preview[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #202b30;
+  --bg-orb-1: rgba(169, 121, 96, 0.15);
+  --bg-orb-2: rgba(107, 139, 121, 0.19);
+  --bg-orb-3: rgba(128, 103, 81, 0.14);
+  --surface: rgba(255, 255, 255, 0.046);
+  --surface-strong: rgba(255, 255, 255, 0.06);
+  --surface-solid: #2a373c;
+  --surface-sunken: rgba(30, 41, 45, 0.77);
+  --surface-hover: rgba(255, 255, 255, 0.045);
+  --glass-border: rgba(244, 241, 236, 0.105);
+  --hairline: rgba(255, 255, 255, 0.07);
+  --hairline-strong: rgba(255, 255, 255, 0.11);
+  --ink: #f4f1ec;
+  --body: #c8d0cb;
+  --muted: #afbbb8;
+  --faint: #8f9e9c;
+  --accent: #e4bb94;
+  --accent-hover: #f0cba8;
+  --accent-ink: #302923;
+  --accent-soft: rgba(228, 187, 148, 0.09);
+  --accent-soft-ink: #edc9a7;
+  --green: #b1c6a2;
+  --green-soft: rgba(177, 198, 162, 0.12);
+  --green-ink: #c3d4b6;
+  --success: #b1c6a2;
+  --success-soft: rgba(177, 198, 162, 0.12);
+  --warning: #e2c58f;
+  --warning-soft: rgba(226, 197, 143, 0.12);
+  --danger: #e6aa97;
+  --danger-soft: rgba(179, 99, 80, 0.22);
+  --info: #a9c5d2;
+  --info-soft: rgba(169, 197, 210, 0.12);
+  --chart-1: #e4bb94;
+  --chart-2: #b1c6a2;
+  --chart-3: #a9c5d2;
+  --chart-4: #c0b3d9;
+  --chart-grid: rgba(255, 255, 255, 0.06);
+  --shadow-sm: 0 1px 2px rgba(11, 21, 28, 0.25);
+  --shadow:
+    0 1px 0 rgba(255, 255, 255, 0.016) inset, 0 12px 30px rgba(16, 23, 27, 0.05);
+  --shadow-lg: 0 30px 100px rgba(0, 0, 0, 0.53);
+}
+
+/*
+ * factumAI design language, shared with factumAI Focus (goals-en-planning).
+ * Loaded after the section styles: it sets the shell (full-height sidebar, flat top bar), type scale,
+ * glass cards, buttons, fields, segments and pills to the factumAI shapes.
+ * Colours come from tokens: light keeps the Ads Manager palette, dark uses the factumAI palette.
+ * The theme-specific finishes below are tokens too, so each rule is written once for both themes.
+ * Rules start with `html` so they win over the section styles, whose chunks may load after this file.
+ */
+.portal-preview {
+  --app-bg:
+    radial-gradient(1100px 620px at 8% -8%, var(--bg-orb-1), transparent 62%),
+    radial-gradient(900px 560px at 108% 4%, var(--bg-orb-2), transparent 60%),
+    radial-gradient(900px 700px at 50% 120%, var(--bg-orb-3), transparent 60%),
+    var(--bg);
+  --ambient-1: transparent;
+  --ambient-2: transparent;
+  --glass-bg: var(--surface);
+  --glass-top: var(--glass-border);
+  --glass-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --sidebar-bg: var(--surface);
+  --sidebar-edge: var(--glass-border);
+  --bar-bg: var(--surface-strong);
+  --primary-bg: var(--accent);
+  --primary-bg-hover: var(--accent-hover);
+  --primary-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset, 0 4px 10px rgba(165, 76, 45, 0.14);
+  --secondary-bg: var(--surface-strong);
+  --secondary-bg-hover: var(--surface-solid);
+  --secondary-ink: var(--ink);
+  --danger-bg: var(--danger);
+  --danger-ink: var(--on-danger);
+  --danger-edge: var(--danger);
+  --nav-ink: var(--body);
+  --nav-active-bg: var(--accent-soft);
+  --nav-active-edge: color-mix(in srgb, var(--accent) 18%, transparent);
+  --count-bg: var(--accent);
+  --count-ink: var(--accent-ink);
+  --segment-bg: var(--surface-strong);
+  --segment-active-bg: var(--ink);
+  --segment-active-ink: var(--on-ink);
+  --segment-active-ring: none;
+  --switch-bg: var(--surface-muted);
+  --switch-active-bg: var(--surface-solid);
+  --switch-active-ink: var(--ink);
+  --switch-active-ring: var(--shadow-sm);
+  --field-bg: var(--surface-strong);
+  --field-focus-bg: var(--surface-solid);
+  --field-edge: var(--hairline-strong);
+  --field-focus-edge: var(--accent);
+  --field-focus-ring: 0 0 0 3px
+    color-mix(in srgb, var(--accent) 18%, transparent);
+  --label-ink: var(--ink);
+  --eyebrow-ink: var(--accent);
+  --kpi-label: var(--body);
+  --dialog-bg: var(--surface-solid);
+  --dialog-edge: var(--hairline);
+  --avatar-bg: var(--green-soft);
+  --avatar-ink: var(--green-ink);
+  --mark-bg: var(--inverse);
+  --mark-ink: var(--inverse-accent);
+  --mark-edge: transparent;
+  --scroll-thumb: rgba(36, 51, 46, 0.18);
+  --selection: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .portal-preview:not([data-theme='light']) {
+    --app-bg:
+      radial-gradient(
+        ellipse at 75% -25%,
+        rgba(128, 103, 81, 0.14),
+        transparent 50%
+      ),
+      linear-gradient(115deg, #202d32, #263239 60%, #263338);
+    --ambient-1: rgba(169, 121, 96, 0.15);
+    --ambient-2: rgba(107, 139, 121, 0.19);
+    --glass-bg: linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.068),
+      rgba(255, 255, 255, 0.024)
+    );
+    --glass-top: rgba(255, 255, 255, 0.153);
+    --glass-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.016) inset,
+      0 12px 30px rgba(16, 23, 27, 0.05);
+    --sidebar-bg: linear-gradient(
+      170deg,
+      rgba(28, 40, 45, 0.85),
+      rgba(29, 41, 46, 0.87)
+    );
+    --sidebar-edge: rgba(255, 255, 255, 0.043);
+    --bar-bg: rgba(31, 43, 48, 0.9);
+    --primary-bg: linear-gradient(160deg, #efd0af, #dfb48c);
+    --primary-bg-hover: #f0cba8;
+    --primary-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.27) inset, 0 3px 12px rgba(11, 21, 28, 0.1);
+    --secondary-bg: rgba(255, 255, 255, 0.03);
+    --secondary-bg-hover: rgba(255, 255, 255, 0.07);
+    --secondary-ink: #e2e5df;
+    --danger-bg: rgba(179, 99, 80, 0.25);
+    --danger-ink: #f7c6b8;
+    --danger-edge: rgba(233, 157, 137, 0.2);
+    --nav-ink: #aebbb6;
+    --nav-active-bg: linear-gradient(
+      100deg,
+      rgba(228, 187, 148, 0.08),
+      rgba(228, 187, 148, 0.02)
+    );
+    --nav-active-edge: rgba(228, 187, 148, 0.13);
+    --count-bg: rgba(228, 187, 148, 0.07);
+    --count-ink: var(--accent-soft-ink);
+    --segment-bg: rgba(24, 40, 45, 0.24);
+    --segment-active-bg: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(228, 187, 148, 0.05)
+    );
+    --segment-active-ink: #f0dcc2;
+    --segment-active-ring: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    --switch-bg: var(--segment-bg);
+    --switch-active-bg: var(--segment-active-bg);
+    --switch-active-ink: var(--segment-active-ink);
+    --switch-active-ring: var(--segment-active-ring);
+    --switch-bg: var(--segment-bg);
+    --switch-active-bg: var(--segment-active-bg);
+    --switch-active-ink: var(--segment-active-ink);
+    --switch-active-ring: var(--segment-active-ring);
+    --field-bg: rgba(30, 41, 45, 0.77);
+    --field-focus-bg: var(--field-bg);
+    --field-focus-bg: var(--field-bg);
+    --field-edge: rgba(255, 255, 255, 0.11);
+    --field-focus-edge: rgba(228, 187, 148, 0.5);
+    --field-focus-ring: 0 0 0 2px rgba(228, 187, 148, 0.44);
+    --label-ink: #cad4c8;
+    --eyebrow-ink: #a6b7ad;
+    --kpi-label: #b1c1a1;
+    --dialog-bg: linear-gradient(135deg, #344348, #263639);
+    --dialog-edge: rgba(255, 255, 255, 0.17);
+    --avatar-bg: linear-gradient(
+      145deg,
+      rgba(203, 182, 155, 0.3),
+      rgba(105, 121, 109, 0.27)
+    );
+    --avatar-ink: #e9d7c2;
+    --mark-bg: rgba(255, 255, 255, 0.04);
+    --mark-ink: var(--accent);
+    --mark-edge: rgba(228, 187, 148, 0.17);
+    --scroll-thumb: rgba(255, 255, 255, 0.15);
+    --selection: rgba(228, 187, 148, 0.38);
+  }
+}
+.portal-preview[data-theme='dark'] {
+  --app-bg:
+    radial-gradient(
+      ellipse at 75% -25%,
+      rgba(128, 103, 81, 0.14),
+      transparent 50%
+    ),
+    linear-gradient(115deg, #202d32, #263239 60%, #263338);
+  --ambient-1: rgba(169, 121, 96, 0.15);
+  --ambient-2: rgba(107, 139, 121, 0.19);
+  --glass-bg: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.068),
+    rgba(255, 255, 255, 0.024)
+  );
+  --glass-top: rgba(255, 255, 255, 0.153);
+  --glass-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.016) inset, 0 12px 30px rgba(16, 23, 27, 0.05);
+  --sidebar-bg: linear-gradient(
+    170deg,
+    rgba(28, 40, 45, 0.85),
+    rgba(29, 41, 46, 0.87)
+  );
+  --sidebar-edge: rgba(255, 255, 255, 0.043);
+  --bar-bg: rgba(31, 43, 48, 0.9);
+  --primary-bg: linear-gradient(160deg, #efd0af, #dfb48c);
+  --primary-bg-hover: #f0cba8;
+  --primary-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.27) inset, 0 3px 12px rgba(11, 21, 28, 0.1);
+  --secondary-bg: rgba(255, 255, 255, 0.03);
+  --secondary-bg-hover: rgba(255, 255, 255, 0.07);
+  --secondary-ink: #e2e5df;
+  --danger-bg: rgba(179, 99, 80, 0.25);
+  --danger-ink: #f7c6b8;
+  --danger-edge: rgba(233, 157, 137, 0.2);
+  --nav-ink: #aebbb6;
+  --nav-active-bg: linear-gradient(
+    100deg,
+    rgba(228, 187, 148, 0.08),
+    rgba(228, 187, 148, 0.02)
+  );
+  --nav-active-edge: rgba(228, 187, 148, 0.13);
+  --count-bg: rgba(228, 187, 148, 0.07);
+  --count-ink: var(--accent-soft-ink);
+  --segment-bg: rgba(24, 40, 45, 0.24);
+  --segment-active-bg: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(228, 187, 148, 0.05)
+  );
+  --segment-active-ink: #f0dcc2;
+  --segment-active-ring: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  --switch-bg: var(--segment-bg);
+  --switch-active-bg: var(--segment-active-bg);
+  --switch-active-ink: var(--segment-active-ink);
+  --switch-active-ring: var(--segment-active-ring);
+  --field-bg: rgba(30, 41, 45, 0.77);
+  --field-focus-bg: var(--field-bg);
+  --field-edge: rgba(255, 255, 255, 0.11);
+  --field-focus-edge: rgba(228, 187, 148, 0.5);
+  --field-focus-ring: 0 0 0 2px rgba(228, 187, 148, 0.44);
+  --label-ink: #cad4c8;
+  --eyebrow-ink: #a6b7ad;
+  --kpi-label: #b1c1a1;
+  --dialog-bg: linear-gradient(135deg, #344348, #263639);
+  --dialog-edge: rgba(255, 255, 255, 0.17);
+  --avatar-bg: linear-gradient(
+    145deg,
+    rgba(203, 182, 155, 0.3),
+    rgba(105, 121, 109, 0.27)
+  );
+  --avatar-ink: #e9d7c2;
+  --mark-bg: rgba(255, 255, 255, 0.04);
+  --mark-ink: var(--accent);
+  --mark-edge: rgba(228, 187, 148, 0.17);
+  --scroll-thumb: rgba(255, 255, 255, 0.15);
+  --selection: rgba(228, 187, 148, 0.38);
+}

@@ -75,6 +75,35 @@ export default function Over() {
           </a>
         </div>
       </section>
+      <section className="about-on-location wrap">
+        <figure>
+          <div className="about-location-image">
+            <Image
+              src="/assets/op-locatie.webp"
+              alt="Content maken bij een klant in de winkel"
+              fill
+              sizes="(max-width: 760px) 90vw, 50vw"
+            />
+          </div>
+          <figcaption>Op locatie bij een klant.</figcaption>
+        </figure>
+        <div>
+          <Eyebrow>Daar waar jouw verhaal leeft</Eyebrow>
+          <h2>
+            De deur uit.
+            <br />
+            <em>Jouw wereld in.</em>
+          </h2>
+          <p>
+            Om jouw verhaal goed te vertellen, wil ik het van dichtbij zien. Op
+            de werkvloer, in de winkel, tussen de mensen. Daar ontstaan de
+            beelden en verhalen die bij jouw bedrijf passen.
+          </p>
+          <Button href="/contact" variant="outline">
+            Vertel me over jouw bedrijf
+          </Button>
+        </div>
+      </section>
       <section className="about-values">
         <div className="wrap">
           <span className="eyebrow">DIT MAG JE VAN MIJ VERWACHTEN</span>

@@ -1,6 +1,6 @@
 # Rossenaar Marketing
 
-Een Next.js-website voor persoonlijke marketing, met een scrollgestuurde campagnegalerij, eigen pagina’s en een interactieve klantportaalrondleiding.
+Een Next.js-website voor persoonlijke marketing, met filmische scrollscènes, eigen pagina’s en een interactieve klantportaalrondleiding.
 
 ## Starten
 
@@ -24,8 +24,8 @@ De nieuwe versie staat in [concept-PR #16](https://github.com/Sjaakmatt/danny-ro
 
 ## Pagina’s
 
-- `/`: verhaal, bewegende campagnegalerij, diensten, Danny, portaalpreview, werkwijze en reviews.
-- `/werk`: filterbare samenwerkingen; drie detailpagina’s onder `/werk/[slug]`.
+- `/`: bewegende beeldstapel, beeldvullende klantfoto, bladerbare contentgalerij, stapelende diensten, klantfoto, samenkomend portaal, werkwijze en reviews.
+- `/werk`: contentgalerij en filterbare samenwerkingen; drie detailpagina’s onder `/werk/[slug]`.
 - `/diensten`: vier diensten met stapelende kaarten en veelgestelde vragen.
 - `/over`: Danny’s eigen verhaal en foto’s.
 - `/inzicht`: openbare demo van resultaten, aanvragen en instellingen.
@@ -35,10 +35,12 @@ De nieuwe versie staat in [concept-PR #16](https://github.com/Sjaakmatt/danny-ro
 ## Aanpassen
 
 - Teksten, contactgegevens, samenwerkingen en originele reviews: `lib/content.ts`.
-- Kleuren, typografie en responsive layouts: `app/globals.css`.
-- Campagnebeelden: `public/assets/chocolate-concept.webp` en `public/assets/cafe-concept.webp`.
-- Galerij en scrollbeweging: `components/scroll-gallery.tsx`.
-- Portaalbediening: `components/dashboard.tsx`; fictieve dataset: `lib/demo.ts`.
+- Basisstijl: `app/globals.css`; scrollscènes: `app/cinematic.css`; licht/donker: `app/theme.css`.
+- Klantvideo’s, posters en advertenties: `public/media/`; galerijvolgorde en labels: `lib/showcase.ts`.
+- Galerijbediening en Instagram-spelers: `components/content-showcase.tsx`; opmaak: `app/showcase.css`.
+- Filmische scrollbeweging: `components/cinematic-home.tsx`.
+- Portaalbediening: `components/dashboard.tsx` en `components/portal/`; fictieve daggegevens: `lib/demo.ts`.
+- Gedeelde weergavevoorkeur: `components/theme-toggle.tsx`.
 
 De oorspronkelijke HTML-website is compleet bewaard in `legacy/`, inclusief de oorspronkelijke API en assets. De bestaande Git-geschiedenis blijft behouden.
 
@@ -58,15 +60,21 @@ Zonder sleutel geeft de server HTTP 503 terug en toont de website Danny’s dire
 
 De gebruiker heeft bevestigd dat het echte portaal **alleen op uitnodiging** toegankelijk is. Daarom bevat de site geen generieke inloglink of nagemaakte authenticatie.
 
-De openbare demo gebruikt uitsluitend expliciet gemarkeerde fictieve gegevens. Periodekeuzes, grafieken, zoeken, statusfilter, aanvraagdetails en CSV-export werken lokaal. Er zijn geen advertentie-API’s, echte klanten of portaalaccounts verbonden. De vaste demonstratieperiode eindigt op 11 oktober 2026, zodat dit nooit als actuele klantdata wordt gepresenteerd.
+De openbare demo gebruikt uitsluitend expliciet gemarkeerde fictieve gegevens. De interface is gebaseerd op de eigen repository `Ads-manager-` (commit `c0739d7`): Aanvragen, Resultaten en Instellingen. De oorspronkelijke Recharts-staafgrafiek gebruikt 7/30/90 dagen, met assen, dagtooltips en de meetwaarden aanvragen/klikken/uitgaven. De 157 fictieve aanvragen sluiten exact aan op de dagcijfers. Zoeken, statusfilters, aanvraagdetails, contactlogs, notities, klantwaarde en afwijsredenen werken in browsergeheugen. De funnel reageert op gewijzigde statussen. Contactknoppen simuleren de opvolging zonder te bellen of berichten te sturen. Instellingen bevat een reset voor de oefengegevens. Er zijn geen advertentie-API’s, echte klanten of portaalaccounts verbonden. De vaste demonstratieperiode eindigt op 11 oktober 2026, zodat dit nooit als actuele klantdata wordt gepresenteerd.
 
 ## Beeld en inhoud
 
-Danny’s foto’s, contactgegevens en vier reviews komen uit de oorspronkelijke repository (`fc59c60`). De twee nieuwe campagnefoto’s zijn AI-gegenereerde conceptvisuals. Ze zijn als zodanig gemarkeerd; ze vertegenwoordigen geen werk dat voor een klant is gepubliceerd. Ook de grafische campagnevoorstellen zijn concepten. Vervang ze door goedgekeurde campagnebestanden zodra die beschikbaar zijn.
+Danny’s foto’s, contactgegevens en vier reviews komen uit de oorspronkelijke repository (`fc59c60`). Alle fotografie in de nieuwe website komt uit aangeleverde bestanden. De eerder gemaakte AI-foto’s en hun bronbestanden zijn op verzoek verwijderd. Café Retro en FactumAI hebben grafisch vormgegeven projectomslagen; die worden niet als gepubliceerde campagnes gepresenteerd.
 
-De originele generaties en volledige prompts staan in `docs/original-concepts/` en `docs/visuals.md`. Referentieverwerking: `docs/design.md`. Testresultaten en beperkingen: `docs/verification.md`.
+De galerij bevat vijf aangeleverde video’s, drie social advertenties en de foto op locatie. De video’s zijn geëxporteerd als 720px H.264 met faststart. Alleen de actieve, zichtbare video speelt automatisch, zonder geluid. De gebruiker kan pauzeren en bij clips met een audiotrack geluid aanzetten. Advertenties en video’s behouden hun volledige beeldverhouding, inclusief teksten en ondertitels. Bladeren werkt met native horizontale scroll, slepen, pijlen, toetsenbord en positieknoppen.
 
-Lettertypen worden lokaal geleverd. Geen externe fontrequests, trackers, cookies, canvasbibliotheek of videodownload nodig. Animaties respecteren `prefers-reduced-motion`; de site gebruikt normale browserscrolling. Op mobiel vallen de stapelende diensten terug op leesbare losse secties.
+De twee aangeleverde Chikado-reels openen na een klik in een Instagram-speler binnen een dialoog. Er zijn geen Instagram-verzoeken voordat de bezoeker deze kiest. Bij sluiten wordt de speler verwijderd; een rechtstreekse link blijft beschikbaar. Instagram kan eigen cookies en toegangsvoorwaarden toepassen.
+
+De extra foto `public/assets/op-locatie.webp` staat ook in de beeldstapel, de persoonlijke home-scène en `/over`. Herkomst en bewerkingen: `docs/visuals.md`. Referentieverwerking: `docs/design.md`. Testresultaten en beperkingen: `docs/verification.md`.
+
+Lettertypen en eigen media worden lokaal geleverd. Animaties respecteren `prefers-reduced-motion`; de site gebruikt normale browserscrolling. Bij reduced motion staan alle onderdelen als gewone secties onder elkaar, zonder lange lege scrolltrajecten; de galerij verwijdert perspectief en autoplay.
+
+De schakelaar in de navigatie deelt één voorkeur met de portaalinstellingen: Licht, Donker of Automatisch. De voorkeur wordt lokaal bewaard in `rossenaar-theme`; Automatisch volgt het apparaat. Er worden hiervoor geen gegevens verstuurd.
 
 ## Controles
 

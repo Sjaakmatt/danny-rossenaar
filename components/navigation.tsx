@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { BrandMark } from './ui';
+import { ThemeToggle } from './theme-toggle';
 
 const links = [
   ['/werk', 'Werk'],
@@ -51,10 +52,13 @@ export function Navigation() {
             </Link>
           ))}
         </nav>
-        <Link className="nav-cta" href="/contact">
-          Even koffie?
-          <ArrowUpRight size={17} />
-        </Link>
+        <div className="nav-actions">
+          <ThemeToggle />
+          <Link className="nav-cta" href="/contact">
+            Even koffie?
+            <ArrowUpRight size={17} />
+          </Link>
+        </div>
         <button
           ref={toggle}
           className="menu-toggle"

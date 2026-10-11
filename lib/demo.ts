@@ -1,67 +1,40 @@
-// Deterministic, fictional data. Never read from or written to a customer account.
-export type Period = 7 | 30 | 90;
-export type Metric = 'aanvragen' | 'klikken' | 'uitgaven';
-export const demoDays = Array.from({ length: 90 }, (_, i) => ({
-  date: new Date(Date.UTC(2026, 6, 14 + i)).toISOString().slice(0, 10),
-  aanvragen:
-    [1, 2, 0, 3, 1, 4, 2, 1, 3, 2, 4, 1, 2, 0, 3][i % 15] + (i > 65 ? 1 : 0),
-  klikken: 18 + ((i * 17) % 65) + Math.floor(i / 3),
-  uitgaven: Number((12 + ((i * 13) % 29) + (i > 60 ? 4 : 0)).toFixed(2)),
-  vertoningen: 530 + ((i * 127) % 1200),
-}));
-export const demoLeads = [
-  {
-    id: 'D-001',
-    name: 'Voorbeeldbedrijf Noord',
-    person: 'Demo-aanvraag 01',
-    date: '2026-10-11',
-    channel: 'Instagram',
-    status: 'Nieuw',
-  },
-  {
-    id: 'D-002',
-    name: 'Voorbeeldbedrijf West',
-    person: 'Demo-aanvraag 02',
-    date: '2026-10-09',
-    channel: 'Facebook',
-    status: 'In gesprek',
-  },
-  {
-    id: 'D-003',
-    name: 'Voorbeeldbedrijf Oost',
-    person: 'Demo-aanvraag 03',
-    date: '2026-10-06',
-    channel: 'Instagram',
-    status: 'Klant',
-  },
-  {
-    id: 'D-004',
-    name: 'Voorbeeldbedrijf Zuid',
-    person: 'Demo-aanvraag 04',
-    date: '2026-09-28',
-    channel: 'Website',
-    status: 'In gesprek',
-  },
-  {
-    id: 'D-005',
-    name: 'Voorbeeldbedrijf Centrum',
-    person: 'Demo-aanvraag 05',
-    date: '2026-08-30',
-    channel: 'Facebook',
-    status: 'Klant',
-  },
-];
-export const number = (value: number) =>
-  new Intl.NumberFormat('nl-NL').format(value);
-export const euro = (value: number) =>
-  new Intl.NumberFormat('nl-NL', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 2,
-  }).format(value);
-export const shortDate = (date: string) =>
-  new Intl.DateTimeFormat('nl-NL', {
-    day: 'numeric',
-    month: 'short',
-    timeZone: 'UTC',
-  }).format(new Date(date));
+// Fictional, reproducible campaign data. Spend, clicks, impressions and leads share
+// one daily model; the portal creates exactly one sample request per conversion.
+let seed = 20261011;
+const random = () => {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+};
+function poisson(mean: number) {
+  const threshold = Math.exp(-mean);
+  let product = 1;
+  let k = 0;
+  do {
+    k++;
+    product *= random();
+  } while (product > threshold);
+  return k - 1;
+}
+export const demoDays = Array.from({ length: 90 }, (_, i) => {
+  const date = new Date(Date.UTC(2026, 6, 14 + i));
+  const weekend = date.getUTCDay() === 0 || date.getUTCDay() === 6;
+  const budget = (i < 30 ? 23 : i < 60 ? 28 : 34) * (weekend ? 0.78 : 1);
+  const uitgaven = Math.round(budget * (0.86 + random() * 0.28) * 100) / 100;
+  const costPerClick = 0.39 + random() * 0.22;
+  const klikken = Math.round(uitgaven / costPerClick);
+  const ctr = 0.019 + random() * 0.014;
+  const aanvragen = Math.min(
+    klikken,
+    poisson(klikken * (i < 30 ? 0.027 : i < 60 ? 0.033 : 0.042)),
+  );
+  return {
+    date: date.toISOString().slice(0, 10),
+    aanvragen,
+    klikken,
+    uitgaven,
+    vertoningen: Math.round(klikken / ctr),
+  };
+});
+export const demoMonthLeads = demoDays
+  .slice(-30)
+  .reduce((sum, day) => sum + day.aanvragen, 0);

@@ -23,8 +23,8 @@ export default function Inzicht() {
             PROBEER HET ZELF
           </span>
           <p>
-            Wissel van periode, bekijk een aanvraag of download de
-            voorbeeldcijfers.
+            Wissel van periode, volg een aanvraag op of probeer de instellingen
+            van je portaal.
           </p>
         </div>
         <Dashboard />

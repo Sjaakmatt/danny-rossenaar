@@ -3,14 +3,14 @@
 **Objective:** Migreer Rossenaar Marketing van HTML naar een persoonlijke, visueel uitgesproken Next.js-website met scrollende lagen, meerdere pagina’s en een interactief klantportaalvoorbeeld.
 **Status:** active
 **Started:** 2026-10-11
-**Iterations:** 5
+**Iterations:** 8
 
 ## Acceptance criteria
 
 - [x] Repository en originele inhoud behouden — controleer git history, legacy/ en contactgegevens.
 - [x] Next.js met Home, Werk, Diensten, Over Danny, Inzicht en Contact — `npm run build` en HTTP-routecontroles.
-- [x] Scrollgestuurde campagnegalerij, gelaagde secties, hoverinteracties en reduced-motion — inspecteer in de browser en controleer CSS/DOM.
-- [x] Interactieve portaalpreview met perioden, grafieken en aanvragen — browsercontrole; voorbeelddata expliciet gemarkeerd.
+- [x] Filmische homepage met beeldvullende scrolltransformaties, overlappende scènes, stapelende diensten en samenkomend portaal — controleer begin-, tussen- en eindtoestanden op desktop en mobiel, plus broncontrole van reduced-motion.
+- [x] Portaalpreview op basis van Ads-manager met perioden, staafgrafieken, aanvragen, opvolging en gedeelde licht/donkerkeuze — browsercontrole; voorbeelddata expliciet gemarkeerd.
 - [x] Contactformulier gemigreerd met validatie, foutmeldingen en server-only mailconfiguratie — `npm test` en lokale API-controles zonder mail te versturen.
 - [x] Mobiele en desktopweergave en toetsenbordnavigatie bruikbaar — browsercontrole op 390px en 1440px.
 - [x] Bekijkbaar resultaat en documentatie van resterende koppelingen — lokale preview openen en README controleren.
@@ -23,10 +23,10 @@
 
 ## State
 
-**Done:** Next.js-pagina’s en ontwerp gebouwd; alle specifieke referenties visueel onderzocht; productiebuild en 5 validatietests geslaagd; HTTP-routes gecontroleerd; portaalfilters, aanvragen, CSV-download, mobiele navigatie en foutweergave in browser geverifieerd.
-**Now:** Implementatie opgeleverd in concept-PR #16; lokale preview en beschermde Vercel-preview beschikbaar.
+**Done:** Next.js-migratie, filmische hero en scrolllagen, stapelende diensten, aangeleverde klantfoto, portaal op basis van Ads-manager-broncode en gedeelde weergavevoorkeur. Desktop- en mobiele browserhandelingen geverifieerd; productiebuild, typecheck en 5 tests geslaagd.
+**Now:** Herziening opleveren in dezelfde concept-PR; visuele beoordeling blijft open.
 **Next:** Visuele beoordeling door gebruiker; daarna eventuele ontwerpaanpassingen.
-**Blocked:** Visuele beoordeling door de gebruiker ontbreekt. Alle technische oplevercriteria zijn gecontroleerd; geen aanvullende ontwerpwijziging gekozen zonder feedback.
+**Blocked:** none; gebruiker gaf concrete richting: filmisch zoals Foldfolio, met uitgesproken gepinde scènes.
 
 ## Log
 
@@ -38,3 +38,11 @@
 - 2026-10-11 iteratie 4: productiebuild, typecheck, tests en HTTP-smokecheck geslaagd; toetsenbordbediening en laatste mobiele layouts gecontroleerd; referenties, assets en verificatie gedocumenteerd.
 
 - 2026-10-11 iteratie 5: PR en lokale applicatiecommit komen overeen; beide Vercel-checks geslaagd. Online preview vraagt Vercel-login. Visuele beoordeling blijft open (tweede opeenvolgende goal-turn met deze afhankelijkheid).
+
+- 2026-10-11 iteratie 6: derde opeenvolgende goal-turn zonder visuele beoordeling. Technische oplevering blijft gereed; geen nieuwe menselijke feedback ontvangen. Goal geblokkeerd op deze laatste acceptatie, zodat automatische vervolgrondes stoppen.
+
+- 2026-10-11 iteratie 7: gebruiker vindt beweging te slap en kiest filmische, experimentele scroll met grote transformaties. Motion-criterium heropend; hero, diensten, portret en portaal als scènes herbouwd.
+
+- 2026-10-11 iteratie 7 vervolg: Ads-manager-portaalbron verwerkt, werkende demodata met 157 aanvragen en echte daggrafiek, klantfoto toegevoegd, licht/donker/automatisch gedeeld door site en portaal. Desktop en mobiel gecontroleerd.
+
+- 2026-10-11 iteratie 8: Video Slide Show-referentie vertaald naar een galerij met diepte, sleepbediening, native scroll en videobediening. Vijf aangeleverde video’s, drie advertenties en twee Instagram-reels toegevoegd. Alle gegenereerde foto’s en bronbestanden verwijderd op gebruikersverzoek. Ook werkpagina en Chocolate Planet-details bevatten echte media.

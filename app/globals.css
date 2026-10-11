@@ -513,10 +513,17 @@ button {
   letter-spacing: 1.2px;
 }
 .art-cafe {
+  background: #483725;
   color: #fff7df;
 }
 .art-chocolate {
-  color: #fff5d7;
+  background: #f7dfbd;
+}
+.art-kingma {
+  background: #fff6ef;
+}
+.art-emiel {
+  background: #19272a;
 }
 .art-factum {
   background: #193842;
