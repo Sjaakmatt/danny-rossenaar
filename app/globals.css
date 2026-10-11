@@ -6,8 +6,8 @@
   --lime: #d8ed9b;
   --green: #517b48;
   --peach: #edb39a;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans: 'DM Sans Variable', Arial, sans-serif;
+  --serif: var(--font-instrument-serif), Georgia, serif;
+  --sans: var(--font-dm-sans), Arial, sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -1267,6 +1267,16 @@ button {
 }
 .service-detail > .spotlight {
   padding: 45px;
+}
+.service-detail-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.service-detail:focus-within {
+  outline: 3px solid var(--green);
+  outline-offset: 4px;
 }
 .service-lime {
   background: #e0edbe;

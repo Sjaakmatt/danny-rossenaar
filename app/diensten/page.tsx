@@ -1,4 +1,5 @@
 import { ServiceLinks } from '@/components/service-links';
+import Link from 'next/link';
 import { pageGraph, pageMetadata } from '@/lib/seo';
 import { StructuredData } from '@/components/structured-data';
 import { Breadcrumbs } from '@/components/breadcrumbs';
@@ -10,11 +11,11 @@ import {
   Route,
 } from 'lucide-react';
 import { services } from '@/lib/content';
-import { Button, PageIntro } from '@/components/ui';
+import { PageIntro } from '@/components/ui';
 import { Spotlight } from '@/components/motion';
 const pageTitle = 'Marketingdiensten voor ondernemers';
 const description =
-  'Social media, content, Meta-advertenties en strategie met Danny Rossenaar. Ontdek de mogelijkheden voor jouw bedrijf in Enkhuizen, West-Friesland en daarbuiten.';
+  'Social media, content, Meta-advertenties en personeelswerving met Danny Rossenaar. Voor jouw bedrijf in Enkhuizen, West-Friesland en daarbuiten.';
 const crumbs = [{ name: 'Diensten', path: '/diensten' }];
 export const metadata = pageMetadata('/diensten', pageTitle, description);
 const icons = [Fingerprint, Focus, Megaphone, Route];
@@ -29,7 +30,7 @@ export default function Diensten() {
         label="Wat ik doe"
         title="Marketing die past."
         italic="Bij jouw bedrijf."
-        description="Van social media beheer en content tot Meta-advertenties en strategie. Ik help ondernemers in Enkhuizen, West-Friesland en daarbuiten met marketing die bij hen past."
+        description="Van social media beheer en content tot Meta-advertenties en personeelswerving. Ik help ondernemers in Enkhuizen, West-Friesland en daarbuiten met marketing die bij hen past."
       />
       <div className="wrap services-detail">
         {services.map((service, i) => {
@@ -48,7 +49,15 @@ export default function Diensten() {
                   <Icon size={60} strokeWidth={1} />
                 </div>
                 <div className="service-detail-body">
-                  <h2>{service.name}</h2>
+                  <h2>
+                    <Link
+                      href={service.href}
+                      className="service-detail-link"
+                      aria-label={`Meer over ${service.label.toLowerCase()}`}
+                    >
+                      {service.name}
+                    </Link>
+                  </h2>
                   <div>
                     <p>{service.description}</p>
                     <ul>
@@ -59,12 +68,12 @@ export default function Diensten() {
                         </li>
                       ))}
                     </ul>
-                    <Button
-                      href={`/contact?interesse=${encodeURIComponent(service.label)}`}
-                      variant="outline"
-                    >
-                      Hier wil ik meer over weten
-                    </Button>
+                    <span className="button button-outline" aria-hidden="true">
+                      Meer over {service.label.toLowerCase()}
+                      <span className="button-arrow">
+                        <ArrowUpRight size={18} />
+                      </span>
+                    </span>
                   </div>
                 </div>
               </Spotlight>

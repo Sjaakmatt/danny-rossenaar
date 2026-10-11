@@ -1,7 +1,6 @@
 import Script from 'next/script';
 import type { Metadata, Viewport } from 'next';
-import '@fontsource-variable/dm-sans';
-import '@fontsource/instrument-serif/latin-400-italic.css';
+import localFont from 'next/font/local';
 import './globals.css';
 import './cinematic.css';
 import '@/components/portal/tokens.css';
@@ -13,6 +12,21 @@ import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
 import { StructuredData } from '@/components/structured-data';
 import { isPreview, organizationGraph, site } from '@/lib/seo';
+
+const sans = localFont({
+  src: '../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2',
+  variable: '--font-dm-sans',
+  weight: '100 1000',
+  display: 'swap',
+});
+const serif = localFont({
+  src: '../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2',
+  variable: '--font-instrument-serif',
+  weight: '400',
+  style: 'italic',
+  display: 'swap',
+  adjustFontFallback: 'Times New Roman',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -54,7 +68,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html
+      lang="nl"
+      className={`${sans.variable} ${serif.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         <Script
           id="site-theme"

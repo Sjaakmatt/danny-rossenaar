@@ -10,7 +10,6 @@ import {
   PortalScene,
 } from '@/components/cinematic-home';
 import { Reviews } from '@/components/reviews';
-import { Dashboard } from '@/components/dashboard';
 import Link from 'next/link';
 import { pageGraph, pageMetadata, site } from '@/lib/seo';
 import { StructuredData } from '@/components/structured-data';
@@ -51,9 +50,7 @@ export default function Home() {
       <ContentShowcase />
       <ServicesScene />
       <PersonalScene />
-      <PortalScene>
-        <Dashboard compact />
-      </PortalScene>
+      <PortalScene />
       <section className="process-section wrap" id="werkwijze">
         <div className="section-heading">
           <div>

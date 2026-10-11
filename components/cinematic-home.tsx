@@ -3,8 +3,10 @@
 import { useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   motion,
+  useInView,
   useMotionValueEvent,
   useReducedMotion,
   useTransform,
@@ -141,7 +143,7 @@ function ServiceChapter({
         </span>
         <h3>{service.name}</h3>
         <p>{service.description}</p>
-        <Link href={`/diensten#${service.slug}`} className="chapter-link">
+        <Link href={service.href} className="chapter-link">
           Ontdek{' '}
           {index === 0
             ? 'jouw verhaal'
@@ -381,8 +383,21 @@ function FloatingResult({
     </motion.div>
   );
 }
-export function PortalScene({ children }: { children: ReactNode }) {
+function PortalPlaceholder() {
+  return (
+    <div className="portal-scene-placeholder" data-nosnippet>
+      Jouw resultaten. Helder in beeld.
+    </div>
+  );
+}
+const PreviewDashboard = dynamic(
+  () => import('./dashboard').then((module) => module.Dashboard),
+  { ssr: false, loading: PortalPlaceholder },
+);
+
+export function PortalScene() {
   const ref = useRef<HTMLElement>(null);
+  const nearViewport = useInView(ref, { margin: '600px 0px', once: true });
   const reduced = useReducedMotion();
   const p = useSceneProgress({
     target: ref,
@@ -425,7 +440,11 @@ export function PortalScene({ children }: { children: ReactNode }) {
             style={reduced ? {} : { rotateX, scale, y, opacity }}
             inert={!reduced && !ready}
           >
-            {children}
+            {nearViewport ? (
+              <PreviewDashboard compact />
+            ) : (
+              <PortalPlaceholder />
+            )}
           </motion.div>
           {!reduced &&
             [0, 1, 2].map((i) => (

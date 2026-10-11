@@ -30,6 +30,25 @@ export function CinematicHero() {
   const [chapter, setChapter] = useState(0);
   const [paused, setPaused] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [posterReady, setPosterReady] = useState(false);
+  const [pageReady, setPageReady] = useState(false);
+  const [videoRequested, setVideoRequested] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+  const [saveData, setSaveData] = useState(false);
+  useEffect(() => {
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean };
+      }
+    ).connection;
+    setSaveData(Boolean(connection?.saveData));
+    // Start the decorative loop after the page's initial resources finish,
+    // so video bytes do not compete with CSS, fonts and the first image.
+    const ready = () => setPageReady(true);
+    if (document.readyState === 'complete') ready();
+    else window.addEventListener('load', ready, { once: true });
+    return () => window.removeEventListener('load', ready);
+  }, []);
   useMotionValueEvent(p, 'change', (value) =>
     setChapter(value < 0.22 ? 0 : value < 0.62 ? 1 : 2),
   );
@@ -41,11 +60,16 @@ export function CinematicHero() {
         visible &&
         chapter < 2 &&
         !paused &&
-        (!reduced || manuallyStarted.current) &&
+        (manuallyStarted.current ||
+          (posterReady && pageReady && !reduced && !saveData)) &&
         !document.hidden
-      )
+      ) {
+        if (!videoRequested) {
+          setVideoRequested(true);
+          return;
+        }
         void element.play().catch(() => setPlaying(false));
-      else element.pause();
+      } else element.pause();
     };
     sync();
     document.addEventListener('visibilitychange', sync);
@@ -53,7 +77,16 @@ export function CinematicHero() {
       element.pause();
       document.removeEventListener('visibilitychange', sync);
     };
-  }, [visible, chapter, paused, reduced]);
+  }, [
+    visible,
+    chapter,
+    paused,
+    reduced,
+    posterReady,
+    pageReady,
+    saveData,
+    videoRequested,
+  ]);
 
   const pointerX = useSpring(0, { stiffness: 80, damping: 22 });
   const pointerY = useSpring(0, { stiffness: 80, damping: 22 });
@@ -200,15 +233,26 @@ export function CinematicHero() {
               <span>01 — VIDEO</span>
             </div>
             <div className={styles.reelPicture}>
+              <Image
+                src="/media/emiel-buis.jpg"
+                alt=""
+                fill
+                sizes="(max-width: 760px) 44vw, (max-width: 1570px) 28vw, 440px"
+                loading="eager"
+                fetchPriority="high"
+                onLoad={() => setPosterReady(true)}
+                onError={() => setPosterReady(true)}
+              />
               <video
                 ref={video}
-                src="/media/emiel-buis.mp4"
-                poster="/media/emiel-buis.jpg"
+                src={videoRequested ? '/media/emiel-buis-hero.mp4' : undefined}
+                className={videoReady ? styles.videoReady : undefined}
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
                 aria-label="Emiel Buis vertelt over zijn zaak"
+                onLoadedData={() => setVideoReady(true)}
                 onPlay={() => setPlaying(true)}
                 onPause={() => setPlaying(false)}
               />
@@ -225,7 +269,9 @@ export function CinematicHero() {
                   } else {
                     manuallyStarted.current = true;
                     setPaused(false);
-                    void video.current?.play().catch(() => setPlaying(false));
+                    setVideoRequested(true);
+                    if (videoRequested)
+                      void video.current?.play().catch(() => setPlaying(false));
                   }
                 }}
               >

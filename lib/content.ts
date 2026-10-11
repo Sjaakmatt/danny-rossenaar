@@ -10,19 +10,27 @@ export const contact = {
 export const services = [
   {
     slug: 'merkverhaal',
+    href: '/diensten/social-media-beheer',
     number: '01',
     name: 'Een verhaal dat blijft.',
-    label: 'Merkverhaal & branding',
+    label: 'Social media beheer',
+    interest: 'Social media beheer',
     description:
-      'Wat maakt jouw bedrijf bijzonder? We brengen het terug tot de kern. En geven die kern een herkenbare stem en uitstraling.',
-    items: ['Positionering & merkverhaal', 'Visuele richting', 'Tone of voice'],
+      'Jouw verhaal, herkenbaar op je eigen kanalen. We kiezen de richting, maken een werkbare planning en houden samen zicht op wat bij jouw klanten past.',
+    items: [
+      'Jouw verhaal & eigen stem',
+      'Contentplanning',
+      'Persoonlijk overleg',
+    ],
     accent: 'lime',
   },
   {
     slug: 'content',
+    href: '/diensten/content-creatie',
     number: '02',
     name: 'Content die raakt.',
-    label: 'Content & social media',
+    label: 'Contentcreatie',
+    interest: 'Content, fotografie & video',
     description:
       'Van de eerste foto tot die ene sterke video. Content waarin mensen je herkennen, ook als je zelf even druk bent met ondernemen.',
     items: [
@@ -34,29 +42,33 @@ export const services = [
   },
   {
     slug: 'zichtbaarheid',
+    href: '/diensten/meta-advertenties',
     number: '03',
     name: 'In beeld bij de juiste mensen.',
-    label: 'Online zichtbaarheid',
+    label: 'Meta-advertenties',
+    interest: 'Meta-advertenties',
     description:
-      'Je hoeft niet overal te zijn. Wel op de plekken waar jouw klanten kijken. Met gerichte advertenties en een goed vindbaar verhaal.',
+      'Je hoeft niet overal te zijn. Wel op de plekken waar jouw klanten kijken. Met gerichte advertenties op Facebook en Instagram en inzicht in wat werkt.',
     items: [
       'Meta-advertenties',
-      'Online vindbaarheid',
+      'Doelgroep & advertentiecontent',
       'Campagnes optimaliseren',
     ],
     accent: 'blue',
   },
   {
     slug: 'strategie',
+    href: '/diensten/personeelswerving',
     number: '04',
-    name: 'Groei met een goed plan.',
-    label: 'Strategie & persoonlijk contact',
+    name: 'De juiste mensen. Voor jouw zaak.',
+    label: 'Personeelswerving',
+    interest: 'Personeelswerving via social media',
     description:
-      'We kiezen een richting die past bij je ambities én je agenda. Met duidelijke stappen, regelmatig contact en inzicht in wat werkt.',
+      'Laat zien hoe het is om bij jou te werken. Met echte verhalen van je team en een gerichte campagne brengen we jouw vacature onder de aandacht.',
     items: [
-      'Marketingplan op maat',
-      'Persoonlijke begeleiding',
-      'Resultaten & klantinzichten',
+      'Jouw team & de werkvloer in beeld',
+      'Vacaturecampagne via social media',
+      'Inzicht in reacties & aanvragen',
     ],
     accent: 'sand',
   },
