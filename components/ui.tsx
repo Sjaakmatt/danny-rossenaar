@@ -41,6 +41,26 @@ export function BrandMark({ className = '' }: { className?: string }) {
     </svg>
   );
 }
+// Eigen SVG in plaats van het teken ✳: iOS toont dat teken als groene emoji.
+export function Asterisk({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 100 100"
+      width="1em"
+      height="1em"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="6.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+      style={{ display: 'block' }}
+    >
+      <path d="M50 8V92M8 50H92M20.3 20.3L79.7 79.7M79.7 20.3L20.3 79.7" />
+    </svg>
+  );
+}
+
 export function Button({
   href,
   children,

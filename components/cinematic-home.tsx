@@ -14,7 +14,7 @@ import {
 } from 'motion/react';
 import { ArrowDown, ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { CampaignArt, type ArtType } from './campaign-art';
-import { Button, Eyebrow } from './ui';
+import { Asterisk, Button, Eyebrow } from './ui';
 import { useSceneProgress } from './use-scene-progress';
 import { services } from '@/lib/content';
 import { demoMonthLeads } from '@/lib/demo';
@@ -79,7 +79,7 @@ export function ManifestoScene() {
         </h2>
         <div className="manifesto-scene-bottom">
           <motion.span style={reduced ? {} : { rotate }} aria-hidden="true">
-            ✳
+            <Asterisk />
           </motion.span>
           <p>
             Je hebt iemand nodig die luistert, je verhaal begrijpt en met je

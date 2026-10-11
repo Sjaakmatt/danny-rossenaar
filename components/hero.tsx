@@ -12,7 +12,7 @@ import {
   useSpring,
   useTransform,
 } from 'motion/react';
-import { Button, Eyebrow } from './ui';
+import { Asterisk, Button, Eyebrow } from './ui';
 import { useSceneProgress } from './use-scene-progress';
 import styles from './hero.module.css';
 
@@ -153,7 +153,9 @@ export function CinematicHero() {
             <span>Groot in</span>
             <span className={styles.titleSecond}>
               beeld<span className={styles.period}>.</span>
-              <i aria-hidden="true">✳</i>
+              <i aria-hidden="true">
+                <Asterisk />
+              </i>
             </span>
             <motion.em style={reduced ? {} : { x: lowerX }}>
               Dichtbij jou.
