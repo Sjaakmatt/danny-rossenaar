@@ -837,6 +837,15 @@
 .portal-scene-screen[inert] {
   pointer-events: none;
 }
+.portal-scene-placeholder {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--muted);
+}
 .about-on-location {
   display: grid;
   grid-template-columns: 1fr 1fr;

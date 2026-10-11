@@ -35,33 +35,80 @@ function ReelVideo({
   item: Extract<ShowcaseItem, { kind: 'video' }>;
   active: boolean;
 }) {
+  const frame = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const reduced = useReducedMotion();
-  const inView = useInView(video, { amount: 0.4 });
+  const inView = useInView(frame, { amount: 0.4 });
   const [playing, setPlaying] = useState(false);
+  const [hasFrame, setHasFrame] = useState(false);
   const [muted, setMuted] = useState(true);
   const [error, setError] = useState(false);
+  const [manuallyStarted, setManuallyStarted] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [saveData, setSaveData] = useState(false);
+  const loadVideo =
+    active && inView && (manuallyStarted || (!reduced && !saveData));
+  useEffect(() => {
+    setSaveData(
+      Boolean(
+        (
+          navigator as Navigator & {
+            connection?: { saveData?: boolean };
+          }
+        ).connection?.saveData,
+      ),
+    );
+  }, []);
+  useEffect(() => {
+    if (!active) {
+      setManuallyStarted(false);
+      setPaused(false);
+      setError(false);
+    }
+  }, [active]);
   useEffect(() => {
     const element = video.current;
     if (!element) return;
-    if (active && inView && !reduced)
-      void element.play().catch(() => setPlaying(false));
-    else {
-      element.pause();
+    const sync = () => {
+      if (loadVideo && !paused && !document.hidden)
+        void element.play().catch(() => setPlaying(false));
+      else element.pause();
+    };
+    if (!loadVideo) {
+      // Removing src and resetting the media element aborts outstanding video
+      // transfers, including duplicate copies in the infinite carousel.
+      element.removeAttribute('src');
+      element.load();
       setMuted(true);
+      setPlaying(false);
+      setHasFrame(false);
     }
-  }, [active, inView, reduced]);
+    sync();
+    document.addEventListener('visibilitychange', sync);
+    return () => {
+      element.pause();
+      document.removeEventListener('visibilitychange', sync);
+    };
+  }, [loadVideo, paused]);
   return (
-    <>
+    <div ref={frame} className="reel-video-frame">
+      <Image
+        src={item.poster}
+        alt=""
+        fill
+        sizes="(max-width: 760px) 68vw, 340px"
+        draggable={false}
+      />
       <video
         ref={video}
-        src={item.src}
-        poster={item.poster}
+        src={loadVideo ? item.src : undefined}
         muted={muted}
         loop
         playsInline
-        preload={active ? 'metadata' : 'none'}
+        preload="none"
         aria-label={item.alt}
+        className={hasFrame ? 'has-video-frame' : undefined}
+        onLoadedData={() => setHasFrame(true)}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onError={() => setError(true)}
@@ -73,8 +120,15 @@ function ReelVideo({
             className="reel-media-control"
             aria-label={playing ? 'Video pauzeren' : 'Video afspelen'}
             onClick={() => {
-              if (playing) video.current?.pause();
-              else void video.current?.play().catch(() => setPlaying(false));
+              if (playing) {
+                setPaused(true);
+                video.current?.pause();
+              } else {
+                setManuallyStarted(true);
+                setPaused(false);
+                if (loadVideo)
+                  void video.current?.play().catch(() => setPlaying(false));
+              }
             }}
           >
             {playing ? <Pause size={17} /> : <Play size={17} />}
@@ -95,13 +149,14 @@ function ReelVideo({
       {error && active && (
         <span className="reel-video-error">Video kan niet worden geladen.</span>
       )}
-    </>
+    </div>
   );
 }
 function Reel({
   item,
   index,
   active,
+  loadMedia,
   step,
   scroll,
   choose,
@@ -109,6 +164,7 @@ function Reel({
   item: ShowcaseItem;
   index: number;
   active: boolean;
+  loadMedia: boolean;
   step: number;
   scroll: MotionValue<number>;
   choose: () => void;
@@ -150,7 +206,7 @@ function Reel({
         aria-label={`${itemIndex(index) + 1} van ${count}: ${item.title}`}
         aria-hidden={!active}
       >
-        {item.kind === 'art' ? (
+        {!loadMedia ? null : item.kind === 'art' ? (
           <CampaignArt type={item.art} />
         ) : item.kind === 'image' ? (
           <Image
@@ -183,6 +239,8 @@ function Reel({
 }
 export function ContentShowcase() {
   const id = useId();
+  const section = useRef<HTMLElement>(null);
+  const nearViewport = useInView(section, { margin: '300px 0px', once: true });
   const track = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(count + 2);
   const active = itemIndex(position);
@@ -279,6 +337,7 @@ export function ContentShowcase() {
   };
   return (
     <section
+      ref={section}
       id="content"
       className="content-showcase"
       aria-labelledby={id}
@@ -374,6 +433,7 @@ export function ContentShowcase() {
               item={item}
               index={index}
               active={index === position}
+              loadMedia={nearViewport && Math.abs(index - position) <= 3}
               step={step}
               scroll={scrollX}
               choose={() => choosePosition(index)}

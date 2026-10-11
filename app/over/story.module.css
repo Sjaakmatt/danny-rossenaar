@@ -3,7 +3,7 @@
   padding-left: clamp(20px, 3vw, 36px);
   margin: 0 0 32px;
   max-width: 590px;
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--serif);
   font-style: italic;
   font-size: clamp(32px, 3.2vw, 48px);
   line-height: 1.15;

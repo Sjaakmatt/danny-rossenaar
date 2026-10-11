@@ -101,12 +101,12 @@ export function ContactForm({ interest = '' }: { interest?: string }) {
         <select
           name="interesse"
           defaultValue={
-            services.some((s) => s.label === interest) ? interest : ''
+            services.some((s) => s.interest === interest) ? interest : ''
           }
         >
           <option value="">Laten we dat samen ontdekken</option>
           {services.map((s) => (
-            <option key={s.slug} value={s.label}>
+            <option key={s.slug} value={s.interest}>
               {s.label}
             </option>
           ))}

@@ -57,6 +57,7 @@ export function Navigation() {
             <Link
               key={href}
               href={href}
+              prefetch={href === '/inzicht' ? false : undefined}
               aria-current={pathname.startsWith(href) ? 'page' : undefined}
             >
               {label}
@@ -91,6 +92,7 @@ export function Navigation() {
           <Link
             key={href}
             href={href}
+            prefetch={open && href !== '/inzicht' ? undefined : false}
             onClick={() => setOpen(false)}
             aria-current={pathname.startsWith(href) ? 'page' : undefined}
           >
