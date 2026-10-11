@@ -1,0 +1,8 @@
+node_modules
+.next
+legacy
+public
+docs/original-concepts
+work
+package-lock.json
+next-env.d.ts

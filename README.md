@@ -1,64 +1,82 @@
-# Rossenaar Marketing: website
+# Rossenaar Marketing
 
-Eén-pagina website voor Rossenaar Marketing: warm, persoonlijk en niet te techy.
-De kleuren komen rechtstreeks uit het logo (navy, blauw, teal en frisgroen),
-gecombineerd met warme crèmetinten.
+Een Next.js-website voor persoonlijke marketing, met een scrollgestuurde campagnegalerij, eigen pagina’s en een interactieve klantportaalrondleiding.
 
-## Structuur
+## Starten
 
-- `index.html`: de volledige pagina (hero, diensten, over mij, werkwijze, reviews, contact)
-- `css/style.css`: alle styling, met de kleuren als CSS-variabelen bovenin
-- `js/main.js`: mobiel menu, scroll-animaties, uitklapbare reviews en het contactformulier
-- `api/contact.js`: serverless functie die het contactformulier via Resend verstuurt
-- `assets/`: logo, favicons, foto's en de social-media-afbeelding
-
-## Lokaal bekijken
-
-Open `index.html` in de browser, of start een simpele server:
+Gebruik Node.js 22 of nieuwer.
 
 ```bash
-python3 -m http.server 8000
+npm ci
+npm run dev -- --port 3100
 ```
 
-en ga naar http://localhost:8000. Let op: het contactformulier werkt alleen
-als de site draait op een omgeving die serverless functies ondersteunt
-(zie hieronder): lokaal kan dat met `vercel dev`.
+Open http://127.0.0.1:3100. Voor de productieversie:
 
-## Contactformulier instellen (Resend)
+```bash
+npm run build
+npm start -- --port 3100
+```
 
-Het formulier stuurt berichten naar **danny@rossenaarmarketing.nl**, met
-**Rossenaar Marketing &lt;contact@rossenaarmarketing.nl&gt;** als afzender. Het
-antwoordadres wordt automatisch het adres van de afzender van het bericht,
-dus je kunt direct op de mail antwoorden.
+## Pagina’s
 
-Wat er nog moet gebeuren om het werkend te krijgen:
-
-1. **Domein verifiëren bij Resend**. Voeg `rossenaarmarketing.nl` toe in het
-   Resend-dashboard onder *Domains* en zet de DNS-records (SPF, DKIM) klaar bij
-   je domeinprovider. Zonder verificatie mag Resend niet vanaf
-   `contact@rossenaarmarketing.nl` versturen.
-2. **API-sleutel aanmaken** in Resend onder *API Keys*.
-3. **Omgevingsvariabele instellen** in je hostingomgeving:
-
-   ```
-   RESEND_API_KEY=re_...
-   ```
-
-   Bij Vercel doe je dat via *Settings → Environment Variables*. Zet hem
-   nooit in de code of in dit bestand.
-
-De functie in `api/contact.js` gebruikt het Vercel-formaat voor serverless
-functies. Draait de site ergens anders (Netlify, Cloudflare), dan hoeft alleen
-de buitenkant van dat bestand aangepast te worden: de logica blijft gelijk.
-
-Ingebouwde bescherming: een verborgen veld tegen bots, controle op een geldig
-e-mailadres en een maximale lengte per veld.
+- `/`: verhaal, bewegende campagnegalerij, diensten, Danny, portaalpreview, werkwijze en reviews.
+- `/werk`: filterbare samenwerkingen; drie detailpagina’s onder `/werk/[slug]`.
+- `/diensten`: vier diensten met stapelende kaarten en veelgestelde vragen.
+- `/over`: Danny’s eigen verhaal en foto’s.
+- `/inzicht`: openbare demo van resultaten, aanvragen en instellingen.
+- `/contact`: kennismakingsformulier en directe contactgegevens.
+- `/privacy`: uitleg van de gegevensverwerking van deze implementatie.
 
 ## Aanpassen
 
-- **Kleuren**: bovenin `css/style.css` onder `:root`.
-- **Teksten**: rechtstreeks in `index.html`, alles is in het Nederlands en in de je-vorm.
-- **Contactgegevens**: e-mailadres en telefoonnummer staan in de contactsectie,
-  de footer en in de structured data bovenin `index.html`.
-- **Domein / SEO**: de SEO-tags, `sitemap.xml` en `robots.txt` gebruiken
-  `https://www.rossenaarmarketing.nl/`. Pas dit aan als het domein anders wordt.
+- Teksten, contactgegevens, samenwerkingen en originele reviews: `lib/content.ts`.
+- Kleuren, typografie en responsive layouts: `app/globals.css`.
+- Campagnebeelden: `public/assets/chocolate-concept.webp` en `public/assets/cafe-concept.webp`.
+- Galerij en scrollbeweging: `components/scroll-gallery.tsx`.
+- Portaalbediening: `components/dashboard.tsx`; fictieve dataset: `lib/demo.ts`.
+
+De oorspronkelijke HTML-website is compleet bewaard in `legacy/`, inclusief de oorspronkelijke API en assets. De bestaande Git-geschiedenis blijft behouden.
+
+## E-mail
+
+Het formulier gebruikt dezelfde Resend-afzender en ontvanger als de oorspronkelijke website:
+
+- Naar: `danny@rossenaarmarketing.nl`
+- Van: `Rossenaar Marketing <contact@rossenaarmarketing.nl>`
+- Reply-To: het ingevulde e-mailadres
+
+Maak lokaal een `.env.local` op basis van `.env.example`, of zet in de hostingomgeving `RESEND_API_KEY`. Het verzenddomein moet bij Resend geverifieerd zijn. Plaats de sleutel nooit in Git of in een `NEXT_PUBLIC_`-variabele.
+
+Zonder sleutel geeft de server HTTP 503 terug en toont de website Danny’s directe contactgegevens. Er wordt dan geen verzonden-status getoond. Het formulier bewaart de invoer bij een fout. De route valideert types, verplichte velden, e-mail, lengte, oorsprong, maximaal 32 KiB requestbody en een honeypot. Voor een publiek formulier kan de hostingprovider aanvullende rate limiting instellen. Werkelijke e-mailbezorging is niet getest: tijdens de controle was geen Resend-sleutel ingesteld en is geen e-mail verstuurd.
+
+## Klantportaal
+
+De gebruiker heeft bevestigd dat het echte portaal **alleen op uitnodiging** toegankelijk is. Daarom bevat de site geen generieke inloglink of nagemaakte authenticatie.
+
+De openbare demo gebruikt uitsluitend expliciet gemarkeerde fictieve gegevens. Periodekeuzes, grafieken, zoeken, statusfilter, aanvraagdetails en CSV-export werken lokaal. Er zijn geen advertentie-API’s, echte klanten of portaalaccounts verbonden. De vaste demonstratieperiode eindigt op 11 oktober 2026, zodat dit nooit als actuele klantdata wordt gepresenteerd.
+
+## Beeld en inhoud
+
+Danny’s foto’s, contactgegevens en vier reviews komen uit de oorspronkelijke repository (`fc59c60`). De twee nieuwe campagnefoto’s zijn AI-gegenereerde conceptvisuals. Ze zijn als zodanig gemarkeerd; ze vertegenwoordigen geen werk dat voor een klant is gepubliceerd. Ook de grafische campagnevoorstellen zijn concepten. Vervang ze door goedgekeurde campagnebestanden zodra die beschikbaar zijn.
+
+De originele generaties en volledige prompts staan in `docs/original-concepts/` en `docs/visuals.md`. Referentieverwerking: `docs/design.md`. Testresultaten en beperkingen: `docs/verification.md`.
+
+Lettertypen worden lokaal geleverd. Geen externe fontrequests, trackers, cookies, canvasbibliotheek of videodownload nodig. Animaties respecteren `prefers-reduced-motion`; de site gebruikt normale browserscrolling. Op mobiel vallen de stapelende diensten terug op leesbare losse secties.
+
+## Controles
+
+```bash
+npm test
+npm run typecheck
+npm run build
+npm run format:check
+```
+
+De smokecheck in `work/` was een lokale controle zonder e-mailconfiguratie en wordt niet meegecommit. Browsercontroles zijn uitgevoerd op 390 en 1440 pixels breed. Zie het verificatieverslag voor de exacte dekking.
+
+## Publiceren
+
+Importeer de repository bij een host met Next.js-ondersteuning, zoals Vercel. Gebruik `npm run build` en de standaard Next.js-instellingen. De contactroute vereist een serverruntime; gebruik geen uitsluitend statische export. Configureer de Resend-sleutel en test bezorging met toestemming voor een echt bericht voordat je live gaat.
+
+De canonieke URL, sitemap en metadata gebruiken `https://www.rossenaarmarketing.nl`. `/index.html` verwijst permanent naar `/`; eerdere sectieankers voor diensten, over, werkwijze en reviews blijven op de homepage bestaan. De privacy-informatie beschrijft de huidige implementatie en moet bij toevoeging van analytics, andere verwerking of een portaalintegratie mee veranderen.
