@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '@/lib/content';
-import { CampaignArt } from './campaign-art';
+import { ProjectCover } from './project-cover';
 import { Reveal } from './motion';
 export function WorkGrid() {
   const [filter, setFilter] = useState('Alles');
@@ -14,21 +14,23 @@ export function WorkGrid() {
         role="group"
         aria-label="Filter samenwerkingen"
       >
-        {['Alles', 'Campagnes', 'Persoonlijk contact'].map((f) => (
-          <button
-            key={f}
-            aria-pressed={filter === f}
-            onClick={() => setFilter(f)}
-            className={filter === f ? 'active' : ''}
-          >
-            {f}
-            <span>
-              {f === 'Alles'
-                ? projects.length
-                : projects.filter((p) => p.filter === f).length}
-            </span>
-          </button>
-        ))}
+        {['Alles', ...new Set(projects.map((project) => project.filter))].map(
+          (f) => (
+            <button
+              key={f}
+              aria-pressed={filter === f}
+              onClick={() => setFilter(f)}
+              className={filter === f ? 'active' : ''}
+            >
+              {f}
+              <span>
+                {f === 'Alles'
+                  ? projects.length
+                  : projects.filter((p) => p.filter === f).length}
+              </span>
+            </button>
+          ),
+        )}
       </div>
       <div className="work-grid" aria-live="polite">
         {projects
@@ -37,12 +39,12 @@ export function WorkGrid() {
             <Reveal key={project.slug}>
               <Link href={`/werk/${project.slug}`} className="project-card">
                 <div className="project-art">
-                  <CampaignArt type={project.art} priority={index === 0} />
+                  <ProjectCover cover={project.cover} priority={index === 0} />
                   <span className="project-view">
                     <ArrowUpRight />
                   </span>
                   <span className="concept-tag">
-                    {project.art === 'chocolate'
+                    {project.cover.src || project.cover.art === 'chocolate'
                       ? 'KLANTCONTENT'
                       : 'SAMENWERKING'}
                   </span>
