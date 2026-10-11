@@ -1,0 +1,332 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "title": "Social media marketing in Enkhuizen | Rossenaar Marketing",
+      "titleLength": 57,
+      "descriptionLength": 150,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "City",
+        "ContactPoint",
+        "Country",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 111003
+    },
+    {
+      "path": "/werk",
+      "title": "Klantcases: content en campagnes | Rossenaar Marketing",
+      "titleLength": 54,
+      "descriptionLength": 146,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "CollectionPage",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebSite"
+      ],
+      "htmlBytes": 79936
+    },
+    {
+      "path": "/diensten",
+      "title": "Marketingdiensten voor ondernemers | Rossenaar Marketing",
+      "titleLength": 56,
+      "descriptionLength": 160,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 57976
+    },
+    {
+      "path": "/over",
+      "title": "Danny Rossenaar, marketeer uit Enkhuizen | Rossenaar Marketing",
+      "titleLength": 62,
+      "descriptionLength": 150,
+      "h1": 1,
+      "schemaTypes": [
+        "AboutPage",
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebSite"
+      ],
+      "htmlBytes": 45547
+    },
+    {
+      "path": "/inzicht",
+      "title": "Klantportaal: resultaten en aanvragen | Rossenaar Marketing",
+      "titleLength": 59,
+      "descriptionLength": 157,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 43071
+    },
+    {
+      "path": "/contact",
+      "title": "Contact met Danny Rossenaar | Rossenaar Marketing",
+      "titleLength": 49,
+      "descriptionLength": 158,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPage",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebSite"
+      ],
+      "htmlBytes": 35993
+    },
+    {
+      "path": "/diensten/social-media-beheer",
+      "title": "Social media beheer in Enkhuizen | Rossenaar Marketing",
+      "titleLength": 54,
+      "descriptionLength": 150,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Service",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 52312
+    },
+    {
+      "path": "/diensten/content-creatie",
+      "title": "Contentcreatie in West-Friesland | Rossenaar Marketing",
+      "titleLength": 54,
+      "descriptionLength": 158,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Service",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 52260
+    },
+    {
+      "path": "/diensten/meta-advertenties",
+      "title": "Meta-advertenties uitbesteden | Rossenaar Marketing",
+      "titleLength": 51,
+      "descriptionLength": 152,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Service",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 53193
+    },
+    {
+      "path": "/diensten/personeelswerving",
+      "title": "Personeelswerving via social media | Rossenaar Marketing",
+      "titleLength": 56,
+      "descriptionLength": 158,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Service",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 51682
+    },
+    {
+      "path": "/werk/chikado",
+      "title": "Chikado: video over oorbellen schieten | Rossenaar Marketing",
+      "titleLength": 60,
+      "descriptionLength": 148,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "CreativeWork",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 44153
+    },
+    {
+      "path": "/werk/emiel-buis",
+      "title": "Emiel Buis: personeelswerving | Rossenaar Marketing",
+      "titleLength": 51,
+      "descriptionLength": 155,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "CreativeWork",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 43260
+    },
+    {
+      "path": "/werk/chocolate-planet",
+      "title": "Chocolate Planet: content en Meta-ads | Rossenaar Marketing",
+      "titleLength": 59,
+      "descriptionLength": 158,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "CreativeWork",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 45708
+    },
+    {
+      "path": "/werk/cafe-retro",
+      "title": "Café Retro: Meta-advertentiecampagne | Rossenaar Marketing",
+      "titleLength": 58,
+      "descriptionLength": 150,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "CreativeWork",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 41133
+    },
+    {
+      "path": "/werk/factumai",
+      "title": "FactumAI: persoonlijke acquisitie | Rossenaar Marketing",
+      "titleLength": 55,
+      "descriptionLength": 158,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "CreativeWork",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 41243
+    },
+    {
+      "path": "/privacy",
+      "title": "Privacy en gegevensverwerking | Rossenaar Marketing",
+      "titleLength": 51,
+      "descriptionLength": 142,
+      "h1": 1,
+      "schemaTypes": [
+        "AdministrativeArea",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "Country",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "htmlBytes": 33566
+    }
+  ],
+  "errors": []
+}

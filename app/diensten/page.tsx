@@ -1,3 +1,7 @@
+import { ServiceLinks } from '@/components/service-links';
+import { pageGraph, pageMetadata } from '@/lib/seo';
+import { StructuredData } from '@/components/structured-data';
+import { Breadcrumbs } from '@/components/breadcrumbs';
 import {
   ArrowUpRight,
   Fingerprint,
@@ -8,21 +12,24 @@ import {
 import { services } from '@/lib/content';
 import { Button, PageIntro } from '@/components/ui';
 import { Spotlight } from '@/components/motion';
-export const metadata = {
-  title: 'Wat ik doe',
-  description:
-    'Merkverhaal, content, social media, Meta-advertenties en marketingstrategie. Persoonlijk en op maat, samen met Danny Rossenaar.',
-  alternates: { canonical: '/diensten' },
-};
+const pageTitle = 'Marketingdiensten voor ondernemers';
+const description =
+  'Social media, content, Meta-advertenties en strategie met Danny Rossenaar. Ontdek de mogelijkheden voor jouw bedrijf in Enkhuizen, West-Friesland en daarbuiten.';
+const crumbs = [{ name: 'Diensten', path: '/diensten' }];
+export const metadata = pageMetadata('/diensten', pageTitle, description);
 const icons = [Fingerprint, Focus, Megaphone, Route];
 export default function Diensten() {
   return (
     <>
+      <StructuredData
+        nodes={pageGraph('/diensten', pageTitle, description, { crumbs })}
+      />
+      <Breadcrumbs items={crumbs} />
       <PageIntro
         label="Wat ik doe"
-        title="Jouw ambities."
-        italic="Onze volgende stap."
-        description="Een sterk verhaal, goede content en de juiste mensen bereiken. We kijken samen wat jouw bedrijf nu nodig heeft."
+        title="Marketing die past."
+        italic="Bij jouw bedrijf."
+        description="Van social media beheer en content tot Meta-advertenties en strategie. Ik help ondernemers in Enkhuizen, West-Friesland en daarbuiten met marketing die bij hen past."
       />
       <div className="wrap services-detail">
         {services.map((service, i) => {
@@ -65,6 +72,7 @@ export default function Diensten() {
           );
         })}
       </div>
+      <ServiceLinks />
       <section className="faq-section wrap">
         <div>
           <span className="eyebrow">GOEDE VRAAG</span>

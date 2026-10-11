@@ -1,7 +1,9 @@
 import type { MetadataRoute } from 'next';
+import { absoluteUrl, isPreview } from '@/lib/seo';
 export default function robots(): MetadataRoute.Robots {
+  if (isPreview) return { rules: { userAgent: '*', disallow: '/' } };
   return {
     rules: { userAgent: '*', allow: '/', disallow: '/api/' },
-    sitemap: 'https://www.rossenaarmarketing.nl/sitemap.xml',
+    sitemap: absoluteUrl('/sitemap.xml'),
   };
 }

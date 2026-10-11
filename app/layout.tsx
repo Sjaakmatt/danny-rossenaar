@@ -8,11 +8,14 @@ import '@/components/portal/tokens.css';
 import '@/components/portal/portal.css';
 import './theme.css';
 import './showcase.css';
+import './search-content.css';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
+import { StructuredData } from '@/components/structured-data';
+import { isPreview, organizationGraph, site } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.rossenaarmarketing.nl'),
+  metadataBase: new URL(site.url),
   title: {
     default: 'Rossenaar Marketing | Groot in beeld. Dichtbij jou.',
     template: '%s | Rossenaar Marketing',
@@ -26,6 +29,21 @@ export const metadata: Metadata = {
     images: [{ url: '/assets/og-image.png', width: 1200, height: 630 }],
   },
   twitter: { card: 'summary_large_image' },
+  robots: {
+    ...(isPreview ? { index: false } : {}),
+    googleBot: {
+      ...(isPreview ? { index: false } : {}),
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': process.env.BING_SITE_VERIFICATION }
+      : undefined,
+  },
   icons: {
     icon: '/assets/favicon-32.png',
     apple: '/assets/apple-touch-icon.png',
@@ -44,6 +62,7 @@ export default function RootLayout({
         >{`try{var t=localStorage.getItem('rossenaar-theme');document.documentElement.dataset.siteThemeChoice=t==='dark'||t==='light'?t:'system';document.documentElement.dataset.siteTheme=t==='dark'||t==='light'?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.siteTheme='light'}`}</Script>
       </head>
       <body>
+        <StructuredData nodes={organizationGraph} />
         <a className="skip-link" href="#main">
           Direct naar inhoud
         </a>

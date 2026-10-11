@@ -11,29 +11,24 @@ import {
 } from '@/components/cinematic-home';
 import { Reviews } from '@/components/reviews';
 import { Dashboard } from '@/components/dashboard';
-import { contact } from '@/lib/content';
+import Link from 'next/link';
+import { pageGraph, pageMetadata, site } from '@/lib/seo';
+import { StructuredData } from '@/components/structured-data';
 
-export const metadata = { alternates: { canonical: '/' } };
+export const metadata = pageMetadata(
+  '/',
+  'Social media marketing in Enkhuizen',
+  site.description,
+);
 export default function Home() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: 'Rossenaar Marketing',
-    url: 'https://www.rossenaarmarketing.nl',
-    email: contact.email,
-    telephone: contact.tel,
-    founder: {
-      '@type': 'Person',
-      name: 'Danny Rossenaar',
-      sameAs: contact.linkedin,
-    },
-    areaServed: 'Nederland',
-  };
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <StructuredData
+        nodes={pageGraph(
+          '/',
+          'Social media marketing in Enkhuizen',
+          site.description,
+        )}
       />
       <CinematicHero />
       <div className="client-strip wrap">
@@ -95,6 +90,37 @@ export default function Home() {
               <p>{body}</p>
             </Reveal>
           ))}
+        </div>
+      </section>
+      <section className="local-intro wrap">
+        <div>
+          <Eyebrow>Dichtbij begint hier</Eyebrow>
+          <h2>
+            Social media marketing
+            <br />
+            <em>uit Enkhuizen.</em>
+          </h2>
+        </div>
+        <div>
+          <p>
+            Rossenaar Marketing is het bedrijf van Danny Rossenaar. Sinds juni
+            2024 help ik ondernemers met hun verhaal, content en online
+            campagnes. Vanuit Enkhuizen werk ik vooral in West-Friesland. Ook
+            als je elders in Nederland onderneemt, kunnen we samenwerken.
+          </p>
+          <p>
+            Je kunt bij mij terecht voor{' '}
+            <Link href="/diensten/social-media-beheer">
+              social media beheer
+            </Link>
+            , <Link href="/diensten/content-creatie">fotografie en video</Link>,{' '}
+            <Link href="/diensten/meta-advertenties">Meta-advertenties</Link> en{' '}
+            <Link href="/diensten/personeelswerving">
+              personeelswerving via social media
+            </Link>
+            . We beginnen bij jouw bedrijf en kiezen wat daarbij past.
+          </p>
+          <Link href="/contact">Vertel me over jouw plannen</Link>
         </div>
       </section>
       <Reviews />

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { contact } from '@/lib/content';
+import { servicePages } from '@/lib/service-pages';
 import { BrandMark, Eyebrow } from './ui';
 export function Footer() {
   return (
@@ -20,6 +21,20 @@ export function Footer() {
             <ArrowUpRight />
           </span>
         </Link>
+        <div className="footer-services">
+          <p>
+            Persoonlijke marketing uit Enkhuizen.
+            <br />
+            Voor West-Friesland en ondernemers in heel Nederland.
+          </p>
+          <nav aria-label="Diensten in de footer">
+            {servicePages.map((service) => (
+              <Link key={service.slug} href={`/diensten/${service.slug}`}>
+                {service.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
         <div className="footer-bottom">
           <Link href="/" className="brand">
             <BrandMark />
