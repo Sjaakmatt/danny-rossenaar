@@ -1,7 +1,7 @@
 # Goal
 
 **Objective:** Migreer Rossenaar Marketing van HTML naar een persoonlijke, visueel uitgesproken Next.js-website met scrollende lagen, meerdere pagina’s en een interactief klantportaalvoorbeeld.
-**Status:** active
+**Status:** complete
 **Started:** 2026-10-11
 **Iterations:** 8
 
@@ -14,19 +14,19 @@
 - [x] Contactformulier gemigreerd met validatie, foutmeldingen en server-only mailconfiguratie — `npm test` en lokale API-controles zonder mail te versturen.
 - [x] Mobiele en desktopweergave en toetsenbordnavigatie bruikbaar — browsercontrole op 390px en 1440px.
 - [x] Bekijkbaar resultaat en documentatie van resterende koppelingen — lokale preview openen en README controleren.
-- [ ] Visuele richting goedgekeurd — gebruiker beoordeelt de werkende preview.
+- [x] Visuele richting goedgekeurd — gebruiker bevestigde op 11 oktober 2026: “heel dik geworden. Merge naar main”.
 
 ## Out of scope
 
 - Een nieuwe productie-authenticatie of advertentiedatabase bouwen; de gebruiker bevestigde dat het echte portaal alleen op uitnodiging is; de site bevat een openbare rondleiding.
-- Automatisch vervangen van de live site of mergen naar de standaardbranch.
+- Zonder gebruikersopdracht vervangen van de live site. Merge naar `main` is op 11 oktober 2026 expliciet geautoriseerd.
 
 ## State
 
 **Done:** Next.js-migratie, filmische hero en scrolllagen, stapelende diensten, aangeleverde klantfoto, portaal op basis van Ads-manager-broncode en gedeelde weergavevoorkeur. Desktop- en mobiele browserhandelingen geverifieerd; productiebuild, typecheck en 5 tests geslaagd.
-**Now:** Herziening opleveren in dezelfde concept-PR; visuele beoordeling blijft open.
-**Next:** Visuele beoordeling door gebruiker; daarna eventuele ontwerpaanpassingen.
-**Blocked:** none; gebruiker gaf concrete richting: filmisch zoals Foldfolio, met uitgesproken gepinde scènes.
+**Now:** Ontwerp en implementatie goedgekeurd; PR #16 gereed voor de aangevraagde merge naar `main`.
+**Next:** Merge naar `main` uitvoeren en de GitHub-status controleren.
+**Blocked:** none.
 
 ## Log
 
@@ -46,3 +46,5 @@
 - 2026-10-11 iteratie 7 vervolg: Ads-manager-portaalbron verwerkt, werkende demodata met 157 aanvragen en echte daggrafiek, klantfoto toegevoegd, licht/donker/automatisch gedeeld door site en portaal. Desktop en mobiel gecontroleerd.
 
 - 2026-10-11 iteratie 8: Video Slide Show-referentie vertaald naar een galerij met diepte, sleepbediening, native scroll en videobediening. Vijf aangeleverde video’s, drie advertenties en twee Instagram-reels toegevoegd. Alle gegenereerde foto’s en bronbestanden verwijderd op gebruikersverzoek. Ook werkpagina en Chocolate Planet-details bevatten echte media.
+
+- 2026-10-11 afronding: gebruiker keurt de site goed en vraagt expliciet om merge naar `main`. Alle acceptatiecriteria zijn gehaald. PR #16 wordt van de oude standaardbranch omgezet naar `main`.

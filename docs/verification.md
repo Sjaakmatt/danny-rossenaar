@@ -27,7 +27,7 @@ De eerdere versie doorliep HTTP-controles voor alle pagina’s, 404’s, de oude
 
 Reduced motion is in Motion-componenten en CSS gecontroleerd: geen pinning of verborgen diensten en geen lange lege scrollruimte. Een gewijzigde OS-voorkeur is niet via de browser nagebootst. Er is geen volledige WCAG-, Lighthouse- of cross-browseraudit uitgevoerd.
 
-Online preview gebruikt de bestaande Vercel-integratie en vraagt Vercel-login. Er is geen live-site-merge uitgevoerd. Het echte uitnodigingsportaal en echte advertentiegegevens zijn niet gekoppeld aan deze openbare demo. De visuele beoordeling door de gebruiker blijft open.
+Online preview gebruikt de bestaande Vercel-integratie en vraagt Vercel-login. De gebruiker heeft op 11 oktober 2026 merge naar `main` geautoriseerd; de actuele mergestatus staat in PR #16. Het echte uitnodigingsportaal en echte advertentiegegevens zijn niet gekoppeld aan deze openbare demo. De gebruiker heeft de visuele richting op 11 oktober 2026 goedgekeurd.
 
 ## Laatste galerij- en mediacontrole
 
