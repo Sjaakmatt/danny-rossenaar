@@ -86,6 +86,7 @@ export function Dashboard({ compact = false }: { compact?: boolean }) {
     <div
       className={`portal portal-preview ${compact ? 'portal-preview-compact' : ''}`}
       data-theme={theme}
+      data-nosnippet
     >
       <header className="p-header">
         <div className="p-header-inner">

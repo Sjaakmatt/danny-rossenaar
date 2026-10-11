@@ -27,6 +27,7 @@ De goedgekeurde nieuwe versie staat in [PR #16](https://github.com/Sjaakmatt/dan
 - `/`: bewegende beeldstapel, beeldvullende klantfoto, bladerbare contentgalerij, stapelende diensten, klantfoto, samenkomend portaal, werkwijze en reviews.
 - `/werk`: contentgalerij en vijf filterbare klantcases onder `/werk/[slug]`, waaronder Chikado (oorbellen schieten) en Emiel Buis Visspecialist (personeelswerving).
 - `/diensten`: vier diensten met stapelende kaarten en veelgestelde vragen.
+- `/diensten/social-media-beheer`, `/diensten/content-creatie`, `/diensten/meta-advertenties` en `/diensten/personeelswerving`: uitleg, aanpak, vragen en passende klantcases per dienst.
 - `/over`: Danny’s eigen verhaal en foto’s.
 - `/inzicht`: openbare demo van resultaten, aanvragen en instellingen.
 - `/contact`: kennismakingsformulier en directe contactgegevens.
@@ -92,3 +93,7 @@ De smokecheck in `work/` was een lokale controle zonder e-mailconfiguratie en wo
 Importeer de repository bij een host met Next.js-ondersteuning, zoals Vercel. Gebruik `npm run build` en de standaard Next.js-instellingen. De contactroute vereist een serverruntime; gebruik geen uitsluitend statische export. Configureer de Resend-sleutel en test bezorging met toestemming voor een echt bericht voordat je live gaat.
 
 De canonieke URL, sitemap en metadata gebruiken `https://www.rossenaarmarketing.nl`. `/index.html` verwijst permanent naar `/`; eerdere sectieankers voor diensten, over, werkwijze en reviews blijven op de homepage bestaan. De privacy-informatie beschrijft de huidige implementatie en moet bij toevoeging van analytics, andere verwerking of een portaalintegratie mee veranderen.
+
+De SEO richt zich primair op Enkhuizen en West-Friesland, met landelijke beschikbaarheid. Metadata en gekoppelde organisatie-/persoonsgegevens staan in `lib/seo.ts`; diensteninhoud in `lib/service-pages.ts`. De sitemap bevat ook klantbeelden en lokale video's. Vercel-previews krijgen noindex; de openbare portaaldata is uitgesloten van snippets.
+
+Zie [SEO/GEO-audit](docs/seo-geo-audit.md) voor onderzoek, wijzigingen en vervolgprioriteiten en [SEO-beheer](docs/seo-beheer.md) voor Search Console, Bing en de gerenderde SEO-controle. `GOOGLE_SITE_VERIFICATION` en `BING_SITE_VERIFICATION` zijn optionele verificatiewaarden uit de eigen accounts. Accounts zijn niet automatisch gekoppeld door deze code.

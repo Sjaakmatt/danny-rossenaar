@@ -1,18 +1,28 @@
+import { pageGraph, pageMetadata, personId } from '@/lib/seo';
+import { StructuredData } from '@/components/structured-data';
+import { Breadcrumbs } from '@/components/breadcrumbs';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { Button, Eyebrow } from '@/components/ui';
 import { Reviews } from '@/components/reviews';
 import { contact } from '@/lib/content';
 import styles from './story.module.css';
-export const metadata = {
-  title: 'Over Danny',
-  description:
-    'Van acht jaar in de zorg naar Rossenaar Marketing. Maak kennis met Danny, social media marketeer en trotse Enkhuizer. Mensen kopen van mensen.',
-  alternates: { canonical: '/over' },
-};
+const pageTitle = 'Danny Rossenaar, marketeer uit Enkhuizen';
+const description =
+  'Van acht jaar in de zorg naar Rossenaar Marketing. Ontmoet Danny, social media marketeer uit Enkhuizen. Lees zijn verhaal en maak vrijblijvend kennis.';
+const crumbs = [{ name: 'Over Danny', path: '/over' }];
+export const metadata = pageMetadata('/over', pageTitle, description);
 export default function Over() {
   return (
     <>
+      <StructuredData
+        nodes={pageGraph('/over', pageTitle, description, {
+          crumbs,
+          type: 'AboutPage',
+          mainEntity: { '@id': personId },
+        })}
+      />
+      <Breadcrumbs items={crumbs} />
       <section className={`about-hero wrap ${styles.hero}`}>
         <div>
           <Eyebrow>De mens achter Rossenaar Marketing</Eyebrow>

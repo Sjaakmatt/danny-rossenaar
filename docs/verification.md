@@ -59,3 +59,14 @@ Online preview gebruikt de bestaande Vercel-integratie en vraagt Vercel-login. D
 - Werk toont vijf cases. De filters Content (1) en Personeelswerving (1) tonen respectievelijk Chikado en Emiel Buis Visspecialist; Alles herstelt vijf kaarten. Filteren, openen en terugkeren gecontroleerd op 390px. Filters wrappen over meerdere regels; de lange titel van Emiel blijft binnen de mobiele pagina.
 - Beide detailpagina’s bevatten twee bestaande lokale video’s met native bediening, posters en onderschriften. De bestaande review van Emiel Buis staat bij zijn eigen case. Chikado heeft geen tekstuele klantreview. Chocolate Planet behoudt zijn video’s en review via dezelfde gegevensstructuur.
 - Laatste productiebuild genereert 17 pagina’s, inclusief /werk/chikado en /werk/emiel-buis. TypeScript, formatting en Git-whitespacecontrole geslaagd. Nieuwe cases worden automatisch opgenomen in de sitemap.
+
+## SEO/GEO — 11 oktober 2026
+
+- Productiebuild met 21 gegenereerde routes succesvol; TypeScript en Prettier slagen.
+- Gerenderde SEO-check: 16 documentpagina’s, geen fouten. Controleert ook interne documentlinks/ankers, JSON-LD-verwijzingen, canonicals met contactparameters en echte 404s. Resultaat in `docs/seo-verificatie.json`.
+- Sitemap: 15 indexeerbare pagina’s, 6 video’s; alle 21 beeld-/videobronverwijzingen bestaan lokaal.
+- Afzonderlijke previewbuild: blokkerende robots.txt, lege sitemap en noindex in alle 16 relevante statische HTML-pagina’s (de framework-500-fallback valt buiten deze check). Daarna de productiebuild hersteld.
+- Desktop en mobiel (390 × 844): dienstpagina’s, veelgestelde vraag en donker/licht gecontroleerd.
+- Hero-foto: hogere uitsnede op 1500 × 798; mobiele focus naar rechts op 390 × 844.
+- Bestaande vijf contactvalidatietests slagen.
+- PageSpeed API gaf HTTP 429; geen geverifieerde Core Web Vitals-score. Search Console vereist nog login en eigendomsverificatie.

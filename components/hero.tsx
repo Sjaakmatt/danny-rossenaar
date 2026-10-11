@@ -128,9 +128,9 @@ export function CinematicHero() {
           </h1>
           <div className={styles.introBottom}>
             <p>
-              Jouw verhaal verdient meer dan een vluchtige blik.
+              Social media, content en campagnes uit Enkhuizen.
               <br />
-              Ik maak het zichtbaar. Samen met jou.
+              Jouw verhaal zichtbaar. Samen met jou.
             </p>
             <div className={styles.actions}>
               <Button href="/contact">Laten we kennismaken</Button>

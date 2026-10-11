@@ -1,15 +1,21 @@
+import { pageGraph, pageMetadata } from '@/lib/seo';
+import { StructuredData } from '@/components/structured-data';
+import { Breadcrumbs } from '@/components/breadcrumbs';
 import { ChartNoAxesCombined, Inbox, LockKeyhole } from 'lucide-react';
 import { Dashboard } from '@/components/dashboard';
 import { PageIntro, Button } from '@/components/ui';
-export const metadata = {
-  title: 'Jouw inzicht | Klantportaal rondleiding',
-  description:
-    'Bekijk hoe je inzicht krijgt in advertentieresultaten en aanvragen. Interactieve rondleiding met voorbeeldgegevens. Je eigen portaal is op uitnodiging.',
-  alternates: { canonical: '/inzicht' },
-};
+const pageTitle = 'Klantportaal: resultaten en aanvragen';
+const description =
+  'Bekijk hoe je advertentieresultaten en aanvragen volgt in je klantportaal. Probeer de demo met fictieve gegevens. Je eigen omgeving is alleen op uitnodiging.';
+const crumbs = [{ name: 'Klantportaal', path: '/inzicht' }];
+export const metadata = pageMetadata('/inzicht', pageTitle, description);
 export default function Inzicht() {
   return (
     <>
+      <StructuredData
+        nodes={pageGraph('/inzicht', pageTitle, description, { crumbs })}
+      />
+      <Breadcrumbs items={crumbs} />
       <PageIntro
         label="Jouw eigen klantportaal"
         title="Je hoeft niet te gissen."
