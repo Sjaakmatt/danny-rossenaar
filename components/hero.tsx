@@ -9,11 +9,11 @@ import {
   useInView,
   useMotionValueEvent,
   useReducedMotion,
-  useScroll,
   useSpring,
   useTransform,
 } from 'motion/react';
 import { Button, Eyebrow } from './ui';
+import { useSceneProgress } from './use-scene-progress';
 import styles from './hero.module.css';
 
 export function CinematicHero() {
@@ -23,7 +23,7 @@ export function CinematicHero() {
   const manuallyStarted = useRef(false);
   const reduced = useReducedMotion();
   const visible = useInView(video, { amount: 0.2 });
-  const { scrollYProgress: p } = useScroll({
+  const p = useSceneProgress({
     target: section,
     offset: ['start start', 'end end'],
   });

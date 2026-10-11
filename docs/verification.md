@@ -47,3 +47,9 @@ Online preview gebruikt de bestaande Vercel-integratie en vraagt Vercel-login. D
 - Reduced-motioncode nagekeken: hero staat in normale documentflow, parallax staat uit en autoplay wordt overgeslagen. Geen gewijzigde OS-voorkeur gesimuleerd.
 - Laatste productiebuild, TypeScript, formatting en Git-whitespacecontrole geslaagd. Homepage, Werk, Inzicht, Privacy en beide nieuwe posters geven HTTP 200; beide Chikado-video’s ondersteunen byte-rangeverzoeken met HTTP 206.
 - Kleine mobiele hero op 375 × 667 gecontroleerd. De carousel behoudt item 8 bij wisselen tussen 375px en 1440px; native scroll-anchoring wordt tijdens het opnieuw meten opgevangen. De overgangen 11 → 1 en 1 → 11 zijn ook in de productiebuild op mobiel gecontroleerd.
+
+## Persoonlijk verhaal en vloeiender scrollen
+
+- Aangeleverde biografie volledig verwerkt op /over, met de cliëntquote als blockquote en de korte versie in het persoonlijke homepagegedeelte. Verhaal, leesbreedte en quote in lichte en donkere desktopweergave gecontroleerd. Op 390 × 844 passen kop en tekst binnen de pagina; geen horizontale overloop.
+- Alle scrollscènes gebruiken gedempte voortgang via dezelfde Motion-spring. De hero gecontroleerd met kleine en grote scrollstappen en omgekeerde richting op desktop, en een overgang op 390px mobiel. Hoofdstukstatus en zichtbare lagen volgen dezelfde voortgang. De browser houdt zijn gewone scrollgedrag; reduced motion gebruikt de ruwe voortgang en bestaande statische weergave.
+- Productiebuild (15 pagina’s), TypeScript, formatting en Git-whitespacecontrole geslaagd. Er zijn geen nieuwe interacties of wijzigingen aan de contactverwerking toegevoegd.

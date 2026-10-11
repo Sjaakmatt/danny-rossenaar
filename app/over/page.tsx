@@ -3,16 +3,17 @@ import { ArrowUpRight } from 'lucide-react';
 import { Button, Eyebrow } from '@/components/ui';
 import { Reviews } from '@/components/reviews';
 import { contact } from '@/lib/content';
+import styles from './story.module.css';
 export const metadata = {
   title: 'Over Danny',
   description:
-    'Maak kennis met Danny Rossenaar. Jouw vaste aanspreekpunt voor eerlijke, persoonlijke marketing. Een goed gesprek is het begin.',
+    'Van acht jaar in de zorg naar Rossenaar Marketing. Maak kennis met Danny, social media marketeer en trotse Enkhuizer. Mensen kopen van mensen.',
   alternates: { canonical: '/over' },
 };
 export default function Over() {
   return (
     <>
-      <section className="about-hero wrap">
+      <section className={`about-hero wrap ${styles.hero}`}>
         <div>
           <Eyebrow>De mens achter Rossenaar Marketing</Eyebrow>
           <h1>
@@ -23,9 +24,8 @@ export default function Over() {
             <em>Rossenaar.</em>
           </h1>
           <p>
-            En ik geloof dat goede marketing
-            <br />
-            begint met een goed gesprek.
+            Ik ben geboren en getogen in Enkhuizen. En nee, het is geen dorp:
+            het is een stad. Daar ben ik een trotse Enkhuizer in.
           </p>
           <Button href="/contact">Aangenaam. Even kennismaken?</Button>
         </div>
@@ -45,34 +45,53 @@ export default function Over() {
         </div>
       </section>
       <section className="about-story wrap">
-        <Eyebrow>Zo kijk ik ernaar</Eyebrow>
+        <Eyebrow>Wat ik uit de zorg meeneem</Eyebrow>
         <div>
           <h2>
-            Achter elk bedrijf
+            Geen mens is
             <br />
-            zit een <em>verhaal.</em>
+            <em>standaard.</em>
           </h2>
           <p>
-            Ik geloof dat marketing geen kunstje is, maar een kwestie van goed
-            luisteren. Achter elk bedrijf zit een mens met een verhaal, en dat
-            verhaal verdient het om verteld te worden. Zonder poespas, zonder
-            druktemakerij.
+            Acht jaar lang werkte ik in de zorg, op een sociale werkplaats. Ik
+            begeleidde cliënten bij opdrachten voor bedrijven en ondernemers uit
+            de regio. Daar leerde ik het belangrijkste wat ik nu nog elke dag
+            gebruik: niemand heeft baat bij een standaardaanpak. Iedere cliënt
+            werd geholpen op zijn eigen niveau, met wat voor hém het beste
+            werkte. Precies zo kijk ik nu naar bedrijven.
+          </p>
+          <p>Eén cliënt zei het vaak tegen me:</p>
+          <blockquote className={styles.quote}>
+            “Jij zegt altijd niet opgeven, dus dat doe ik dan ook niet.”
+          </blockquote>
+          <p>
+            Die zin draag ik nog steeds met me mee. Ook als het even niet loopt,
+            gaan we door.
+          </p>
+        </div>
+      </section>
+      <section className="about-story wrap">
+        <Eyebrow>Een eigen weg</Eyebrow>
+        <div>
+          <h2>
+            Niet te lang denken.
+            <br />
+            <em>Gewoon doen.</em>
+          </h2>
+          <p>
+            Op de werkplaats had ik veel contact met ondernemers. Ik merkte hoe
+            graag ik hen wilde helpen groeien. Tijdens een reis van vier maanden
+            door Zuidoost-Azië heb ik goed nagedacht: blijf ik in de zorg, of
+            bouw ik iets van mezelf op? Het werd het tweede.
           </p>
           <p>
-            Daarom werk ik niet met standaardpakketten of snelle trucs. Ik neem
-            de tijd om jou en je bedrijf te leren kennen, en bouw van daaruit
-            aan marketing die klopt. Marketing waar jij je goed bij voelt en
-            waar je klanten warm van worden.
+            Ik ging leren bij de Social Secrets Academy en de community
+            daaromheen. Daar leerde ik de techniek achter goede marketing.
+            Luisteren naar het verhaal van een ondernemer kon ik al. Bovenal
+            leerde ik daar: niet te lang denken, gewoon doen. Mijn eerste klant
+            kwam trouwens uit mijn oude werk. Wij vouwden hele partijen doosjes
+            voor zijn productie, en nu help ik hem online.
           </p>
-          <a
-            className="text-link"
-            href={contact.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Volg me op LinkedIn
-            <ArrowUpRight size={17} />
-          </a>
         </div>
       </section>
       <section className="about-on-location wrap">
@@ -88,49 +107,48 @@ export default function Over() {
           <figcaption>Op locatie bij een klant.</figcaption>
         </figure>
         <div>
-          <Eyebrow>Daar waar jouw verhaal leeft</Eyebrow>
+          <Eyebrow>Rossenaar Marketing · sinds juni 2024</Eyebrow>
           <h2>
-            De deur uit.
+            Mensen kopen
             <br />
-            <em>Jouw wereld in.</em>
+            <em>van mensen.</em>
           </h2>
           <p>
-            Om jouw verhaal goed te vertellen, wil ik het van dichtbij zien. Op
-            de werkvloer, in de winkel, tussen de mensen. Daar ontstaan de
-            beelden en verhalen die bij jouw bedrijf passen.
+            In juni 2024 begon ik Rossenaar Marketing. Wat ik vaak zie: social
+            media is voor veel ondernemers een ondergeschoven kindje, gevuld met
+            snelle AI-plaatjes. Maar mensen kopen van mensen. Je Instagram is je
+            visitekaartje, en bijna iedereen zit erop. Laat dus zien wie je
+            bent. Daar help ik je bij.
           </p>
           <Button href="/contact" variant="outline">
             Vertel me over jouw bedrijf
           </Button>
         </div>
       </section>
-      <section className="about-values">
-        <div className="wrap">
-          <span className="eyebrow">DIT MAG JE VAN MIJ VERWACHTEN</span>
-          <div>
-            {[
-              [
-                '01',
-                'Je hebt mij aan de lijn.',
-                'Van de eerste kennismaking tot de volgende campagne. Je schakelt rechtstreeks met mij.',
-              ],
-              [
-                '02',
-                'Eerlijk is wel zo fijn.',
-                'Ook als mijn advies is: dit heb je niet nodig. Ik denk mee vanuit jouw bedrijf.',
-              ],
-              [
-                '03',
-                'Afspraak is afspraak.',
-                'We maken duidelijke afspraken over het werk, het budget en het contact. En houden ons daaraan.',
-              ],
-            ].map(([n, t, p]) => (
-              <article key={n}>
-                <span>{n}</span>
-                <h3>{t}</h3>
-                <p>{p}</p>
-              </article>
-            ))}
+      <section className="about-story wrap">
+        <Eyebrow>Buiten werktijd</Eyebrow>
+        <div>
+          <h2>
+            Ook gewoon <em>Danny.</em>
+          </h2>
+          <p>
+            Als ik niet werk, sta ik in de sportschool, kijk of speel ik
+            voetbal, luister ik muziek of zit ik in een boek. Ik leer een nieuwe
+            taal en ik spreek graag af met familie en vrienden. Die mensen om me
+            heen steunen me in dit avontuur.
+          </p>
+          <p>Ik ben pas tevreden als jij blij bent met het resultaat.</p>
+          <div className={styles.actions}>
+            <Button href="/contact">Zullen we koffie drinken?</Button>
+            <a
+              className="text-link"
+              href={contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Volg me op LinkedIn
+              <ArrowUpRight size={17} />
+            </a>
           </div>
         </div>
       </section>
