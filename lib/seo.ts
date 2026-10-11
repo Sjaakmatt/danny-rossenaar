@@ -176,6 +176,6 @@ export const projectSearch: Record<
   factumai: {
     title: 'FactumAI: persoonlijke acquisitie',
     description:
-      'Outbound acquisitie voor FactumAI, met aandacht voor het verhaal achter het aanbod. Lees de ervaring met Danny Rossenaar en zijn persoonlijke klantgesprekken.',
+      'Outbound acquisitie voor FactumAI uit Hoogkarspel. Lees de ervaring met Danny Rossenaar en zijn persoonlijke aanpak van klantgesprekken.',
   },
 };
