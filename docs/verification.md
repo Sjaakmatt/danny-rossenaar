@@ -24,6 +24,10 @@ Uitgevoerd in de Codex-browser op desktop (1440 pixels) en mobiel (390 pixels).
 - Mobiele layouts van home, over, werk, projectdetail, contact, diensten en portaal bekeken. De perspectiefkanteling van het portaal is op mobiel uitgeschakeld om horizontale overloop te voorkomen.
 - Productiepreview: geen waarschuwingen of fouten in de bekeken browserconsole.
 
+## Externe oplevercontrole
+
+De open concept-PR #16 bevat commit `0f54acd`, dezelfde applicatieversie als lokaal. GitHub meldde de checks Vercel en Vercel Preview Comments als geslaagd. De online preview leidt naar een Vercel-login; het runtimegedrag op de hosting is daarom niet geverifieerd. De toegangsbeveiliging is niet gewijzigd.
+
 ## Begrenzing
 
-Reduced motion is in de CSS en Motion-componenten geïmplementeerd en in de bron gecontroleerd; een veranderde OS-voorkeur is niet nagebootst. Er is geen volledige WCAG-, Lighthouse- of cross-browseraudit uitgevoerd. Echte e-mailbezorging en een hostingdeployment zijn niet getest. Het portaal is een openbare demonstratie, zonder authenticatie of verbinding met echte advertentiegegevens. Visuele goedkeuring door de gebruiker staat nog open.
+Reduced motion is in de CSS en Motion-componenten geïmplementeerd en in de bron gecontroleerd; een veranderde OS-voorkeur is niet nagebootst. Er is geen volledige WCAG-, Lighthouse- of cross-browseraudit uitgevoerd. Echte e-mailbezorging is niet getest; van de hostingdeployment is alleen de geslaagde buildstatus bevestigd. Het portaal is een openbare demonstratie, zonder authenticatie of verbinding met echte advertentiegegevens. Visuele goedkeuring door de gebruiker staat nog open.

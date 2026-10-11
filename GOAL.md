@@ -3,7 +3,7 @@
 **Objective:** Migreer Rossenaar Marketing van HTML naar een persoonlijke, visueel uitgesproken Next.js-website met scrollende lagen, meerdere pagina’s en een interactief klantportaalvoorbeeld.
 **Status:** active
 **Started:** 2026-10-11
-**Iterations:** 4
+**Iterations:** 5
 
 ## Acceptance criteria
 
@@ -24,9 +24,9 @@
 ## State
 
 **Done:** Next.js-pagina’s en ontwerp gebouwd; alle specifieke referenties visueel onderzocht; productiebuild en 5 validatietests geslaagd; HTTP-routes gecontroleerd; portaalfilters, aanvragen, CSV-download, mobiele navigatie en foutweergave in browser geverifieerd.
-**Now:** Werkende productiepreview en reviewbranch opleveren.
+**Now:** Implementatie opgeleverd in concept-PR #16; lokale preview en beschermde Vercel-preview beschikbaar.
 **Next:** Visuele beoordeling door gebruiker; daarna eventuele ontwerpaanpassingen.
-**Blocked:** none
+**Blocked:** Visuele beoordeling door de gebruiker ontbreekt. Alle technische oplevercriteria zijn gecontroleerd; geen aanvullende ontwerpwijziging gekozen zonder feedback.
 
 ## Log
 
@@ -36,3 +36,5 @@
 - 2026-10-11 iteratie 3: mobiele en desktopinteracties getest; proxy-Hostcontrole hersteld; CSV-bestand met 90 dagen gecontroleerd.
 
 - 2026-10-11 iteratie 4: productiebuild, typecheck, tests en HTTP-smokecheck geslaagd; toetsenbordbediening en laatste mobiele layouts gecontroleerd; referenties, assets en verificatie gedocumenteerd.
+
+- 2026-10-11 iteratie 5: PR en lokale applicatiecommit komen overeen; beide Vercel-checks geslaagd. Online preview vraagt Vercel-login. Visuele beoordeling blijft open (tweede opeenvolgende goal-turn met deze afhankelijkheid).

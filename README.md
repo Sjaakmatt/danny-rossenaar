@@ -18,6 +18,10 @@ npm run build
 npm start -- --port 3100
 ```
 
+## Preview en review
+
+De nieuwe versie staat in [concept-PR #16](https://github.com/Sjaakmatt/danny-rossenaar/pull/16). De bestaande GitHub/Vercel-integratie heeft een [online preview](https://danny-rossenaar-git-codex-nextj-f2396c-sjaak-ter-velds-projects.vercel.app) gebouwd. Deze preview is beschermd en vereist een Vercel-login; lokaal kun je de site direct bekijken via de bovenstaande startinstructies. De productiebranch is niet gemerged.
+
 ## Pagina’s
 
 - `/`: verhaal, bewegende campagnegalerij, diensten, Danny, portaalpreview, werkwijze en reviews.
