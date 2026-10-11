@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ArrowUpRight, AudioLines } from 'lucide-react';
-import { BrandMark } from './ui';
+import { Asterisk, BrandMark } from './ui';
 export type ArtType =
   | 'chocolate'
   | 'cafe'
@@ -87,7 +87,7 @@ export function CampaignArt({
             JOUW VERHAAL VERDIENT HET <ArrowUpRight size={20} />
           </span>
           <div className="art-asterisk" aria-hidden="true">
-            ✳
+            <Asterisk />
           </div>
         </>
       )}
