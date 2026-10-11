@@ -1,0 +1,469 @@
+.content-showcase {
+  padding: 100px 0 90px;
+  scroll-margin-top: 98px;
+  overflow: clip;
+}
+.showcase-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 40px;
+}
+.showcase-head h2 {
+  font-size: clamp(40px, 4.3vw, 67px);
+  margin-top: 24px;
+}
+.showcase-head h2 em {
+  color: var(--green);
+}
+.showcase-head > p {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.showcase-shell {
+  position: relative;
+  isolation: isolate;
+  padding-top: 10px;
+}
+.showcase-backtype {
+  position: absolute;
+  inset: 11% 0 auto;
+  font-size: 20vw;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: -0.08em;
+  line-height: 1;
+  color: color-mix(in srgb, var(--ink) 7%, transparent);
+  pointer-events: none;
+}
+.reel-track {
+  --reel-step: 205px;
+  --reel-width: 335px;
+  --reel-height: 548px;
+  display: flex;
+  position: relative;
+  height: calc(var(--reel-height) + 90px);
+  align-items: center;
+  padding-inline: calc(50% - var(--reel-step) / 2);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  overscroll-behavior-x: contain;
+}
+.reel-track::-webkit-scrollbar {
+  display: none;
+}
+.reel-track:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -8px;
+  border-radius: 20px;
+}
+.reel-track[data-dragging] {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.reel-cell {
+  flex: 0 0 var(--reel-step);
+  width: var(--reel-step);
+  height: var(--reel-height);
+  scroll-snap-align: center;
+  position: relative;
+  perspective: 1400px;
+}
+.reel-card {
+  position: absolute;
+  left: calc((var(--reel-step) - var(--reel-width)) / 2);
+  width: var(--reel-width);
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px #07151933;
+  background: #203942;
+  transform-origin: center;
+}
+.reel-card > img,
+.reel-card > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.reel-card .campaign-art {
+  pointer-events: none;
+  border-radius: 0;
+}
+.reel-card .campaign-art > strong {
+  font-size: 49px;
+}
+.reel-card .art-bottomline,
+.reel-card .danny-sticker {
+  display: none;
+}
+.reel-shade {
+  position: absolute;
+  inset: 60% 0 0;
+  pointer-events: none;
+  background: linear-gradient(transparent, #0a171bcc);
+}
+.reel-number {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 1px;
+  background: #0a171b66;
+  border: 1px solid #ffffff30;
+  padding: 5px 9px;
+  border-radius: 30px;
+}
+.reel-label {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: white;
+}
+.reel-select {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+}
+.reel-arrows {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 46%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 30;
+}
+.reel-arrows button {
+  pointer-events: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.reel-arrows button:hover:not(:disabled) {
+  background: var(--lime);
+  color: #192b32;
+  transform: scale(1.06);
+}
+.reel-arrows button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.reel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 30;
+  width: fit-content;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 2px 7px;
+}
+.reel-dots button {
+  width: 28px;
+  height: 30px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+}
+.reel-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.2;
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
+}
+.reel-dots button[aria-pressed='true'] span {
+  opacity: 1;
+  transform: scale(1.25);
+}
+.showcase-caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.showcase-caption > div > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.showcase-caption h3 {
+  font-size: 30px;
+  margin-top: 9px;
+}
+.showcase-caption > small {
+  width: 100%;
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+}
+.reel-video-controls {
+  position: absolute;
+  right: 14px;
+  top: 16px;
+  display: flex;
+  gap: 7px;
+}
+.reel-media-control {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #f5f3ede6;
+  color: #192b32;
+}
+.reel-video-error {
+  position: absolute;
+  top: 40%;
+  left: 15px;
+  right: 15px;
+  text-align: center;
+  background: #192b32dd;
+  color: white;
+  padding: 14px;
+  font-size: 13px;
+}
+@media (max-width: 1100px) {
+  .showcase-head {
+    align-items: start;
+  }
+  .showcase-head > p {
+    max-width: 220px;
+  }
+  .reel-track {
+    --reel-step: 175px;
+    --reel-width: 295px;
+    --reel-height: 485px;
+  }
+}
+@media (max-width: 760px) {
+  .content-showcase {
+    padding: 60px 0;
+  }
+  .showcase-head {
+    display: block;
+    margin-bottom: 12px;
+  }
+  .showcase-head h2 {
+    font-size: 42px;
+  }
+  .showcase-head > p {
+    max-width: 100%;
+    margin-top: 22px;
+    font-size: 12px;
+  }
+  .reel-track {
+    --reel-step: 145px;
+    --reel-width: min(68vw, 295px);
+    --reel-height: min(116vw, 480px);
+    height: calc(var(--reel-height) + 65px);
+  }
+  .reel-card {
+    border-radius: 14px;
+  }
+  .reel-card .campaign-art > strong {
+    font-size: 39px;
+  }
+  .reel-arrows {
+    inset: auto 22px -4px;
+  }
+  .reel-arrows button {
+    width: 40px;
+    height: 40px;
+  }
+  .reel-dots {
+    padding-inline: 4px;
+  }
+  .reel-dots button {
+    width: 22px;
+  }
+  .showcase-caption {
+    margin-top: 32px;
+    gap: 16px;
+  }
+  .showcase-caption h3 {
+    font-size: 26px;
+  }
+  .showcase-caption > small {
+    text-align: left;
+  }
+  .reel-label {
+    font-size: 8px;
+    left: 16px;
+    bottom: 16px;
+  }
+  .reel-number {
+    left: 16px;
+    top: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel-track {
+    --reel-step: 355px;
+  }
+  .reel-cell {
+    perspective: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
+  .reel-track {
+    --reel-step: 78vw;
+  }
+}
+
+/* Preserve campaign typography and burned-in video subtitles in their original frame. */
+.reel-contain {
+  background: #121c1c;
+}
+.reel-contain > img,
+.reel-contain > video {
+  object-fit: contain;
+}
+.reel-contain .reel-shade {
+  display: none;
+}
+.reel-contain .reel-label {
+  display: none;
+}
+.client-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 100px;
+}
+.client-videos video {
+  width: 100%;
+  max-height: 650px;
+  background: #152227;
+  border-radius: 18px;
+}
+@media (max-width: 760px) {
+  .client-videos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.instagram-reels {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+}
+.instagram-reels > span {
+  margin-right: auto;
+}
+.instagram-reels button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 15px 20px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: transparent;
+  color: var(--ink);
+}
+.instagram-reels button:hover {
+  background: var(--lime);
+  color: #192b32;
+}
+.instagram-reels small {
+  color: var(--muted);
+}
+.reel-dialog {
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  width: min(430px, calc(100vw - 28px));
+  max-height: calc(100dvh - 30px);
+  padding: 0;
+  margin: auto;
+}
+.reel-dialog::backdrop {
+  background: #091519bb;
+  backdrop-filter: blur(8px);
+}
+.reel-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  font-size: 12px;
+}
+.reel-dialog-head button {
+  background: transparent;
+  color: inherit;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+}
+.reel-dialog iframe {
+  width: 100%;
+  height: min(700px, 72dvh);
+  border: 0;
+  background: white;
+  display: block;
+}
+.reel-dialog > a {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 17px;
+  font-size: 12px;
+}
+@media (max-width: 760px) {
+  .instagram-reels {
+    gap: 10px;
+  }
+  .instagram-reels > span {
+    width: 100%;
+  }
+  .instagram-reels small {
+    width: 100%;
+  }
+  .reel-dots button {
+    width: 20px;
+  }
+}
+.reel-contain:has(> img) {
+  background: #f6ede4;
+}

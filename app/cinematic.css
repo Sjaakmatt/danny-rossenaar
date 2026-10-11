@@ -1,0 +1,1305 @@
+/* Scroll scenes share one physical viewport. Each layer has its own depth and pace. */
+:root {
+  --scene-nav: 98px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.cinema-hero {
+  height: 350svh;
+  position: relative;
+  background: var(--paper);
+}
+.cinema-stage {
+  position: sticky;
+  top: var(--scene-nav);
+  height: calc(100svh - var(--scene-nav));
+  min-height: 560px;
+  overflow: clip;
+  isolation: isolate;
+}
+.cinema-intro {
+  position: absolute;
+  inset: 0;
+  padding: 34px 4vw 0;
+  z-index: 2;
+}
+.cinema-intro-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.cinema-intro-top .eyebrow {
+  font-size: 11px;
+}
+.cinema-intro-top > span {
+  font-size: 11px;
+  text-align: right;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.cinema-intro h1 {
+  margin: 28px auto 0;
+  font-size: clamp(76px, 9.5vw, 154px);
+  line-height: 0.93;
+  letter-spacing: -0.075em;
+  width: max-content;
+  max-width: 100%;
+}
+.cinema-intro h1 > span {
+  display: block;
+}
+.cinema-intro h1 > span:last-child {
+  margin-left: 13vw;
+}
+.cinema-intro h1 em {
+  color: var(--green);
+}
+.cinema-intro h1 i {
+  display: inline-block;
+  font-size: 0.45em;
+  font-style: normal;
+  color: var(--green);
+  vertical-align: middle;
+  margin-left: 35px;
+  animation: slow-spin 30s linear infinite;
+}
+.cinema-intro-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 970px;
+  margin: 30px auto 0;
+  padding-inline: 32px;
+}
+.cinema-intro-bottom p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.cinema-intro-bottom .button {
+  min-height: 48px;
+  font-size: 12px;
+  padding: 8px 10px 8px 22px;
+}
+.cinema-backtype {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(100px, 17vw, 260px);
+  letter-spacing: -0.08em;
+  line-height: 0.83;
+  color: var(--ink);
+  z-index: 0;
+  pointer-events: none;
+}
+.cinema-backtype em {
+  color: var(--green);
+}
+.cinema-deck {
+  position: absolute;
+  inset: 0;
+  perspective: 1700px;
+  z-index: 4;
+  pointer-events: none;
+}
+.cinema-card {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  width: clamp(220px, 24vw, 375px);
+  height: clamp(300px, 31vw, 488px);
+  transform-style: preserve-3d;
+}
+.cinema-card > a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  box-shadow: 0 28px 50px #172a3228;
+  pointer-events: auto;
+  transition: box-shadow 0.25s;
+}
+.cinema-card > a:hover {
+  box-shadow: 0 32px 60px #172a3255;
+}
+.cinema-card-open {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.25s;
+}
+.cinema-card > a:hover .cinema-card-open,
+.cinema-card > a:focus-visible .cinema-card-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cinema-film {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  background: #2a1b10;
+  overflow: clip;
+  color: #fff9ea;
+}
+.cinema-film-image {
+  position: absolute;
+  inset: 0;
+}
+.cinema-film-image img {
+  object-position: 50% 61%;
+}
+.cinema-film-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #190d09a8 0%, #1c110840 80%),
+    linear-gradient(0deg, #150c0bad, transparent 50%);
+}
+.cinema-film-copy {
+  position: absolute;
+  top: 22%;
+  left: 8%;
+}
+.cinema-film-copy > span {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.cinema-film-copy h2 {
+  font-size: clamp(70px, 10vw, 150px);
+  line-height: 0.91;
+  margin: 25px 0 38px;
+}
+.cinema-film-copy h2 em {
+  color: #f3d79f;
+}
+.cinema-film-copy > a {
+  display: inline-flex;
+  gap: 35px;
+  align-items: center;
+  font-size: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid #fff8;
+}
+.cinema-concept {
+  position: absolute;
+  right: 4vw;
+  bottom: 75px;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+}
+.cinema-hud {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  padding: 20px 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(0deg, var(--paper), #f5f3ed00);
+  font-size: 10px;
+  color: var(--ink);
+}
+.cinema-hud > span,
+.cinema-skip {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.cinema-hud > div {
+  display: flex;
+  gap: 22px;
+}
+.cinema-hud > div > span {
+  opacity: 0.35;
+  transition: opacity 0.3s;
+}
+.cinema-hud > div > span.active {
+  opacity: 1;
+}
+.cinema-hud b {
+  font-size: 9px;
+  font-weight: 400;
+  margin-right: 4px;
+}
+.cinema-hud.on-film {
+  color: #fff;
+  background: linear-gradient(0deg, #1c1008b0, transparent);
+}
+.cinema-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--lime);
+  z-index: 30;
+  transform-origin: left;
+}
+.cinema-paper-edge {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: var(--paper);
+  border-radius: 50% 50% 0 0;
+  pointer-events: none;
+}
+.client-strip {
+  position: relative;
+  z-index: 10;
+  background: var(--paper);
+  padding-top: 55px;
+  padding-bottom: 55px;
+}
+.manifesto-scene {
+  overflow: clip;
+  background: var(--ink);
+  color: var(--paper);
+  position: relative;
+  padding: 60px 0 110px;
+}
+.manifesto-ribbon {
+  white-space: nowrap;
+  font-size: clamp(40px, 6.5vw, 110px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  color: transparent;
+  -webkit-text-stroke: 1px #d8ed9b55;
+  width: max-content;
+  margin-bottom: 80px;
+}
+.manifesto-scene-content h2 {
+  font-size: clamp(55px, 7.9vw, 122px);
+  line-height: 1.04;
+  max-width: 1170px;
+  margin: 30px 0 65px;
+}
+.manifesto-scene-content h2 em {
+  color: var(--lime);
+}
+.manifesto-scene-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.manifesto-scene-bottom > span {
+  font-size: 110px;
+  line-height: 1;
+  color: var(--lime);
+  width: max-content;
+}
+.manifesto-scene-bottom p {
+  color: #b5c6c4;
+  font-size: 15px;
+  max-width: 400px;
+}
+.manifesto-scene-bottom .button {
+  justify-self: end;
+  font-size: 12px;
+}
+.services-scene {
+  height: 360svh;
+  position: relative;
+  background: var(--paper);
+}
+.services-scene-stage {
+  position: sticky;
+  top: var(--scene-nav);
+  height: calc(100svh - var(--scene-nav));
+  min-height: 570px;
+  padding: 25px 4vw 48px;
+  overflow: clip;
+}
+.chapter-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 45px;
+}
+.chapter-heading > span {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.chapter-heading .eyebrow {
+  font-size: 10px;
+}
+.chapter-stack {
+  position: relative;
+  height: calc(100% - 95px);
+  perspective: 1500px;
+  margin-top: 12px;
+}
+.chapter-panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border-radius: 14px;
+  transform-origin: 50% 0%;
+  overflow: clip;
+  box-shadow: 0 -8px 45px #192b3215;
+}
+.chapter-lime {
+  background: #d8ed9b;
+}
+.chapter-peach {
+  background: #eab79c;
+}
+.chapter-blue {
+  background: #c4d8df;
+}
+.chapter-sand {
+  background: #dad7c9;
+}
+.chapter-copy {
+  padding: clamp(28px, 4vw, 66px);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+.chapter-label {
+  font-size: 11px;
+}
+.chapter-copy h3 {
+  font-size: clamp(40px, 4.8vw, 77px);
+  letter-spacing: -0.06em;
+  max-width: 530px;
+  margin: auto 0 20px;
+}
+.chapter-copy > p {
+  max-width: 390px;
+  font-size: 14px;
+  color: #394b4e;
+  margin-bottom: 30px;
+}
+.chapter-link {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 13px;
+  padding: 11px 0;
+  border-bottom: 1px solid #192b3260;
+}
+.chapter-visual {
+  position: relative;
+  overflow: clip;
+  display: grid;
+  place-items: center;
+  background: #192b3208;
+}
+.chapter-giant {
+  position: absolute;
+  font-size: 32vw;
+  line-height: 0.8;
+  color: #192b3210;
+  letter-spacing: -0.11em;
+  right: 3%;
+  top: 12%;
+}
+.chapter-art {
+  position: relative;
+  width: 57%;
+  height: 77%;
+  max-height: 460px;
+  box-shadow: 20px 30px 55px #192b3233;
+  border-radius: 6px;
+}
+.chapter-art .campaign-art > strong {
+  font-size: clamp(35px, 3.9vw, 61px);
+}
+.chapter-art .art-factum > strong {
+  font-size: clamp(25px, 2.8vw, 45px);
+}
+.chapter-art .orbit-design {
+  width: 240px;
+  height: 240px;
+}
+.chapter-art-tag {
+  position: absolute;
+  bottom: 18px;
+  right: 25px;
+  font-size: 9px;
+}
+.chapter-rail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 18px;
+  font-size: 10px;
+}
+.chapter-rail > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  opacity: 0.35;
+}
+.chapter-rail > span.active {
+  opacity: 1;
+}
+.chapter-rail b {
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 9px;
+  font-weight: 400;
+}
+.scene-skip {
+  position: absolute;
+  bottom: 7px;
+  right: 4vw;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 9px;
+}
+.personal-cinema {
+  padding: 70px 0 120px;
+  position: relative;
+  overflow: clip;
+}
+.personal-backtype {
+  font-size: 23vw;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -0.08em;
+  color: #d7dccc;
+  margin-bottom: -7vw;
+  pointer-events: none;
+}
+.personal-cinema-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9%;
+  align-items: center;
+}
+.personal-cinema-picture {
+  height: 650px;
+  position: relative;
+}
+.portrait-mask,
+.portrait-inner {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+}
+.portrait-inner img {
+  object-position: 50% 40%;
+}
+.portrait-note {
+  position: absolute;
+  z-index: 2;
+  background: var(--lime);
+  padding: 26px 30px;
+  font-size: 14px;
+  line-height: 1.15;
+  bottom: 4%;
+  right: -10%;
+  transform: rotate(-8deg);
+  box-shadow: 0 15px 40px #192b3215;
+}
+.portrait-note .status-dot {
+  display: block;
+  margin-bottom: 14px;
+}
+.portrait-note em {
+  font-size: 34px;
+  display: block;
+  margin-top: 3px;
+}
+.portrait-note > svg {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  width: 19px;
+}
+.personal-cinema-copy {
+  position: relative;
+  z-index: 1;
+}
+.personal-cinema-copy h2 {
+  font-size: clamp(38px, 4.1vw, 65px);
+  margin: 23px 0 27px;
+}
+.personal-cinema-copy h2 em {
+  color: var(--green);
+}
+.personal-cinema-copy > p {
+  font-size: 14px;
+  max-width: 400px;
+}
+.personal-cinema-copy .check-list {
+  font-size: 12px;
+  margin: 25px 0;
+}
+.portal-scene {
+  position: relative;
+  height: 290svh;
+  background: #dbe3cb;
+}
+.portal-scene-stage {
+  position: sticky;
+  top: var(--scene-nav);
+  height: calc(100svh - var(--scene-nav));
+  min-height: 670px;
+  overflow: clip;
+  isolation: isolate;
+}
+.portal-scene-title {
+  position: absolute;
+  top: 8%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 3;
+  pointer-events: none;
+}
+.portal-scene-title .eyebrow {
+  justify-content: center;
+}
+.portal-scene-title h2 {
+  font-size: clamp(48px, 6.7vw, 104px);
+  margin: 22px 0;
+}
+.portal-scene-title h2 em {
+  color: var(--green);
+}
+.portal-scene-title p {
+  font-size: 14px;
+}
+.portal-scene-perspective {
+  position: absolute;
+  inset: 24px 5vw 65px;
+  perspective: 1500px;
+}
+.portal-scene-screen {
+  height: 100%;
+  position: relative;
+  transform-origin: 50% 60%;
+}
+.portal-scene-screen > .dashboard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 50px 80px #192b3240;
+}
+.portal-scene-screen .dashboard-body {
+  overflow: auto;
+  overscroll-behavior: auto;
+  flex: 1;
+  padding: 22px;
+}
+.portal-scene-screen .dashboard-header {
+  flex-shrink: 0;
+}
+.portal-scene-screen .chart-graph {
+  height: 210px;
+}
+.portal-scene-footer {
+  position: absolute;
+  bottom: 23px;
+  left: 5vw;
+  right: 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 10px;
+}
+.portal-scene-footer a {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 13px;
+  border-bottom: 1px solid #192b3260;
+  padding: 6px 0;
+}
+.floating-result {
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  width: 250px;
+  height: 200px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 23px;
+  z-index: 5;
+  box-shadow: 0 30px 70px #192b3235;
+  border: 1px solid #ffffff30;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.floating-result > span {
+  display: block;
+  font-size: 11px;
+}
+.floating-result > strong {
+  font-size: 43px;
+  font-weight: 500;
+  letter-spacing: -2px;
+  line-height: 1.4;
+  display: block;
+}
+.floating-result > small {
+  position: absolute;
+  bottom: 15px;
+  left: 23px;
+  font-size: 8px;
+  opacity: 0.7;
+}
+.result-1 {
+  background: #eab79c;
+  color: var(--ink);
+  width: 205px;
+  height: 200px;
+}
+.result-2 {
+  background: var(--lime);
+  color: var(--ink);
+  width: 225px;
+  height: 170px;
+}
+.result-1 > svg,
+.result-2 > svg {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+.mini-bars {
+  display: flex;
+  height: 50px;
+  gap: 6px;
+  align-items: end;
+  margin-top: 6px;
+}
+.mini-bars i {
+  flex: 1;
+  background: var(--lime);
+  border-radius: 2px 2px 0 0;
+}
+@media (min-width: 761px) and (max-height: 800px) {
+  .cinema-intro {
+    padding-top: 20px;
+  }
+  .cinema-intro h1 {
+    font-size: clamp(68px, 8vw, 110px);
+    margin-top: 20px;
+  }
+  .cinema-intro-bottom {
+    margin-top: 20px;
+  }
+  .cinema-card {
+    top: 68%;
+  }
+  .portal-scene-stage {
+    min-height: 550px;
+  }
+  .portal-scene-screen .stat {
+    padding: 13px;
+  }
+  .portal-scene-screen .stat > strong {
+    font-size: 28px;
+  }
+  .portal-scene-screen .chart-graph {
+    height: 170px;
+  }
+}
+@media (max-width: 1000px) {
+  .chapter-copy {
+    padding: 30px;
+  }
+  .chapter-copy h3 {
+    font-size: 45px;
+  }
+  .chapter-art {
+    width: 75%;
+    height: 72%;
+  }
+  .chapter-rail {
+    font-size: 8px;
+  }
+  .personal-cinema-picture {
+    height: 550px;
+  }
+  .manifesto-scene-bottom {
+    gap: 25px;
+    grid-template-columns: 100px 1fr 1fr;
+  }
+  .manifesto-scene-bottom > span {
+    font-size: 85px;
+  }
+}
+@media (max-width: 760px) {
+  :root {
+    --scene-nav: 78px;
+  }
+  .cinema-hero {
+    height: 290svh;
+  }
+  .cinema-stage {
+    min-height: 550px;
+  }
+  .cinema-intro {
+    padding: 24px 20px 0;
+  }
+  .cinema-intro-top > span {
+    display: none;
+  }
+  .cinema-intro-top .eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  .cinema-intro h1 {
+    font-size: clamp(48px, 10.9vw, 81px);
+    margin: 35px 0 0;
+    line-height: 1.04;
+    width: 100%;
+  }
+  .cinema-intro h1 > span:last-child {
+    margin-left: 0;
+    text-align: right;
+  }
+  .cinema-intro h1 i {
+    margin-left: 8px;
+    font-size: 0.36em;
+  }
+  .cinema-intro-bottom {
+    margin-top: 25px;
+    padding: 0;
+    gap: 20px;
+    align-items: start;
+    flex-direction: column;
+  }
+  .cinema-intro-bottom p {
+    font-size: 12px;
+  }
+  .cinema-intro-bottom .button {
+    font-size: 11px;
+    min-height: 42px;
+  }
+  .cinema-intro-bottom .button-arrow {
+    width: 30px;
+    height: 30px;
+  }
+  .cinema-card {
+    top: 65%;
+    width: 53vw;
+    height: 73vw;
+  }
+  .cinema-card:nth-child(1),
+  .cinema-card:nth-child(5) {
+    display: none;
+  }
+  .cinema-backtype {
+    font-size: 23vw;
+    top: 15%;
+  }
+  .cinema-hud {
+    padding: 16px 20px;
+    font-size: 8px;
+  }
+  .cinema-hud > span {
+    display: none;
+  }
+  .cinema-hud > div {
+    gap: 10px;
+  }
+  .cinema-hud b {
+    font-size: 8px;
+    margin-right: 2px;
+  }
+  .cinema-film-copy {
+    left: 7%;
+    right: 7%;
+    top: 30%;
+  }
+  .cinema-film-copy > span {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .cinema-film-copy h2 {
+    font-size: 18vw;
+    margin: 18px 0 32px;
+  }
+  .cinema-film-copy > a {
+    font-size: 12px;
+    gap: 18px;
+  }
+  .cinema-concept {
+    right: 7%;
+    bottom: 65px;
+    font-size: 8px;
+  }
+  .cinema-film-image img {
+    object-position: 48% 50%;
+  }
+  .client-strip {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+  .manifesto-scene {
+    padding: 40px 0 65px;
+  }
+  .manifesto-ribbon {
+    font-size: 50px;
+    margin-bottom: 40px;
+  }
+  .manifesto-scene-content > .eyebrow {
+    font-size: 9px;
+  }
+  .manifesto-scene-content h2 {
+    font-size: clamp(46px, 12vw, 72px);
+    margin: 27px 0 35px;
+  }
+  .manifesto-scene-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+  }
+  .manifesto-scene-bottom > span {
+    font-size: 70px;
+  }
+  .manifesto-scene-bottom p {
+    font-size: 12px;
+    flex: 1;
+  }
+  .manifesto-scene-bottom .button {
+    font-size: 11px;
+  }
+  .services-scene {
+    height: 340svh;
+  }
+  .services-scene-stage {
+    padding: 10px 16px 50px;
+    min-height: 600px;
+  }
+  .chapter-heading {
+    height: 45px;
+  }
+  .chapter-heading .eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.6px;
+  }
+  .chapter-heading > span {
+    display: none;
+  }
+  .chapter-stack {
+    height: calc(100% - 70px);
+    margin-top: 3px;
+  }
+  .chapter-panel {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+  }
+  .chapter-copy {
+    padding: 24px;
+    height: 55%;
+    flex-shrink: 0;
+  }
+  .chapter-label {
+    font-size: 8px;
+  }
+  .chapter-copy h3 {
+    font-size: 34px;
+    margin: 17px 0 14px;
+    max-width: 300px;
+  }
+  .chapter-copy > p {
+    font-size: 11px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  .chapter-link {
+    font-size: 10px;
+    padding: 6px 0;
+    margin-top: auto;
+  }
+  .chapter-link svg {
+    width: 17px;
+  }
+  .chapter-visual {
+    height: 45%;
+    flex: 1;
+    min-height: 0;
+  }
+  .chapter-art {
+    width: 46%;
+    height: 230px;
+    position: absolute;
+    top: 18px;
+  }
+  .chapter-art .campaign-art > strong {
+    font-size: 28px;
+  }
+  .chapter-art .art-factum > strong {
+    font-size: 24px;
+  }
+  .chapter-art .orbit-design {
+    width: 150px;
+    height: 150px;
+    top: 20px;
+  }
+  .chapter-art .orbit-design > span {
+    inset: 42px;
+  }
+  .chapter-art .art-bottomline {
+    display: none;
+  }
+  .chapter-giant {
+    font-size: 70vw;
+    top: 0;
+  }
+  .chapter-art-tag {
+    font-size: 7px;
+    bottom: 10px;
+    right: 12px;
+  }
+  .chapter-rail {
+    margin-top: 13px;
+    gap: 10px;
+  }
+  .chapter-rail > span {
+    font-size: 0;
+  }
+  .chapter-rail b {
+    width: 22px;
+    height: 22px;
+    font-size: 8px;
+  }
+  .scene-skip {
+    bottom: 14px;
+    right: 17px;
+    font-size: 8px;
+  }
+  .personal-cinema {
+    padding: 40px 0 70px;
+  }
+  .personal-backtype {
+    font-size: 27vw;
+    margin-bottom: -20px;
+  }
+  .personal-cinema-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+  }
+  .personal-cinema-picture {
+    height: 480px;
+    width: 100%;
+  }
+  .portrait-note {
+    right: 0;
+    padding: 22px;
+    font-size: 12px;
+  }
+  .portrait-note em {
+    font-size: 28px;
+  }
+  .personal-cinema-copy {
+    width: 100%;
+  }
+  .personal-cinema-copy h2 {
+    font-size: 42px;
+  }
+  .personal-cinema-copy > p {
+    font-size: 13px;
+  }
+  .portal-scene {
+    height: 260svh;
+  }
+  .portal-scene-stage {
+    min-height: 590px;
+  }
+  .portal-scene-title {
+    top: 8%;
+    padding-inline: 20px;
+  }
+  .portal-scene-title .eyebrow {
+    font-size: 8px;
+  }
+  .portal-scene-title h2 {
+    font-size: 12vw;
+    margin: 20px 0;
+  }
+  .portal-scene-title p {
+    font-size: 11px;
+  }
+  .portal-scene-perspective {
+    inset: 12px 14px 75px;
+    perspective: 1200px;
+  }
+  .portal-scene-screen .dashboard-header {
+    padding: 15px;
+  }
+  .portal-scene-screen .dashboard-body {
+    padding: 15px;
+  }
+  .portal-scene-screen .dashboard-brand {
+    display: none;
+  }
+  .portal-scene-screen .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .portal-scene-screen .stat:first-child {
+    grid-column: 1 / -1;
+  }
+  .portal-scene-screen .dashboard-intro h3 {
+    font-size: 24px;
+  }
+  .portal-scene-footer {
+    left: 17px;
+    right: 17px;
+    bottom: 15px;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 8px;
+  }
+  .portal-scene-footer a {
+    font-size: 11px;
+    gap: 10px;
+  }
+  .floating-result {
+    width: 140px;
+    height: 130px;
+    padding: 14px;
+  }
+  .floating-result > span {
+    font-size: 8px;
+  }
+  .floating-result > strong {
+    font-size: 26px;
+    letter-spacing: -1px;
+  }
+  .floating-result > small {
+    left: 14px;
+    font-size: 6px;
+    bottom: 10px;
+  }
+  .floating-result > svg {
+    width: 26px;
+    right: 13px;
+    bottom: 19px;
+  }
+  .mini-bars {
+    height: 29px;
+    gap: 3px;
+    margin-top: 5px;
+  }
+}
+/* Reduced-motion uses a complete linear document, with no pinned empty runway. */
+@media (prefers-reduced-motion: reduce) {
+  .cinema-hero,
+  .services-scene,
+  .portal-scene {
+    height: auto;
+  }
+  .cinema-stage,
+  .services-scene-stage,
+  .portal-scene-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+  }
+  .cinema-stage {
+    padding-top: 1px;
+  }
+  .cinema-intro {
+    position: relative;
+    padding-bottom: 35px;
+  }
+  .cinema-deck {
+    position: relative;
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 30px 5vw;
+    perspective: none;
+  }
+  .cinema-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    flex: 0 0 240px;
+    width: 240px;
+    height: 320px;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .cinema-card:nth-child(1),
+  .cinema-card:nth-child(5) {
+    display: block;
+  }
+  .cinema-film {
+    position: relative;
+    height: 650px;
+    clip-path: none !important;
+    opacity: 1 !important;
+  }
+  .cinema-film-copy {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cinema-hud,
+  .cinema-backtype,
+  .cinema-progress,
+  .cinema-paper-edge {
+    display: none;
+  }
+  .manifesto-scene-content h2 span {
+    opacity: 1 !important;
+  }
+  .chapter-stack {
+    height: auto;
+  }
+  .chapter-panel {
+    position: relative;
+    min-height: 550px;
+    margin-bottom: 25px;
+    transform: none !important;
+  }
+  .chapter-rail,
+  .scene-skip {
+    display: none;
+  }
+  .portal-scene-title {
+    position: relative;
+    padding: 60px 20px 35px;
+    top: 0;
+  }
+  .portal-scene-perspective {
+    position: relative;
+    inset: auto;
+    padding: 0 5vw;
+  }
+  .portal-scene-screen {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .portal-scene-screen > .dashboard {
+    height: auto;
+  }
+  .portal-scene-screen .dashboard-body {
+    overflow: visible;
+  }
+  .portal-scene-footer {
+    position: relative;
+    inset: auto;
+    padding: 25px;
+  }
+  .floating-result {
+    display: none;
+  }
+}
+
+.art-location img {
+  object-fit: cover;
+  object-position: 58% center;
+}
+.art-location::after {
+  content: '';
+  position: absolute;
+  inset: 55% 0 0;
+  background: linear-gradient(transparent, #172326aa);
+}
+.art-location .art-bottomline {
+  color: white;
+  z-index: 2;
+}
+.portal-scene-screen > .portal-preview {
+  height: 100%;
+  box-shadow: 0 35px 100px #080f1555;
+}
+.portal-scene-screen {
+  height: min(730px, calc(100svh - 190px));
+  min-height: 540px;
+}
+.portal-scene-screen[inert] {
+  pointer-events: none;
+}
+.about-on-location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 8%;
+  padding-block: 80px 130px;
+}
+.about-on-location figure {
+  margin: 0;
+}
+.about-location-image {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 10px 100px 10px 10px;
+  overflow: hidden;
+}
+.about-location-image img {
+  object-fit: cover;
+}
+.about-on-location figcaption {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.about-on-location h2 {
+  font-size: clamp(40px, 5vw, 76px);
+  line-height: 1.04;
+  margin: 25px 0;
+}
+.about-on-location p {
+  max-width: 420px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+@media (max-width: 760px) {
+  .portal-scene-screen {
+    min-height: 0;
+    height: calc(100svh - 174px);
+  }
+  .about-on-location {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-block: 35px 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portal-scene-screen {
+    height: auto;
+    min-height: 0;
+  }
+  .portal-preview-compact .p-preview-scroll {
+    overflow: visible;
+  }
+}

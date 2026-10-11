@@ -1,0 +1,172 @@
+:root {
+  color-scheme: light;
+}
+:root[data-site-theme='dark'] {
+  color-scheme: dark;
+  --paper: #14242b;
+  --ink: #f2f1e7;
+  --muted: #b4c0ba;
+  --line: #36484d;
+  --green: #c1d79f;
+}
+.site-header {
+  background: color-mix(in srgb, var(--paper) 93%, transparent);
+  border-bottom-color: var(--line);
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 4px;
+  background: transparent;
+  color: var(--muted);
+  position: relative;
+}
+.theme-toggle svg {
+  position: relative;
+  z-index: 1;
+  padding: 8px;
+  width: 33px;
+  height: 33px;
+}
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform 0.25s ease;
+}
+.theme-toggle .theme-sun {
+  color: var(--paper);
+}
+[data-site-theme='dark'] .theme-toggle::before {
+  transform: translateX(36px);
+}
+[data-site-theme='dark'] .theme-toggle .theme-sun {
+  color: var(--muted);
+}
+[data-site-theme='dark'] .theme-toggle .theme-moon {
+  color: var(--paper);
+}
+/* Art direction keeps its intentional paper and colour palettes in either theme. */
+.chapter-panel,
+.service-detail,
+.campaign-art,
+.about-values,
+.portrait-note,
+.about-portrait-note,
+.floating-result {
+  --ink: #192b32;
+  --paper: #f5f3ed;
+  --muted: #65706d;
+  --green: #517b48;
+}
+.chapter-panel,
+.service-detail,
+.about-values,
+.portrait-note,
+.about-portrait-note {
+  color: #192b32;
+}
+.footer,
+.manifesto-scene {
+  --ink: #192b32;
+  --paper: #f5f3ed;
+}
+.nav-cta,
+.button-lime,
+.skip-link,
+.review-person > span,
+.review-controls button:hover,
+.status-dot {
+  color: #192b32;
+}
+.button-outline {
+  border-color: var(--line);
+}
+.button-outline .button-arrow {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+[data-site-theme='dark'] .button-dark .button-arrow {
+  background: #192b3212;
+}
+[data-site-theme='dark'] .portal-scene {
+  background: #213738;
+}
+[data-site-theme='dark'] .personal-backtype {
+  color: #304548;
+}
+[data-site-theme='dark'] .contact-form {
+  background: #20343b;
+}
+[data-site-theme='dark'] .form-field input,
+[data-site-theme='dark'] .form-field textarea,
+[data-site-theme='dark'] .form-field select {
+  background: #17282e;
+  border-color: #4b605e;
+}
+[data-site-theme='dark'] .form-field input::placeholder,
+[data-site-theme='dark'] .form-field textarea::placeholder {
+  color: #a7b5ad;
+}
+[data-site-theme='dark'] .project-visual-label {
+  background: #17282eeb;
+}
+[data-site-theme='dark'] .coffee-illustration {
+  color: var(--ink);
+}
+[data-site-theme='dark'] ::selection {
+  color: #192b32;
+}
+@media (max-width: 1100px) {
+  .nav-actions {
+    gap: 12px;
+  }
+  .desktop-nav {
+    gap: 20px;
+  }
+}
+@media (max-width: 760px) {
+  .nav-wrap {
+    gap: 12px;
+  }
+  .nav-actions {
+    margin-left: auto;
+  }
+  .theme-toggle svg {
+    width: 29px;
+    height: 29px;
+    padding: 6px;
+  }
+  .theme-toggle::before {
+    width: 29px;
+    height: 29px;
+  }
+  [data-site-theme='dark'] .theme-toggle::before {
+    transform: translateX(32px);
+  }
+  .menu-toggle {
+    padding: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle::before {
+    transition: none;
+  }
+}
+@media (max-width: 760px) {
+  .nav-actions > .nav-cta {
+    display: none;
+  }
+}
