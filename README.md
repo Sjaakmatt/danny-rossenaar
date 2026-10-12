@@ -90,7 +90,7 @@ De smokecheck in `work/` was een lokale controle zonder e-mailconfiguratie en wo
 
 ## Publiceren
 
-Importeer de repository bij een host met Next.js-ondersteuning, zoals Vercel. Gebruik `npm run build` en de standaard Next.js-instellingen. De contactroute vereist een serverruntime; gebruik geen uitsluitend statische export. Configureer de Resend-sleutel en test bezorging met toestemming voor een echt bericht voordat je live gaat.
+Importeer de repository bij een host met Next.js-ondersteuning, zoals Vercel. De `vercel.json` in de repository kiest expliciet het Next.js-framework, `npm run build` en de standaard Next.js-output. Dit voorkomt dat oude instellingen voor de HTML-site alleen de map `public` publiceren. Laat in het dashboard de Root Directory leeg; de app staat in de repositoryroot. Controleer na elke productie-deploy de homepage, `/inzicht` en `/sitemap.xml` op het echte domein: een groene build bevestigt niet dat die routes ook gepubliceerd zijn. De contactroute vereist een serverruntime; gebruik geen uitsluitend statische export. Configureer de Resend-sleutel en test bezorging met toestemming voor een echt bericht voordat je live gaat.
 
 De canonieke URL, sitemap en metadata gebruiken `https://www.rossenaarmarketing.nl`. `/index.html` verwijst permanent naar `/`; eerdere sectieankers voor diensten, over, werkwijze en reviews blijven op de homepage bestaan. De privacy-informatie beschrijft de huidige implementatie en moet bij toevoeging van analytics, andere verwerking of een portaalintegratie mee veranderen.
 
