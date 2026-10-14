@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { contact } from '@/lib/content';
 import { servicePages } from '@/lib/service-pages';
+import { CookieSettingsButton } from './analytics';
 import { BrandMark, Eyebrow } from './ui';
 export function Footer() {
   return (
@@ -47,6 +48,7 @@ export function Footer() {
             LinkedIn <ArrowUpRight size={14} />
           </a>
           <Link href="/privacy">Privacy</Link>
+          <CookieSettingsButton />
           <span>© {new Date().getFullYear()} Rossenaar Marketing</span>
         </div>
       </div>

@@ -56,7 +56,12 @@ export default function Privacy() {
         </p>
         <h2>Cookies en externe inhoud</h2>
         <p>
-          Deze website plaatst zelf geen advertentie- of analysecookies.
+          Deze website plaatst geen advertentiecookies. Alleen als je daar
+          toestemming voor geeft, gebruik ik Google Analytics om te meten hoe de
+          website wordt gebruikt, zoals welke pagina’s worden bekeken. Google
+          plaatst daarvoor analysecookies en IP-adressen worden ingekort. Geef
+          je geen toestemming, dan wordt Google Analytics niet geladen. Je kunt
+          je keuze altijd aanpassen via ‘Cookies’ onderaan de website.
           Lettertypen en afbeeldingen worden vanuit de website geladen. De
           hostingprovider kan technische toegangsgegevens verwerken om de
           website te laten functioneren. Als je een externe link volgt, gelden

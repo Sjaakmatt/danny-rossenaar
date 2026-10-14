@@ -10,6 +10,7 @@ import './showcase.css';
 import './search-content.css';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
+import { Analytics } from '@/components/analytics';
 import { StructuredData } from '@/components/structured-data';
 import { isPreview, organizationGraph, site } from '@/lib/seo';
 
@@ -88,6 +89,7 @@ export default function RootLayout({
         <Navigation />
         <main id="main">{children}</main>
         <Footer />
+        {!isPreview && <Analytics />}
       </body>
     </html>
   );
