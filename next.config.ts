@@ -3,7 +3,15 @@ import type { NextConfig } from 'next';
 const config: NextConfig = {
   poweredByHeader: false,
   async redirects() {
-    return [{ source: '/index.html', destination: '/', permanent: true }];
+    return [
+      { source: '/index.html', destination: '/', permanent: true },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'rossenaarmarketing.nl' }],
+        destination: 'https://www.rossenaarmarketing.nl/:path*',
+        permanent: true,
+      },
+    ];
   },
   async headers() {
     return [
