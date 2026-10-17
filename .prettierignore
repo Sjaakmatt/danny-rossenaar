@@ -6,3 +6,5 @@ docs/original-concepts
 work
 package-lock.json
 next-env.d.ts
+.open-next
+.wrangler

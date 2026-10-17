@@ -8,9 +8,13 @@ export const site = {
     'Social media marketing, content en Meta-advertenties met Danny Rossenaar uit Enkhuizen. Voor ondernemers in West-Friesland en daarbuiten. Maak kennis.',
 };
 export const absoluteUrl = (path = '/') => new URL(path, site.url).href;
-export const isPreview = Boolean(
-  process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production',
-);
+// SITE_ENV overrides; otherwise Cloudflare Workers Builds of a branch other
+// than main are previews and must not be indexed.
+const siteEnv =
+  process.env.SITE_ENV ||
+  (process.env.WORKERS_CI_BRANCH &&
+    (process.env.WORKERS_CI_BRANCH === 'main' ? 'production' : 'preview'));
+export const isPreview = Boolean(siteEnv && siteEnv !== 'production');
 export const organizationId = absoluteUrl('/#organisatie');
 export const personId = absoluteUrl('/over#danny');
 export const websiteId = absoluteUrl('/#website');

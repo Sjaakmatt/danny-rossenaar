@@ -1,3 +1,4 @@
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
 import type { NextConfig } from 'next';
 const config: NextConfig = {
   poweredByHeader: false,
@@ -18,3 +19,6 @@ const config: NextConfig = {
   },
 };
 export default config;
+
+// Exposes Cloudflare bindings to `next dev`.
+initOpenNextCloudflareForDev();

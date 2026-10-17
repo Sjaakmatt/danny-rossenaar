@@ -20,7 +20,7 @@ npm start -- --port 3100
 
 ## Preview en review
 
-De goedgekeurde nieuwe versie staat in [PR #16](https://github.com/Sjaakmatt/danny-rossenaar/pull/16). De bestaande GitHub/Vercel-integratie heeft een [online preview](https://danny-rossenaar-git-codex-nextj-f2396c-sjaak-ter-velds-projects.vercel.app) gebouwd. Deze preview is beschermd en vereist een Vercel-login; lokaal kun je de site direct bekijken via de bovenstaande startinstructies. De gebruiker heeft op 11 oktober 2026 de visuele richting goedgekeurd en merge naar `main` aangevraagd. De actuele mergestatus staat in de PR.
+De goedgekeurde nieuwe versie staat in [PR #16](https://github.com/Sjaakmatt/danny-rossenaar/pull/16). Lokaal kun je de site direct bekijken via de bovenstaande startinstructies. De gebruiker heeft op 11 oktober 2026 de visuele richting goedgekeurd en merge naar `main` aangevraagd. De actuele mergestatus staat in de PR.
 
 ## Pagina’s
 
@@ -90,10 +90,23 @@ De smokecheck in `work/` was een lokale controle zonder e-mailconfiguratie en wo
 
 ## Publiceren
 
-Importeer de repository bij een host met Next.js-ondersteuning, zoals Vercel. Gebruik `npm run build` en de standaard Next.js-instellingen. De contactroute vereist een serverruntime; gebruik geen uitsluitend statische export. Configureer de Resend-sleutel en test bezorging met toestemming voor een echt bericht voordat je live gaat.
+De site draait op Cloudflare Workers via de [OpenNext-adapter](https://opennext.js.org/cloudflare) (`@opennextjs/cloudflare`). Configuratie: `wrangler.jsonc` (Worker `danny-rossenaar`, statische assets, Cloudflare Images voor `next/image`) en `open-next.config.ts` (voorgerenderde pagina's komen uit de statische assets; er is geen revalidatie).
+
+```bash
+npm run preview   # productiebuild lokaal in de Workers-runtime
+npm run deploy    # bouwen en publiceren naar Cloudflare
+```
+
+Automatisch publiceren: koppel de GitHub-repository in het Cloudflare-dashboard onder **Workers & Pages → Create → Import a repository** (Workers Builds). Gebruik als buildcommando `npx opennextjs-cloudflare build` en als deploycommando `npx opennextjs-cloudflare deploy`; voor previewbranches `npx opennextjs-cloudflare upload`. Productiebranch: `main`.
+
+- Runtimegeheim: `RESEND_API_KEY` onder **Settings → Variables & Secrets**, of `npx wrangler secret put RESEND_API_KEY`. Lokaal in `.dev.vars` (zie `.dev.vars.example`).
+- Buildvariabelen (optioneel): `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION` en `SITE_ENV` onder **Settings → Build → Variables and secrets**. Deze worden tijdens de build in de pagina's gezet.
+- Domein: voeg `www.rossenaarmarketing.nl` (en het kale domein met doorverwijzing) toe onder **Settings → Domains & Routes**.
+
+Configureer de Resend-sleutel en test bezorging met toestemming voor een echt bericht voordat je live gaat.
 
 De canonieke URL, sitemap en metadata gebruiken `https://www.rossenaarmarketing.nl`. `/index.html` verwijst permanent naar `/`; eerdere sectieankers voor diensten, over, werkwijze en reviews blijven op de homepage bestaan. De privacy-informatie beschrijft de huidige implementatie en moet bij toevoeging van analytics, andere verwerking of een portaalintegratie mee veranderen.
 
-De SEO richt zich primair op Enkhuizen en West-Friesland, met landelijke beschikbaarheid. Metadata en gekoppelde organisatie-/persoonsgegevens staan in `lib/seo.ts`; diensteninhoud in `lib/service-pages.ts`. De sitemap bevat ook klantbeelden en lokale video's. Vercel-previews krijgen noindex; de openbare portaaldata is uitgesloten van snippets.
+De SEO richt zich primair op Enkhuizen en West-Friesland, met landelijke beschikbaarheid. Metadata en gekoppelde organisatie-/persoonsgegevens staan in `lib/seo.ts`; diensteninhoud in `lib/service-pages.ts`. De sitemap bevat ook klantbeelden en lokale video's. Previewbuilds (andere branches dan `main`) krijgen noindex; de openbare portaaldata is uitgesloten van snippets.
 
 Zie [SEO/GEO-audit](docs/seo-geo-audit.md) voor onderzoek, wijzigingen en vervolgprioriteiten en [SEO-beheer](docs/seo-beheer.md) voor Search Console, Bing en de gerenderde SEO-controle. `GOOGLE_SITE_VERIFICATION` en `BING_SITE_VERIFICATION` zijn optionele verificatiewaarden uit de eigen accounts. Accounts zijn niet automatisch gekoppeld door deze code.

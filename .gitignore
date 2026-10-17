@@ -6,3 +6,8 @@ node_modules/
 .DS_Store
 work/
 __pycache__/
+.open-next/
+.wrangler/
+.dev.vars*
+!.dev.vars.example
+cloudflare-env.d.ts

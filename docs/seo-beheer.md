@@ -13,7 +13,7 @@ De bron voor Danny’s verhaal, start in juni 2024, regio en klantcases is de aa
 
 ## Google Search Console
 
-Er is nog geen gekoppelde Search Console-property. Een Bedrijfsprofiel vervangt deze verificatie niet. Je hebt toegang nodig tot het Google-account dat eigenaar wordt en tot de domeininstellingen of het Vercel-project.
+Er is nog geen gekoppelde Search Console-property. Een Bedrijfsprofiel vervangt deze verificatie niet. Je hebt toegang nodig tot het Google-account dat eigenaar wordt en tot de domeininstellingen of het Cloudflare-account.
 
 **Aanbevolen: domeinproperty**
 
@@ -26,7 +26,7 @@ Er is nog geen gekoppelde Search Console-property. Een Bedrijfsprofiel vervangt 
 
 1. Voeg exact `https://www.rossenaarmarketing.nl/` toe als URL-prefix-property.
 2. Kies HTML-tag. Neem alleen de waarde uit `content="..."` over.
-3. Zet die als `GOOGLE_SITE_VERIFICATION` in de Vercel-productieomgeving en bouw opnieuw. Deel geen accountwachtwoord.
+3. Zet die als `GOOGLE_SITE_VERIFICATION` als buildvariabele in Cloudflare (Worker → Settings → Build → Variables and secrets) en bouw opnieuw. Deel geen accountwachtwoord.
 4. Controleer of de tag `google-site-verification` in de homepage staat; klik daarna op Verifiëren en dien de sitemap in.
 
 Een domeinproperty via DNS dekt ook http/https en www/apex. De HTML-tag is een alternatief voor de specifieke URL-prefix. [Officiële verificatie-uitleg van Google](https://support.google.com/webmasters/answer/9008080).
@@ -37,11 +37,11 @@ Controleer in het bestaande profiel de bedrijfsnaam, telefoon `06 46 78 16 57`, 
 
 ## Bing
 
-Voeg de website toe in [Bing Webmaster Tools](https://www.bing.com/webmasters/). Gebruik import uit Search Console indien beschikbaar, of neem de HTML-verificatiewaarde over als `BING_SITE_VERIFICATION` in Vercel. Na een nieuwe build verschijnt `msvalidate.01`. Dien dezelfde sitemap in. Er is geen fictieve verificatiesleutel of account aangemaakt.
+Voeg de website toe in [Bing Webmaster Tools](https://www.bing.com/webmasters/). Gebruik import uit Search Console indien beschikbaar, of neem de HTML-verificatiewaarde over als `BING_SITE_VERIFICATION`-buildvariabele in Cloudflare. Na een nieuwe build verschijnt `msvalidate.01`. Dien dezelfde sitemap in. Er is geen fictieve verificatiesleutel of account aangemaakt.
 
 ## Productie en previews
 
-`VERCEL_ENV=production` laat indexering toe. Een expliciete andere Vercel-omgeving krijgt noindex, een blokkerende robots.txt en een lege sitemap. De openbare website behoudt altijd canonicals naar www. Controleer bij een aangepaste hostingopzet dat `VERCEL_ENV` niet per ongeluk op `preview` staat. Vercel-beveiliging en firewallregels moeten zoekcrawlers op productie toegang geven.
+Builds van `main` (Cloudflare Workers Builds zet `WORKERS_CI_BRANCH`) en lokale builds laten indexering toe. Een build van een andere branch, of met `SITE_ENV` op iets anders dan `production`, krijgt noindex, een blokkerende robots.txt en een lege sitemap. `SITE_ENV=production` dwingt indexering af. De openbare website behoudt altijd canonicals naar www. Cloudflare-beveiliging (Bot Fight Mode, WAF-regels) moet zoekcrawlers op productie toegang geven.
 
 `/privacy` blijft bereikbaar met noindex/follow; ontbreekt daarom in de sitemap. Contact-URLs met een interesseparameter canonicaliseren naar `/contact`. Onbekende case- en dienstslugs geven een 404. Het portaal is een openbare demo met `data-nosnippet`, geen toegang tot echte klantgegevens.
 

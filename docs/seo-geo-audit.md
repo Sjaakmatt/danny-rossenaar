@@ -61,7 +61,7 @@ De homepage behoudt de creatieve H1. Het zoekonderwerp staat in titel, intro en 
 | Robots                        | Pass                      | Openbare inhoud toegestaan via `*`; `/api/` uitgesloten                                                                        |
 | AI-zoekcrawlers               | Pass op siteniveau        | Geen eigen blokkade voor OAI-SearchBot; valt onder `*`. CDN/firewall-toegang nog controleren bij productie                     |
 | Sitemap                       | Pass                      | 15 indexeerbare document-URLs; ook beelden en zes lokale videoverwijzingen bij hun cases                                       |
-| Preview-indexering            | Ingericht                 | `VERCEL_ENV=preview` krijgt noindex, robots-disallow en een lege sitemap                                                       |
+| Preview-indexering            | Ingericht                 | Previewbranch of `SITE_ENV=preview` krijgt noindex, robots-disallow en een lege sitemap                                        |
 | Structured data               | Pass in lokale controles  | Organization, Person, WebSite, WebPage/ContactPage/AboutPage, BreadcrumbList, Service en CreativeWork met vaste gekoppelde IDs |
 | Lokale bedrijfsmarkup         | Bewuste beperking         | Organization gebruikt het bevestigde werkgebied. Geen verzonnen straatadres, KvK, openingstijden of LocalBusiness-rating       |
 | Reviews                       | Pass                      | Bestaande citaten blijven; geen zelfgemaakte AggregateRating of resultaatclaims                                                |

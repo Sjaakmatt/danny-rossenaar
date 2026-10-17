@@ -27,7 +27,7 @@ De eerdere versie doorliep HTTP-controles voor alle pagina’s, 404’s, de oude
 
 Reduced motion is in Motion-componenten en CSS gecontroleerd: geen pinning of verborgen diensten en geen lange lege scrollruimte. Een gewijzigde OS-voorkeur is niet via de browser nagebootst. Er is geen volledige WCAG-, Lighthouse- of cross-browseraudit uitgevoerd.
 
-Online preview gebruikt de bestaande Vercel-integratie en vraagt Vercel-login. De gebruiker heeft op 11 oktober 2026 merge naar `main` geautoriseerd; de actuele mergestatus staat in PR #16. Het echte uitnodigingsportaal en echte advertentiegegevens zijn niet gekoppeld aan deze openbare demo. De gebruiker heeft de visuele richting op 11 oktober 2026 goedgekeurd.
+Hosting is op 17 oktober 2026 verhuisd van Vercel naar Cloudflare Workers (OpenNext). `npm run preview` is lokaal in de Workers-runtime gecontroleerd: alle pagina’s 200, voorgerenderde pagina’s uit de cache (`x-nextjs-cache: HIT`), `/index.html` 308, onbekende URL 404, beveiligingsheaders aanwezig, `next/image` werkt en de contactroute geeft zonder sleutel 503. Een echte Cloudflare-deploy en e-mailbezorging zijn niet getest. De gebruiker heeft op 11 oktober 2026 merge naar `main` geautoriseerd; de actuele mergestatus staat in PR #16. Het echte uitnodigingsportaal en echte advertentiegegevens zijn niet gekoppeld aan deze openbare demo. De gebruiker heeft de visuele richting op 11 oktober 2026 goedgekeurd.
 
 ## Eerdere galerij- en mediacontrole (voor onderstaande herziening)
 
